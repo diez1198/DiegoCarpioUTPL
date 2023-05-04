@@ -1,0 +1,76 @@
+th {
+    padding: 0 150px;
+  }
+  
+  pre {
+    font-family: "Arial", sans-serif;
+    font-size: 25px;
+  }
+  
+  strong {
+    font-weight: bold;
+  }
+
+  .italic {
+    font-style: italic;
+  }
+
+  pre strong {
+    font-weight: bold;
+  }
+
+  #preguntas-container {
+    text-align: justify;
+    font-size: 20;
+  }
+  #preguntas-container {/* CUESTIONARIO CON SOLO 1 RESPUESTA  Y TAMBIEN SOLO PREGUNTAS*/
+    max-width: 800px; /* Ancho máximo del contenedor */
+    margin: 20px 2px; /* Margen superior e inferior de 20px y margen izquierdo y derecho de 60px */
+    text-align: justify; /* Justifica el texto dentro del contenedor */
+  }
+  
+  #button-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    
+  }
+  
+  .button-container button {   /*  4 BOTONES DENTRO DE CUESTIONARIO FUSELAJE*/
+    margin-right: 20px;
+    color: blueviolet;
+    
+  }
+  .examen-info {
+    font-size: 25px;
+    text-align: center;
+    text-align: justify;
+    line-height: 2;
+    margin: 20px auto; /* Agrega margen superior e inferior de 20px y centrado horizontal */
+    max-width: 800px; /* Establece el ancho máximo en 600px */
+  }
+  
+
+
+
+  #todo-container {   /* CUESTIONARIO 3 OPCIONES Y BOTON DE RESPUESTA RESPUESTA Y TAMBIEN SOLO LAS 3 OPCIONES*/
+    max-width: 90%; /* Ancho máximo del contenedor */
+    text-align: center;
+    margin: 20px auto;; /* Margen superior e inferior de 20px y margen izquierdo y derecho de 60px */
+    text-align: justify; /* Justifica el texto dentro del contenedor */
+  }
+
+  #opciones-pregunta {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  #opciones-pregunta p {
+    margin: 0;
+    
+  }
+  .mi-boton-estilo {
+    background-color: rgb(0, 255, 13);
+  }
+  
+  

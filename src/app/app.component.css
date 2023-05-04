@@ -1,0 +1,134 @@
+/* app.component.css */
+
+
+* {
+    margin:0;
+    padding:0;
+}
+
+header{
+    width: 100%;
+}
+header nav {
+    overflow: hidden;
+    width: 100%;
+    margin: 5px auto;
+    text-align: center;
+    background-color: #e4b022; /* color de fondo del menú*/
+    justify-content: flex-start; /* Alinea los elementos horizontalmente con espacio alrededor */
+    display: flex; /* Establece el display como flex para que los elementos sean mostrados en línea */
+    padding: 2px 7px 2px 7px;
+    
+}
+
+header nav ul {
+    overflow: hidden;
+    list-style: none;/* Quita vinetas default*/
+    
+}
+header nav ul li {
+    float: left ; /* Menu Horizontal*/
+    /*border-left:4px solid rgba(255, 255, 255, .3) ; rayas de alineado
+    border-right:4px solid rgba(255, 255, 255, .3) ;
+    border-top:4px solid rgba(255, 255, 255, .3) ;
+    border-bottom:4px solid rgba(255, 255, 255, .3) ;*/
+    margin-right: 1px; /* Cambia el valor de margin-right a la cantidad de espacio deseado entre cada elemento del menú */
+}
+
+header nav ul li a {
+    color: #333; /* Ajusta el color del texto del menú a tu preferencia */
+    text-decoration: none; /* Quita la subraya de los enlaces */
+    display:block;
+    padding: 2px 25px 2px 25px;
+    font-size: 30px; /* tamaño del texto  */
+    
+}
+
+
+
+/* */
+header nav ul li:hover {
+    background-color:#f8b263; /* Cambia el color de fondo del item del menú a azul cuando se hace hover */
+    color:black; /* Cambia el color del texto a blanco cuando se hace hover para mejorar la legibilidad */
+}
+
+
+/* app.component.css */
+
+.titulo-principal {
+    margin-bottom: 40px; /* Agrega 20px de margen inferior */
+    text-align: center;
+    font-size: 60px; /* tamaño del texto  */
+  }
+  
+  .subtitulo {
+    font-size: 40px; /* tamaño del texto  */
+    margin: 20px auto;
+    margin-bottom: 30px; /* Agrega 10px de margen inferior */
+    text-align: center;
+    max-width: 800px;
+  }
+  
+  .examen-info {
+    font-size: 25px;
+    text-align: center;
+    text-align: justify;
+    line-height: 2;
+    margin: 20px auto; /* Agrega margen superior e inferior de 20px y centrado horizontal */
+    max-width: 800px; /* Establece el ancho máximo en 600px */
+  }
+  
+  
+  
+
+@media screen and (max-width:800px) {
+
+    header nav {
+        width: 100%;
+        height: max-content;
+        margin: 0;
+    }
+
+    
+    .titulo-principal {
+        margin-bottom: 20px; /* Agrega 20px de margen inferior */
+        text-align: center;
+        font-size: 30px; /* tamaño del texto  */
+      }
+      
+      .subtitulo {
+        font-size: 20px; /* tamaño del texto  */
+        margin: 10px auto;
+        margin-bottom: 30px; /* Agrega 10px de margen inferior */
+        text-align: center;
+        max-width: 800px;
+      }
+      
+      .examen-info {
+        font-size: 15px;
+        text-align: center;
+        text-align: justify;
+        line-height: 2;
+        margin: 20px auto; /* Agrega margen superior e inferior de 20px y centrado horizontal */
+        max-width: 350px; /* Establece el ancho máximo en 600px */
+      }
+
+
+    /*
+    header nav ul li  {
+        display: block;
+        float:none;
+        border-bottom:1px solid rgba(255, 255, 255, .3) ;
+        font-size: 1px;
+    }*/
+
+    header nav ul li a {
+        font-size: 20px; /* Cambia el tamaño del texto  */
+       padding: 2px 7px 2px 7px;
+    }
+    
+    
+}
+
+
+
