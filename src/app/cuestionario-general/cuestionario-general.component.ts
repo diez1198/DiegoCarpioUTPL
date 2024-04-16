@@ -1,39 +1,91 @@
+// cuestionario-general.component.ts
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { AppComponent } from '../app.component';
+import { TraerMecanicaGeneralService } from 'src/app/traer-mecanica-general.service';
+import { ChangeDetectorRef } from '@angular/core';
+
+
 
 
 @Component({
   selector: 'app-cuestionario-general',
   templateUrl: './cuestionario-general.component.html',
-  styleUrls: ['./cuestionario-general.component.css']
+  styleUrls: ['./cuestionario-general.component.css'],
 })
 export class CuestionarioGeneralComponent implements OnInit {
-  preguntas: any; // Variable para almacenar los datos del archivo JSON
-  mostrarPreguntas: boolean = false; // Variable para controlar la visualización de las preguntas
-  
-  constructor(private http: HttpClient, private appComponent: AppComponent) { }
+  datos: any[] = [];
+
+  constructor(private traerMecanicaService: TraerMecanicaGeneralService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
-    this.loadJSONData(); // Cargar los datos del archivo JSON al inicializar el componente
-  }
-
-  loadJSONData() {
-    // Hacer una solicitud HTTP para cargar el archivo JSON
-    this.http.get('./assets/CuestionarioMecanicaGeneralVer2.json').subscribe(response => {
-      this.preguntas = response; // Asignar los datos del archivo JSON a la variable 'preguntas'
+    this.traerMecanicaService.obtenerDatos().subscribe((datos: any[]) => {
+      this.datos = datos;
+      console.log(this.datos);
+      console.log(this.datos[0].data);  // Agrega esta línea para verificar los datos
     });
+
+
   }
 
-  showPreguntas() {
-    // Cambiar el valor de la propiedad 'mostrarPreguntas' para mostrar u ocultar las preguntas
-    this.mostrarPreguntas = !this.mostrarPreguntas;
+  
+
+
+  onCompletoMecanicaGeneralClick() {
+    const preguntasContainer = document.getElementById("preguntas-container");
+    const optionsContainer = document.getElementById("opciones-container");
+    const todoContainer = document.getElementById("todo-container");
+
+    if (!preguntasContainer || !optionsContainer || !todoContainer) {
+      console.error("Alguno de los elementos no existe en el DOM");
+      return;
+    }
+
+    preguntasContainer.innerHTML = '';
+    optionsContainer.innerHTML = '';
+    todoContainer.innerHTML = '';
+
+    
   }
 
-  showCuestionarioGeneral() {
-    // Llama a la función showCuestionarioText del componente AppComponent
-    this.appComponent.showCuestionarioGeneral();
+
+  onCuestionarioMecanicaGeneralRespuestaClick() {
+    const preguntasContainer = document.getElementById("preguntas-container");
+    const optionsContainer = document.getElementById("opciones-container");
+    const todoContainer = document.getElementById("todo-container");
+  
+    if (!preguntasContainer || !optionsContainer || !todoContainer) {
+      console.error("Alguno de los elementos no existe en el DOM");
+      return;
+    }
+  
+    preguntasContainer.innerHTML = '';
+    optionsContainer.innerHTML = '';
+    todoContainer.innerHTML = '';
+      
+    
   }
+  
+
+  onCuestionarioMecanicaGeneralSoloRespuestaClick() {
+    const preguntasContainer = document.getElementById("preguntas-container");
+    const optionsContainer = document.getElementById("opciones-container");
+    const todoContainer = document.getElementById("todo-container");
+  
+    if (!preguntasContainer || !optionsContainer || !todoContainer) {
+      console.error("Alguno de los elementos no existe en el DOM");
+      return;
+    }
+  
+    preguntasContainer.innerHTML = '';
+    optionsContainer.innerHTML = '';
+    todoContainer.innerHTML = '';
+      
+    
+  }
+
+
+
+
+
 
 }
 

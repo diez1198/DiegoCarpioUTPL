@@ -1,83 +1,200 @@
 /* app.component.css */
 
 
+/* Tu archivo de estilos */
+
+
+
 * {
-    margin:0;
-    padding:0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-header{
-    width: 100%;
-}
-header nav {
-    overflow: hidden;
-    width: 100%;
-    margin: 5px auto;
-    text-align: center;
-    background-color: #e4b022; /* color de fondo del menú*/
-    justify-content: flex-start; /* Alinea los elementos horizontalmente con espacio alrededor */
-    display: flex; /* Establece el display como flex para que los elementos sean mostrados en línea */
-    padding: 2px 7px 2px 7px;
-    
+
+.menu-list {
+  display: flex;
+  align-items: center; /* Alinear elementos verticalmente al centro */
+  list-style-type: none; /* Eliminar puntos de lista */
+  padding: 10;
+  margin: 0;
 }
 
-header nav ul {
-    overflow: hidden;
-    list-style: none;/* Quita vinetas default*/
-    
-}
-header nav ul li {
-    float: left ; /* Menu Horizontal*/
-    /*border-left:4px solid rgba(255, 255, 255, .3) ; rayas de alineado
-    border-right:4px solid rgba(255, 255, 255, .3) ;
-    border-top:4px solid rgba(255, 255, 255, .3) ;
-    border-bottom:4px solid rgba(255, 255, 255, .3) ;*/
-    margin-right: 1px; /* Cambia el valor de margin-right a la cantidad de espacio deseado entre cada elemento del menú */
-}
-
-header nav ul li a {
-    color: #333; /* Ajusta el color del texto del menú a tu preferencia */
-    text-decoration: none; /* Quita la subraya de los enlaces */
-    display:block;
-    padding: 2px 25px 2px 25px;
-    font-size: 30px; /* tamaño del texto  */
-    
+.administrador {
+  margin-left: auto; /* Esto empuja el botón Administrador al extremo derecho */
+  /* Estilos específicos para el botón Administrador si los necesitas */
 }
 
 
 
-/* */
-header nav ul li:hover {
-    background-color:#f8b263; /* Cambia el color de fondo del item del menú a azul cuando se hace hover */
-    color:black; /* Cambia el color del texto a blanco cuando se hace hover para mejorar la legibilidad */
+/* Estilo específico para el botón Administrador */
+.menu-list li.administrador {
+  margin-left: auto; /* Empujar el botón al final del contenedor */
 }
 
 
-/* app.component.css */
 
+.menu_bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Asegura que esté por encima de otros elementos */
+  display: flex;
+  justify-content: space-between; /* Esto alinea los elementos a los extremos */
+}
+
+
+
+
+
+
+
+
+
+/* Tus otros estilos */
+
+
+
+
+
+
+body nav {
+  width: 100%;
+  margin: 0px auto; /* margen borde superior*/
+  text-align: center;
+  background-color: #e4b022; /* Color de fondo de la barra del menú larga menos los botones especificos*/
+}
+
+body nav ul {
+  list-style: none; /* Quita viñetas default */
+  padding: 0; /* Eliminar cualquier padding */
+}
+
+/* esteeeee */
+/* importante para margenes de los botones */
+body nav ul li > a {
+  color: #333;
+  text-decoration: none;
+  white-space: nowrap; /* Evitar el salto de línea */
+  overflow: hidden; /* Ocultar el texto que desborda el contenedor */
+  text-overflow: ellipsis; /* Mostrar puntos suspensivos cuando el texto desborda */
+  padding: 10px 60px !important; /* Ajustar el padding */
+  margin: 0 !important; /* Eliminar cualquier margen */
+  border: none !important; /* Eliminar el borde */
+  border-left: none !important; /* Eliminar el borde izquierdo */
+  display: block;
+  font-size: 30px;
+  background-color: #e4b022; /* Color de fondo amarillo de las opciones del menu desplegable*/
+}
+
+body nav ul li > a:hover {
+  background-color: #8d6e19 !important; /* Color de fondo azul cuando el mouse está encima */
+  color: #ffffff; /* Color del texto a blanco cuando el mouse está encima */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Estilos adicionales */
 .titulo-principal {
-    margin-bottom: 40px; /* Agrega 20px de margen inferior */
-    text-align: center;
-    font-size: 60px; /* tamaño del texto  */
-  }
+  margin-bottom: 40px;
+  text-align: center;
+  font-size: 60px;
+  margin-top: 200px; /* Espacio en la parte superior del router-outlet */
   
-  .subtitulo {
-    font-size: 40px; /* tamaño del texto  */
-    margin: 20px auto;
-    margin-bottom: 30px; /* Agrega 10px de margen inferior */
-    text-align: center;
-    max-width: 800px;
-  }
   
-  .examen-info {
-    font-size: 25px;
-    text-align: center;
-    text-align: justify;
-    line-height: 2;
-    margin: 20px auto; /* Agrega margen superior e inferior de 20px y centrado horizontal */
-    max-width: 800px; /* Establece el ancho máximo en 600px */
-  }
+}
+
+.subtitulo {
   
+  font-size: 40px;
+  margin: 20px auto;
+  margin-bottom: 30px;
+  text-align: center;
+  max-width: 800px;
+  
+}
+
+.examen-info {
+  font-size: 25px;
+  text-align: center;
+  text-align: justify;
+  line-height: 2;
+  margin: 20px auto;
+  max-width: 800px;
+  
+}
+
+
+/* ... */
+
+
+/* Margenes items de la lista desplegable*/
+.menu-list li {
+  margin-left: none; 
+  margin-right: none; 
+}
+
+
+
+
+
+.dropdown-menu {
+  background-color: #e4b022;  /* Cambia el color de fondo a amarillo */
+  border: none; /* Elimina los bordes */
+  width: auto !important; /* Ajusta el ancho al contenido */
+  padding: 0 !important; /* Elimina el padding */
+}
+
+.dropdown-menu .dropdown-item {
+  padding: 10px 25px !important; /* Ajustar el padding */
+  margin: 0 !important; /* Eliminar cualquier margen */
+  border: none !important; /* Eliminar el borde */
+  width: 100% !important; /* Ajusta el ancho al 100% */
+}
+
+.dropdown-menu .dropdown-item:hover {
+  background-color: #8d6e19 !important; /* Color de fondo azul cuando el mouse está encima */
+  color: #40c6dd; /* Color del texto a blanco cuando el mouse está encima */
+  border: none !important; /* Eliminar los bordes del elemento */
+}
+
+/* ... */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
   
 
@@ -85,6 +202,7 @@ header nav ul li:hover {
 
     header nav {
         width: 100%;
+        
         height: max-content;
         margin: 0;
     }
@@ -94,6 +212,9 @@ header nav ul li:hover {
         margin-bottom: 20px; /* Agrega 20px de margen inferior */
         text-align: center;
         font-size: 30px; /* tamaño del texto  */
+        margin-top: 200px; /* Ajusta este valor según el espacio que quieras */
+      
+        
       }
       
       .subtitulo {
@@ -102,6 +223,8 @@ header nav ul li:hover {
         margin-bottom: 30px; /* Agrega 10px de margen inferior */
         text-align: center;
         max-width: 800px;
+        
+        
       }
       
       .examen-info {
@@ -111,6 +234,7 @@ header nav ul li:hover {
         line-height: 2;
         margin: 20px auto; /* Agrega margen superior e inferior de 20px y centrado horizontal */
         max-width: 350px; /* Establece el ancho máximo en 600px */
+        
       }
 
 

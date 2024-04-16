@@ -1,68 +1,137 @@
-<body>
-  <div class="menu_bar">
-    <a href="#" class="bt-menu">Menú</a>
-  </div>
-  <header>
-    <nav>
-      <ul>
-        <li>
-          <a (click)="redirectToRDAC65()" [class.active]="activeMenuItem === 'RDAC 65'"
-            (mouseenter)="doNothing" (mouseleave)="doNothing">
-            RDAC 65
-          </a>
-        </li>
+<div class="contenedor-principal">
 
-        <li>
-          <a (click)="setActiveMenuItem('Cuestionario General')" [class.active]="activeMenuItem === 'Cuestionario General'"
-            (mouseenter)="doNothing" (mouseleave)="doNothing">
-            Cuestionario General
-          </a>
-        </li>
-        <li>
-          <a (click)="setActiveMenuItem('Cuestionario Fuselaje')" [class.active]="activeMenuItem === 'Cuestionario Fuselaje'"
-            (mouseenter)="doNothing" (mouseleave)="doNothing">
-            Cuestionario Fuselaje
-          </a>
-        </li>
-        <li>
-          <a (click)="setActiveMenuItem('Cuestionario Motores')" [class.active]="activeMenuItem === 'Cuestionario Motores'"
-            (mouseenter)="doNothing" (mouseleave)="doNothing">
-            Cuestionario Motores
-          </a>
-        </li>
-      </ul>
-    </nav>
-    <div class="cuestionario-container" *ngIf="activeMenuItem !== 'Cuestionario General' && activeMenuItem !== 'Cuestionario Fuselaje' && activeMenuItem !== 'Cuestionario Motores'">
-      
-      <head>
-        <title>Guía de Examen</title>
-      </head>
-      
-      <h1 class="titulo-principal">Guía de Examen</h1>
-      <h2 class="subtitulo">I. Mecánica General de Aviación</h2>
-      <h2 class="subtitulo">II. Mecánica de Fuselaje de Aviación</h2>
-      <h2 class="subtitulo">III. Mecánica de Motores de Aviación</h2>
-      <p class="examen-info">Las áreas que abarcan los exámenes teóricos, son de fácil comprensión y están conformadas por asignaturas aplicables a la mecánica de aviación, por lo tanto, el postulante que haya revisado cuidadosamente la guía proporcionada por la DGAC, puede aprobar la evaluación teórica.</p>
-      <p class="examen-info">Todas las preguntas son objetivas, de selección múltiple y pueden ser contestadas con una sola respuesta; las notas de calificaciones mínimas para aprobar los exámenes teóricos son del 70 por ciento.</p>
-      <p class="examen-info">El tiempo establecido por la DGAC para la resolución de cada examen es de 2 horas</p>
+<!-- Header -->
+<header>
 
-      
+  <head>
+    <title>Guía de Examen</title>
+  </head>
+  <body>
+    <!-- Barra de menú -->
+    <div class="menu_bar">
+      <nav>
+        <ul class="menu-list"> <!-- Agrega la clase menu-list aquí -->
+          <!-- Elementos del menú principal con enlaces a diferentes páginas de contenido -->
+          <li>
+            <a routerLink="/inicio" [class.active]="activeMenuItem === 'inicio'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
+              Inicio
+            </a>
+          </li>
+  
+          <li>
+            <a (click)="redirectToRDAC65()" [class.active]="activeMenuItem === 'RDAC 65'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
+              RDAC 65
+            </a>
+          </li>
+  
+          <li>
+            <a routerLink="simuladorGeneral" [class.active]="activeMenuItem === 'Simuladores'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
+              Simuladores
+            </a>
+          </li>
+  
+          <!-- Menú desplegable -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Cuestionarios
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li>
+                <a routerLink="/cuestionarioGeneral" class="dropdown-item" [class.active]="activeMenuItem === 'Cuestionario General'">
+                  Cuestionario General
+                </a>
+              </li>
+              <li>
+                <a routerLink="/cuestionarioFuselaje" class="dropdown-item" [class.active]="activeMenuItem === 'Cuestionario Fuselaje'">
+                  Cuestionario Fuselaje
+                </a>
+              </li>
+              <li>
+                <a routerLink="/cuestionarioMotores" class="dropdown-item" [class.active]="activeMenuItem === 'Cuestionario Motores'">
+                  Cuestionario Motores
+                </a>
+              </li>
+            </ul>
+          </li>
+  
+          <!-- Nuevo botón Administrador -->
+          <li class="administrador">
+            <a routerLink="/administrador" [class.active]="activeMenuItem === 'Administrador'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
+              Administrador
+            </a>
+          </li>
+  
+        </ul>
+      </nav>
     </div>
+  </body>
+  
   </header>
+  
+
+<!-- Contenedor del contenido principal -->
+<div class="contenedor-contenido">
+  <!-- Contenido principal -->
   <main>
-    <div class="cuestionario-container" *ngIf="activeMenuItem === 'Cuestionario General' || activeMenuItem === 'Cuestionario Fuselaje' || activeMenuItem === 'Cuestionario Motores'">
-      <h2>{{activeMenuItem}}</h2>
-    </div>
-     <div *ngIf="activeMenuItem === 'Cuestionario General'">
-      <app-cuestionario-general [(ngModel)]="data"></app-cuestionario-general>
-    </div>
-    <div *ngIf="activeMenuItem === 'Cuestionario Fuselaje'">
-      <app-cuestionario-fuselaje [(ngModel)]="data"></app-cuestionario-fuselaje>
-    </div>
-    <div *ngIf="activeMenuItem === 'Cuestionario Motores'">
-      <app-cuestionario-motores [(ngModel)]="data"></app-cuestionario-motores>
-    </div>
+      <div class="mensaje-container">
+        <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+      </div>
   </main>
-</body>
+</div>
+<router-outlet></router-outlet>
 
 
+
+
+
+
+  
+  <!-- Agrega tus scripts y otras inclusiones al final del cuerpo -->
+
+
+
+
+
+<!-- TEEEESTT
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Cuestionarios
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li>
+              <a routerLink="/cuestionarioGeneral" class="dropdown-item" [class.active]="activeMenuItem === 'Cuestionario General'">
+                Cuestionario General
+              </a>
+            </li>
+            <li>  
+              <a routerLink="/cuestionarioFuselaje" class="dropdown-item" [class.active]="activeMenuItem === 'Cuestionario Fuselaje'">
+                Cuestionario Fuselaje
+              </a>
+            </li>
+            <li>
+              <a routerLink="/cuestionarioMotores" class="dropdown-item" [class.active]="activeMenuItem === 'Cuestionario Motores'">
+                Cuestionario Motores
+              </a>
+            </li>
+            </ul>
+          </li>
+      </ul>
+      </div>
+    </nav>
+
+-->
+
+
+
+
+
+
+
+
+    
+   
+  

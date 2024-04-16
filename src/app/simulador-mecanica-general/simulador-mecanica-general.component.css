@@ -1,0 +1,177 @@
+#todo-container {   /* CUESTIONARIO 3 OPCIONES Y BOTON DE RESPUESTA RESPUESTA Y TAMBIEN SOLO LAS 3 OPCIONES*/
+    max-width: 90%; /* Ancho máximo del contenedor */
+    text-align: center;
+    margin: 20px auto; /* Margen superior e inferior de 20px y margen izquierdo y derecho de 60px */
+    text-align: justify; /* Justifica el texto dentro del contenedor */
+  }
+
+  
+  
+  .opciones-pregunta {
+    margin-top: 10px;
+  }
+  
+  .opciones-pregunta div {
+    margin-bottom: 5px;
+  }
+  
+  .opciones-pregunta label {
+    display: inline-block;
+    margin-left: 5px;
+  }
+  
+  .opcion-correcta {
+    background-color: yellow;
+  }
+  
+  .respuesta-seleccionada {
+    background-color: lightgreen;
+  }
+  
+  .opcion-correcta {
+    background-color: green;
+    color: white;
+  }
+  
+  .opcion-correcta.selected-correct {
+    background-color: green;
+    color: white;
+  }
+  .pregunta {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .opciones-pregunta label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .opciones-pregunta input[type="radio"] {
+    margin-right: 5px;
+  }
+  
+  .opciones-pregunta input[type="radio"]:checked + span {
+    background-color: green;
+    color: white;
+  }
+  
+  .opciones-pregunta ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .opciones-pregunta li {
+    display: block;
+  }
+  .opcion-container.respuesta-correcta {
+    background-color: green;
+    color: white;
+  }
+  
+  
+  .opcion-container.respuesta-seleccionada {
+    background-color: green;
+    color: white;
+  }
+  .opcion-correcta {
+    background-color: lightgreen;
+  }
+
+  .opcion-container.opcion-correcta {
+    background-color: lightgreen;
+  }
+  .opcion-container.opcion-seleccionada-correcta {
+    background-color: lightgreen;
+  }
+
+
+  .opcion-container.opcion-correcta {
+    background-color: yellow;
+  }
+  
+  .opcion-container.opcion-correcta.opcion-seleccionada {
+    background-color: lightgreen;
+  }
+  .opcion-container.opcion-seleccionada-correcta {
+    background-color: lightgreen;
+  }
+  .espacio {
+    border: none;
+    border-top: 1px solid #000;
+    margin: 50px 0; /* Aumentar el margen superior e inferior */
+  }
+
+  
+  .boton {
+    background-color: #4c93af; /* Color de fondo */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    padding: 10px 20px; /* Espacio interno */
+    text-align: center; /* Alineación del texto */
+    text-decoration: none; /* Sin decoración de texto */
+    display: inline-block; /* Mostrar como bloque en línea */
+    font-size: 22px; /* Tamaño de fuente */
+    margin: 10px; /* Margen externo */
+    cursor: pointer; /* Cambio de cursor al pasar por encima */  
+    transition: background-color 0.3s ease;
+  }
+
+  .boton:hover {
+    background-color: #45a049;
+  }
+  
+
+
+  .Titulo {
+    color: black; /* Color del texto: negro */
+    font-size: 40px; /* Tamaño de fuente */
+    text-align: left; /* Alineación del texto */
+  }
+
+
+  .pregunta-container {
+    margin-bottom: 50px;
+  }
+
+  .dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid black;
+    z-index: 9999;
+  }
+
+  .dialog {
+    display: none;
+  }
+
+  .dialog-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+  }
+  
+  .dialog-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+  .dialog-button {
+    margin-top: 10px;
+  }

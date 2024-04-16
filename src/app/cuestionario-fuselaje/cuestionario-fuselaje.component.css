@@ -1,3 +1,19 @@
+.mensaje-container {
+  font-family: Arial;
+  font-size: 36px;
+  color: #333;
+  line-height: 1.5;
+  width: 90%; /* Ancho relativo pantalla */
+  margin: 20px auto; /* Margen  */
+  text-align: justify;
+}
+
+.mensaje-container strong {
+  font-weight: bold; /*  negrita */
+  
+}
+
+
 th {
     padding: 0 150px;
   }
@@ -21,26 +37,74 @@ th {
 
   #preguntas-container {
     text-align: justify;
-    font-size: 20;
+   
+    font-size: 28px;
+    
+    text-align: justify;
+    margin-bottom: 10px;
+    margin: 20px auto; /* Margen  */
+    width: 90%; /* Ancho relativo pantalla */
   }
   #preguntas-container {/* CUESTIONARIO CON SOLO 1 RESPUESTA  Y TAMBIEN SOLO PREGUNTAS*/
-    max-width: 800px; /* Ancho máximo del contenedor */
-    margin: 20px 2px; /* Margen superior e inferior de 20px y margen izquierdo y derecho de 60px */
-    text-align: justify; /* Justifica el texto dentro del contenedor */
+    font-size: 28px;
+    border: 1px solid #ccc;
+    text-align: justify;
+    margin-bottom: 10px;
+    margin: 20px auto; /* Margen  */
+    width: 90%; /* Ancho relativo pantalla */
   }
   
   #button-container {
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
+    display: inline-block;
+    margin: 0 5vw; /* margen horizontal segun ancho de la pantalla */
+    padding: 10px 20px;
+    background-color: #4c93af;
+    color: white;
+    font-size: 30px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
     
   }
   
   .button-container button {   /*  4 BOTONES DENTRO DE CUESTIONARIO FUSELAJE*/
-    margin-right: 20px;
-    color: blueviolet;
-    
+    display: inline-block;
+      padding: 10px 20px;
+      background-color: #4c93af;
+      color: white;
+      font-size: 30px;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      margin: 10px;
+      transition: background-color 0.3s ease;
+
   }
+
+  .button-container button:hover {   /*  4 BOTONES DENTRO DE CUESTIONARIO FUSELAJE*/
+    background-color: #45a049;
+  }
+    
+    
+  .button-container {
+    text-align: center; /* Alinea  centro */
+}
+    
+    
+    
+   
+    
+
+
+
+
+
+    
+  
   .examen-info {
     font-size: 25px;
     text-align: center;
@@ -56,8 +120,14 @@ th {
   #todo-container {   /* CUESTIONARIO 3 OPCIONES Y BOTON DE RESPUESTA RESPUESTA Y TAMBIEN SOLO LAS 3 OPCIONES*/
     max-width: 90%; /* Ancho máximo del contenedor */
     text-align: center;
-    margin: 20px auto;; /* Margen superior e inferior de 20px y margen izquierdo y derecho de 60px */
+    margin: 20px auto; /* Margen superior e inferior de 20px y margen izquierdo y derecho de 60px */
     text-align: justify; /* Justifica el texto dentro del contenedor */
+    font-size: 28px;
+    
+    text-align: justify;
+    margin-bottom: 10px;
+    margin: 20px auto; /* Margen  */
+    width: 90%; /* Ancho relativo pantalla */
   }
 
   #opciones-pregunta {

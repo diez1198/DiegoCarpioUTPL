@@ -1,0 +1,46 @@
+<p class="Titulo">Sumulador Mecánica General</p>
+<p>Respuestas correctas: {{ respuestaCorrectaCount }}</p>
+<p>Cantidad de preguntas generadas: {{ cantidadPreguntasGeneradas }}</p>
+
+
+
+<button class="boton" (click)="simuladorExamen()">Simulador Examen Mecánica General</button>
+<button class="boton" (click)="mostrarCuestionario()">Cuestionario completo</button>
+
+
+<div id="dialog" class="dialog-container">
+  <div class="dialog-content">
+    <h3>Ingrese el número de preguntas:</h3>
+    <input id="numeroPreguntas" type="number" min="1" max="100" value="10">
+    <button class="dialog-button" (click)="obtenerNumeroPreguntas()">Aceptar</button>
+  </div>
+</div>
+
+
+  
+
+
+<div>
+    <div class="button-container">
+     <!-- <button (click)="onMenuItemClick()">Mostrar Cuestioanrio sin respuestas</button>
+      <button (click)="onShowOptionsClick()">Mostrar el Cuestionario con su respuesta</button>
+      <button (click)="onTodoClick()">Mostrar el Cuestionario con sus 3 opciones de respuesta y boton responder</button>
+      <button (click)="on3opciones()">Mostrar el Cuestionario con sus 3 opciones de respuesta</button>   app-routing.module.ts-->
+    </div>
+    <div id="preguntas-container"></div>
+    <div id="opciones-container"></div>
+    <div id="todo-container"></div>
+    <button (click)="calificar()">Calificar</button>
+
+    <div id="todo-container">
+      <div class="pregunta-container">
+        <!-- Contenido de la primera pregunta -->
+      </div>
+    
+      <div class="pregunta-container">
+        <!-- Contenido de la segunda pregunta -->
+      </div>
+    
+      <!-- Agrega más contenedores de pregunta según sea necesario -->
+    </div>
+    

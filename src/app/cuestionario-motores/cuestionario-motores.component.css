@@ -1,0 +1,14 @@
+.mensaje-container {
+    font-family: Arial;
+    font-size: 36px;
+    color: #333;
+    line-height: 1.5;
+    width: 90%; /* Ancho relativo pantalla */
+    margin: 20px auto; /* Margen  */
+    text-align: justify;
+}
+
+.mensaje-container strong {
+    font-weight: bold; /*  negrita */
+    
+}

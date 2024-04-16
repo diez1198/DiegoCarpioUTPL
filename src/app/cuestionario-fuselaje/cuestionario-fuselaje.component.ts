@@ -44,6 +44,7 @@ export class CuestionarioFuselajeComponent implements OnInit {
     });
   }
 
+
   onShowOptionsClick() {
     const preguntasContainer = document.getElementById("preguntas-container");
     const optionsContainer = document.getElementById("opciones-container");
@@ -57,16 +58,38 @@ export class CuestionarioFuselajeComponent implements OnInit {
     preguntasContainer.innerHTML = '';
     optionsContainer.innerHTML = '';
     todoContainer.innerHTML = '';
-      
+  
     this.http.get<any>('assets/json/CuestionarioMecanicaGeneralVer12.json').subscribe(data => {
       for (const item of data.data) {
-        if (item.pregunta && item.respuesta) {
-          preguntasContainer.innerHTML += `<div><strong>${item.pregunta}</strong></div><div><em>${item.respuesta}</em></div><br>`;
+        if (item.pregunta && item.opcion && item.respuesta) {
+          preguntasContainer.innerHTML += `<div><strong>${item.pregunta}</strong></div>`;
+  
+          const opcionesPregunta = document.createElement("div");
+          opcionesPregunta.classList.add("opciones-pregunta");
+  
+          for (let i = 0; i < item.opcion.length; i++) {
+            item.opcion[i] = item.opcion[i].replace(/[]+. /, "");
+            opcionesPregunta.innerHTML += `<p>${item.opcion[i]}</p>`;
+          }
+  
+          preguntasContainer.appendChild(opcionesPregunta);
+          preguntasContainer.innerHTML += `<div><em>Respuesta: ${item.respuesta}</em></div><br>`;
         }
       }
       this.jsonContent = JSON.stringify(data.data, null, 4);
     });
   }
+ 
+
+
+
+
+
+
+
+
+
+
   
  
 

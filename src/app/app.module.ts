@@ -7,23 +7,31 @@ import { CuestionarioFuselajeComponent } from './cuestionario-fuselaje/cuestiona
 import { CuestionarioMotoresComponent } from './cuestionario-motores/cuestionario-motores.component';
 import { Rdac65Component } from './rdac65/rdac65.component';
 import { FormsModule } from '@angular/forms'; // Importa FormsModule
-import { HttpClientModule } from '@angular/common/http'; // Importa HttpClientModule
+import { HttpClientModule } from '@angular/common/http';
+import { SimuladorGeneralComponent } from './simulador-general/simulador-general.component';
+import { SimuladorMecanicaGeneralComponent } from './simulador-mecanica-general/simulador-mecanica-general.component';
+import { TraerMecanicaGeneralService } from './traer-mecanica-general.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CuestionarioGeneralComponent,
+    CuestionarioGeneralComponent, // Agrega CuestionarioGeneralComponent aquí
     CuestionarioFuselajeComponent,
     CuestionarioMotoresComponent,
-    Rdac65Component
+    Rdac65Component,
+    SimuladorGeneralComponent,
+    SimuladorMecanicaGeneralComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule, // Agrega FormsModule al arreglo de imports
-    HttpClientModule // Agrega HttpClientModule al arreglo de imports
+    HttpClientModule, BrowserAnimationsModule, // Agrega HttpClientModule al arreglo de imports
+    BsDropdownModule.forRoot(),
   ],
-  providers: [],
+  providers: [TraerMecanicaGeneralService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

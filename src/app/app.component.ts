@@ -5,7 +5,9 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css' ]
+
+
 })
 export class AppComponent {
   jsonContent: string = '';// Variable to store the JSON content
@@ -58,6 +60,8 @@ export class AppComponent {
 
   doNothing() {}
 
-
+  isPaginaInicio(): boolean {
+    return this.router.url === '/inicioTest';
+  }
     
 }
