@@ -8,6 +8,12 @@ import { CuestionarioMotoresComponent } from './cuestionario-motores/cuestionari
 import { Rdac65Component } from './rdac65/rdac65.component';
 import { SimuladorGeneralComponent } from './simulador-general/simulador-general.component';
 import { SimuladorMecanicaGeneralComponent } from './simulador-mecanica-general/simulador-mecanica-general.component';
+import { LoginAdministradorComponent } from './login-administrador/login-administrador.component';
+import { SuperAdministradorComponent } from './super-administrador/super-administrador.component';
+import { NuevoCuestionarioComponent } from './nuevo-cuestionario/nuevo-cuestionario.component';
+import { EliminarCuestionarioComponent } from './eliminar-cuestionario/eliminar-cuestionario.component';
+
+
 const routes: Routes = [
   { path: 'inicio', component: CuestionarioGeneralComponent },
   { path: '', redirectTo: '/inicio', pathMatch: 'full' }, // Ruta de inicio
@@ -19,7 +25,25 @@ const routes: Routes = [
   { path: 'CuetionarioGeneralData', component: CuestionarioGeneralComponent }, // Ruta para el componente CuestionarioGeneralComponent con la URL segmentada 'CuestionarioGeneralData'
   { path: 'simuladorGeneral', component: SimuladorGeneralComponent},
   { path: 'simuladorMecanicaGeneral', component: SimuladorMecanicaGeneralComponent},
+  { path: 'administrador', component: LoginAdministradorComponent },
+  { path: 'nuevo-cuestionario', component: NuevoCuestionarioComponent },
+  {
+    path: 'super-administrador',
+    component: SuperAdministradorComponent,
+    children: [
+      { path: 'nuevo-cuestionario', component: NuevoCuestionarioComponent },
+    ]
+  },
+  {
+    path: 'super-administrador/eliminar-cuestionario',
+    component: EliminarCuestionarioComponent
+  },
+  { path: 'eliminar-cuestionario', component: EliminarCuestionarioComponent }, // Ruta para el componente EliminarCuestionarioComponent
 ];
+
+
+
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -1,74 +1,74 @@
 <div class="contenedor-principal">
 
-<!-- Header -->
-<header>
+  <!-- Header -->
+  <header>
 
-  <head>
-    <title>Guía de Examen</title>
-  </head>
-  <body>
-    <!-- Barra de menú -->
-    <div class="menu_bar">
-      <nav>
-        <ul class="menu-list"> <!-- Agrega la clase menu-list aquí -->
-          <!-- Elementos del menú principal con enlaces a diferentes páginas de contenido -->
-          <li>
-            <a routerLink="/inicio" [class.active]="activeMenuItem === 'inicio'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
-              Inicio
-            </a>
-          </li>
-  
-          <li>
-            <a (click)="redirectToRDAC65()" [class.active]="activeMenuItem === 'RDAC 65'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
-              RDAC 65
-            </a>
-          </li>
-  
-          <li>
-            <a routerLink="simuladorGeneral" [class.active]="activeMenuItem === 'Simuladores'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
-              Simuladores
-            </a>
-          </li>
-  
-          <!-- Menú desplegable -->
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Cuestionarios
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+    <head>
+      <title>Guía de Examen</title>
+    </head>
+    <body>
+      <div *ngIf="!isLoggedIn">
+        <!-- Barra de menú -->
+        <div class="menu_bar">
+          <nav>
+            <ul class="menu-list"> <!-- Agrega la clase menu-list aquí -->
+              <!-- Elementos del menú principal con enlaces a diferentes páginas de contenido -->
               <li>
-                <a routerLink="/cuestionarioGeneral" class="dropdown-item" [class.active]="activeMenuItem === 'Cuestionario General'">
-                  Cuestionario General
+                <a routerLink="/inicio" [class.active]="activeMenuItem === 'inicio'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
+                  Inicio
                 </a>
               </li>
+
               <li>
-                <a routerLink="/cuestionarioFuselaje" class="dropdown-item" [class.active]="activeMenuItem === 'Cuestionario Fuselaje'">
-                  Cuestionario Fuselaje
+                <a (click)="redirectToRDAC65()" [class.active]="activeMenuItem === 'RDAC 65'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
+                  RDAC 65
                 </a>
               </li>
+
               <li>
-                <a routerLink="/cuestionarioMotores" class="dropdown-item" [class.active]="activeMenuItem === 'Cuestionario Motores'">
-                  Cuestionario Motores
+                <a routerLink="simuladorGeneral" [class.active]="activeMenuItem === 'Simuladores'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
+                  Simuladores
+                </a>
+              </li>
+
+              <!-- Menú desplegable -->
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Cuestionarios
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li>
+                    <a routerLink="/cuestionarioGeneral" class="dropdown-item" [class.active]="activeMenuItem === 'Cuestionario General'">
+                      Cuestionario General
+                    </a>
+                  </li>
+                  <li>
+                    <a routerLink="/cuestionarioFuselaje" class="dropdown-item" [class.active]="activeMenuItem === 'Cuestionario Fuselaje'">
+                      Cuestionario Fuselaje
+                    </a>
+                  </li>
+                  <li>
+                    <a routerLink="/cuestionarioMotores" class="dropdown-item" [class.active]="activeMenuItem === 'Cuestionario Motores'">
+                      Cuestionario Motores
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="administrador">
+                <a routerLink="/administrador" [class.active]="activeMenuItem === 'Administrador'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
+                  Administrador
                 </a>
               </li>
             </ul>
-          </li>
-  
-          <!-- Nuevo botón Administrador -->
-          <li class="administrador">
-            <a routerLink="/administrador" [class.active]="activeMenuItem === 'Administrador'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
-              Administrador
-            </a>
-          </li>
-  
-        </ul>
-      </nav>
-    </div>
-  </body>
-  
-  </header>
-  
+          </nav>
+        </div>
+      </div>
 
+    </body>
+
+  </header>
+
+</div>
 <!-- Contenedor del contenido principal -->
 <div class="contenedor-contenido">
   <!-- Contenido principal -->
@@ -79,7 +79,6 @@
   </main>
 </div>
 <router-outlet></router-outlet>
-
 
 
 

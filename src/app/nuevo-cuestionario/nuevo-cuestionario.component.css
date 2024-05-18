@@ -1,0 +1,92 @@
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh; /* Hace que el contenedor ocupe toda la altura de la ventana */
+    
+  }
+  
+  .form-container form {
+    width: 1200px;
+    padding: 60px; /* Espaciado interior del formulario */
+    border: 3px solid #333;
+    border-radius: 15px; /* Borde redondeado */
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1); /* Sombra del formulario */
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+    background-color: #fafafa;
+  }
+  
+  .form-label {
+    font-size: 30px;
+    margin-right: 20px;
+    color: #555;
+}
+
+
+  .form-group {
+    margin-bottom: 20px; /* Espacio entre grupos de campos */
+    font-size: 42px;
+    color: #555;
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  
+  label {
+    display: block; /* Para que cada etiqueta esté en una línea */
+    margin-bottom: 5px; /* Espacio inferior de la etiqueta */
+  }
+
+  .form-control {
+    font-size: 30px;
+    flex: 1; /* Para que ocupe todo el espacio restante */
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    margin-bottom: 0;
+    max-width: 200px;
+}
+
+
+  
+  input[type="text"],
+  textarea {
+    width: 100%; /* Ancho completo */
+    padding: 10px; /* Espaciado interior */
+    border: 1px solid #ccc; /* Borde */
+    border-radius: 5px; /* Borde redondeado */
+  }
+
+
+
+  .btn-nuevocuestionario {
+    background-color: #e4b022;
+    color: #333;
+    border: none;
+    padding: 10px 15px;
+    font-size: 30px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    justify-content: center; /* Centra los elementos horizontalmente */
+    
+}
+
+.botones {
+    display: flex;
+    justify-content: center; /* Centra los elementos horizontalmente */
+    margin-top: 20px; /* Espacio superior entre los botones y el formulario */
+  }
+
+  .botones button {
+    margin: 0 30px; /* Espacio horizontal entre los botones */
+  }
+
+.btn-guardar:hover {
+    background-color: #c49a19;
+}
+
+  

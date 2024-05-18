@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
+import { RouterModule } from '@angular/router'; 
 import { AppComponent } from './app.component';
 import { CuestionarioGeneralComponent } from './cuestionario-general/cuestionario-general.component';
 import { CuestionarioFuselajeComponent } from './cuestionario-fuselaje/cuestionario-fuselaje.component';
@@ -13,6 +14,17 @@ import { SimuladorMecanicaGeneralComponent } from './simulador-mecanica-general/
 import { TraerMecanicaGeneralService } from './traer-mecanica-general.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { SuperAdministradorComponent } from './super-administrador/super-administrador.component';
+import { LoginAdministradorComponent } from './login-administrador/login-administrador.component';
+import { CuestionariosDisponiblesService } from './cuestionarios-disponibles.service';
+import { EliminarCuestionarioComponent } from './eliminar-cuestionario/eliminar-cuestionario.component';
+import { NuevoCuestionarioComponent } from './nuevo-cuestionario/nuevo-cuestionario.component';
+import { MostrarEliminarCuestionariosService } from './eliminar-cuestionario/eliminar-cuestionario.service';
+
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -23,15 +35,30 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     Rdac65Component,
     SimuladorGeneralComponent,
     SimuladorMecanicaGeneralComponent,
+    SuperAdministradorComponent,
+    LoginAdministradorComponent,
+    NuevoCuestionarioComponent,
+    EliminarCuestionarioComponent,
+  
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule, // Agrega FormsModule al arreglo de imports
-    HttpClientModule, BrowserAnimationsModule, // Agrega HttpClientModule al arreglo de imports
+    HttpClientModule, 
+    BrowserAnimationsModule, // Agrega HttpClientModule al arreglo de imports
     BsDropdownModule.forRoot(),
+    RouterModule,
+    
   ],
-  providers: [TraerMecanicaGeneralService],
+  providers: [
+    TraerMecanicaGeneralService,
+    CuestionariosDisponiblesService,
+    MostrarEliminarCuestionariosService
+   
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

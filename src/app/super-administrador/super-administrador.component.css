@@ -1,0 +1,129 @@
+/* Estilo para la barra de navegación */
+.navbar {
+  width: 100%;
+  height: 87px;
+  background-color: #e4b022;
+  position: fixed;
+  top: 0;
+  left: 100;
+  z-index: 0;  /* Capa inferior */
+  text-align: center;
+  line-height: 70px;  /* para centrar verticalmente palabra salie */
+  color: white;
+  border-bottom: 1px solid #444;
+}
+
+/* Estilo para el menú lateral */
+.sidebar {
+  width: 250px;
+  height: 100%;
+  position: fixed;
+  top: 0;  /* Alinea con la barra de navegación superior */
+  left: 0;
+  background-color: #e4b022;
+  z-index: 2;  /* Capa superior */
+}
+
+.sidebar-menu {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar-menu li {
+  border-bottom: 1px solid #444;
+}
+
+.sidebar-menu li a {
+  color: #333;  /* color del texto del menu bar lateral */
+  font-size: 30px;/* tamaño del texto del menu bar lateral*/
+  display: block;
+  padding:  20px;
+  text-decoration: none;
+}
+
+.sidebar-menu li a:hover {
+  background-color: #8d6e19;
+}
+
+.active {
+  background-color: #271212;
+}
+
+
+
+
+
+.salir {
+  color: #333;  /* color del texto de la opcion salir */
+  font-size: 30px; /* tamaño del texto del la opcion salir */
+  text-decoration: none; /* Quita el subrayado */
+  transition: color 0.3s ease; /* Transición suave para el color del texto */
+  margin-right:50px;
+  margin-top: auto; /* Ajusta el margen superior para centrar el texto verticalmente */
+}
+
+
+.salir:hover {
+  background-color: #8d6e19;
+  color: #c49a19; /* Cambia el color del texto al pasar el cursor */
+}
+
+
+
+.contenido-principal {
+  display: flex;                /* Utilizar Flexbox */
+  justify-content: center;      /* Centrar horizontalmente */
+  align-items: center;          /* Centrar verticalmente */
+  height: 100vh;                /* Altura completa de la ventana */
+  flex-direction: column;       /* Alinear elementos en columna */
+}
+
+h1 {
+  margin-bottom: 20px;          /* Añadir margen inferior al título */
+}
+
+
+
+
+
+
+
+
+
+.contenido {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 50px; /* Margen lateral del menú lateral */
+}
+
+.botones-cuestionario {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start; /* Alinea los botones hacia el inicio del contenedor */
+  width: 100%; /* Ancho del contenedor */
+  margin-top: 150px;
+  margin-left: 400px; /* Margen lateral del menú lateral */
+}
+
+.boton {
+  flex: 0 0 calc(25% - 20px); /* Cada botón ocupa un cuarto del ancho del contenedor con un margen de 20px */
+  width: 300px; /* Ancho fijo para cada botón */
+  margin: 40px; /* Espacio entre los botones */
+  text-align: center;
+}
+
+.boton button {
+  padding: 30px; /* Aumenta el padding para hacer el botón más grande */
+  font-size: 3em;
+  width: 100%;
+  background-color: #e9d08c;
+  white-space: nowrap;       /* Evita que el texto se rompa */
+  overflow: hidden;           /* Oculta el contenido que desborda */
+  text-overflow: ellipsis; 
+  border-radius: 20px; 
+}
+
+.boton button:hover {
+  background-color: #ccb26c;
+}
