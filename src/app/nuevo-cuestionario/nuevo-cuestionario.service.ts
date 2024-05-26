@@ -1,24 +1,30 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs'; // Importar operadores RxJS
+import { Observable, throwError } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NuevoCuestionarioService {
-
   private apiUrl = 'http://localhost:3001'; // URL base de tu servidor Node.js
 
   constructor(private http: HttpClient) { }
 
-  // Método para crear una nueva colección y un documento dentro de ella
   crearNuevaColeccion(nombreCuestionario: string, datosDocumento: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/api/nueva-coleccion`, { nombre: nombreCuestionario }) //// aqui se crea  
+    
+    return this.http.post<{ nombreColeccion: string }>(`${this.apiUrl}/api/nueva-coleccion`, { nombre: nombreCuestionario })
       .pipe(
-        switchMap((response: any) => {
-          const nuevaColeccionId = response._id; // Suponiendo que tu servidor devuelve el _id de la nueva colección creada
-          return this.http.post(`${this.apiUrl}/api/nueva-coleccion/${nuevaColeccionId}/nuevo-documento`, datosDocumento);
+        switchMap((response) => {
+          const nombreColeccion = response.nombreColeccion;
+          console.log('Datos recibidos en nombre cuestionario de crear nueva coleecion :', nombreCuestionario);
+          console.log('Datos recibidos en nombre coleecion de crearnuevacoleccion:', nombreColeccion);
+          if (!nombreColeccion) {
+            console.error('El nombre de la colección es inválido al crear nueva coleccion');
+            return throwError('El nombre de la colección es inválido al crear nueva coleccion');
+          }
+  
+          return this.http.post(`${this.apiUrl}/api/nueva-coleccion/${nombreColeccion}/nuevo-documento`, datosDocumento);
         }),
         catchError(error => {
           console.error('Error al crear la colección y el documento:', error);
@@ -26,4 +32,37 @@ export class NuevoCuestionarioService {
         })
       );
   }
+  
+
+  insertarNuevaPregunta(nombreColeccion: string, datosDocumento: any): Observable<any> {
+    const url = `${this.apiUrl}/api/nueva-coleccion/${nombreColeccion}/nueva-pregunta`; //AQUI CAMBIA EL NOMBRE DEL URL Q SE CREA
+    console.log('Datos recibidos en insertarNuevaPregunta:', datosDocumento);
+    return this.http.post(url, datosDocumento)
+      .pipe(
+        catchError(error => {
+          console.error('Error al insertar la nueva pregunta:', error);
+          return throwError('Error al insertar la nueva pregunta');
+       
+  
+        })
+      );
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
 }

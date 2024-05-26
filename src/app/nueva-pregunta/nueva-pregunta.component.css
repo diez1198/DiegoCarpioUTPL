@@ -1,0 +1,66 @@
+/* Estilos para el formulario de nueva pregunta */
+
+
+.form-container {
+    border: 2px solid black;
+    padding: 20px;
+    border-radius: 10px;
+    width: 1200px;
+  }
+
+
+.form-group {
+    margin-bottom: 20px;
+    border-radius: 15px; /* Borde redondeado */
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1); /* Sombra del formulario */
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  input[type="text"],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  textarea {
+    height: 100px; /* Ajusta la altura según sea necesario */
+  }
+  
+
+
+
+  .form-buttons {
+    display: flex;
+    justify-content: space-between; /* Distribuye los botones horizontalmente */
+  }
+  
+  .form-buttons button {
+    background-color: #e4b022;
+    color: #333;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .form-buttons button:hover {
+    background-color: #c49a19;
+  }
+  
+  .next-question-btn {
+    background-color: #007bff; /* Color azul por defecto */
+    color: #fff;
+  }
+  
+  .next-question-btn:hover {
+    background-color: #0056b3; /* Color azul más oscuro al pasar el cursor */
+  }
+  

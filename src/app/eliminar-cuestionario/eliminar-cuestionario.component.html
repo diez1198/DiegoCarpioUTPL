@@ -45,7 +45,22 @@
   </div>
 
 
+ <!-- Titulo-->
  
+  <h1 class="titulo">Eliminar Cuestioarios</h1>
+
+
+
+ <!-- Mostrar los botones de los cuestionarios si se cumple la condición -->
+
+ <div class="botones-cuestionario" *ngIf="mostrarBotonesCuestionario">
+  <div *ngFor="let collection of collections" class="boton">
+    <button (dblclick)="confirmarEliminar(collection)">
+      {{ collection }}
+    </button>
+  </div>
+</div>
+
 
 
 
@@ -68,32 +83,4 @@
   </ul>
   
 
-
-
-
-
-
-
-
-
-
-
- <!-- Mostrar los botones de los cuestionarios si se cumple la condición -->
-
-
-
- <div class="botones-cuestionario" *ngIf="mostrarBotonesCuestionario">
-  <div *ngFor="let collection of collections" class="boton">
-    <button (dblclick)="confirmarEliminar(collection)">
-      {{ collection }}
-    </button>
-  </div>
-</div>
-
-
-<div *ngIf="cuestionarioAEliminar">
-  <p>¿Estás seguro de que deseas eliminar la colecciónkkkkkkkkkkk {{ cuestionarioAEliminar.nombre }}?</p>
-  <button (click)="eliminarCuestionario(cuestionarioAEliminar.nombre)">Confirmar</button>
-  <button (click)="cuestionarioAEliminar = null">Cancelar</button>
-</div>
-
+ 

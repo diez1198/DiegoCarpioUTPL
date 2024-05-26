@@ -1,0 +1,33 @@
+
+<h1>ingresar Pregunta</h1>
+<div class="form-container">
+    <form (ngSubmit)="submitForm()">
+  <div class="form-group">
+    <label for="pregunta">Pregunta:</label>
+    <textarea id="pregunta" name="pregunta" [(ngModel)]="pregunta" required></textarea>
+  </div>
+  <div class="form-group">
+    <label for="opcion_a">Opción A:</label>
+    <input type="text" id="opcion_a" name="opcion_a" [(ngModel)]="opcion_a" required>
+  </div>
+  <div class="form-group">
+    <label for="opcion_b">Opción B:</label>
+    <input type="text" id="opcion_b" name="opcion_b" [(ngModel)]="opcion_b" required>
+  </div>
+  <div class="form-group">
+    <label for="opcion_c">Opción C:</label>
+    <input type="text" id="opcion_c" name="opcion_c" [(ngModel)]="opcion_c" required>
+  </div>
+  <div class="form-group">
+    <label for="respuesta">Respuesta:</label>
+    <input type="text" id="respuesta" name="respuesta" [(ngModel)]="respuesta" required>
+  </div>
+  <div class="form-buttons">
+    <button type="button" class="regresar-btn" (click)="regresaraCrearCuestionario()">Regresar</button>
+    <button type="button" class="prev-question-btn" (click)="prevQuestion()">Pregunta Anterior</button>
+    <button type="button" class="next-question-btn" (click)="nextQuestion()">Siguiente Pregunta</button>
+    <button type="submit">Guardar</button>
+  </div>
+  
+    </form>
+</div>

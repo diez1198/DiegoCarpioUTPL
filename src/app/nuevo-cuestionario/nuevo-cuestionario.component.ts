@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+//nuevo-cuestionario-component
+import { Component, Input } from '@angular/core';
 import { NuevoCuestionarioService } from './nuevo-cuestionario.service';
+import { SharedDataService } from '../shared-data.service';
 
 @Component({
   selector: 'app-nuevo-cuestionario',
@@ -9,46 +11,98 @@ import { NuevoCuestionarioService } from './nuevo-cuestionario.service';
 })
 export class NuevoCuestionarioComponent {
 
+  nombreCuestionario: string = '';
+  datosDocumento: any = {};
   nombre: string = ''; // Variable para almacenar el nombre de la colección
+  nombreColeccion: string = ''; // Variable para almacenar el nombre de la colección
+  errorMessage: string = '';
+  showModal: boolean = false;
+  showSuccessMessage: boolean = false;
+  showNewQuestionForm: boolean = false;
+  showNewCuestionarioForm: boolean = true;
+  successMessage: string = '';
+  pregunta: any = {};
 
-  constructor(private nuevoCuestionarioService: NuevoCuestionarioService) { }
+  constructor(
+    private nuevoCuestionarioService: NuevoCuestionarioService,
+    private sharedDataService: SharedDataService
+  ) {}
 
   // Método para enviar el formulario
   submitForm(): void {
-    // Validar que se haya ingresado un nombre para la colección
-    if (!this.nombre) {
-      console.error('Debes ingresar un nombre para la colección');
-      return; // Salir del método si no se ha ingresado un nombre
+    if (!this.nombre.trim()) {
+      this.errorMessage = 'Debes ingresar un nombre para el nuevo cuestionario';
+      this.showModal = true;
+      return;
     }
 
-    // Crear un objeto de datos para el documento (ajusta esto según tus necesidades)
+    // Construir datosDocumento utilizando los valores del formulario
     const datosDocumento = {
-      titulo: 'Título del documento',
-      descripcion: 'Descripción del documento',
-      // Agrega más campos y valores según sea necesario
+      //titulo: this.pregunta.pregunta, // Utilizar la pregunta como título del documento
+      pregunta: this.pregunta.pregunta,
+      opcion_a: this.pregunta.opcion_a,
+      opcion_b: this.pregunta.opcion_b,
+      opcion_c: this.pregunta.opcion_c,
+      respuesta: this.pregunta.respuesta,
+     // preguntas: [/* aquí puedes agregar las preguntas adicionales */]
+
+
+   
+
     };
 
     // Llamar a la función del servicio para crear la colección y el documento
     this.nuevoCuestionarioService.crearNuevaColeccion(this.nombre, datosDocumento)
       .subscribe(
         () => {
-          console.log('Nueva colección y documento creados exitosamente');
-          // Puedes realizar acciones adicionales aquí, como redirigir al usuario a otra página
+          console.log('El nuevo cuestionario se ha creado exitosamente');
+          this.sharedDataService.setNombreColeccion(this.nombre); // Set nombreColeccion
+          this.showSuccess('El nuevo cuestionario se ha creado exitosamente');
         },
-        error => {
-          console.error('Error al crear la nueva colección y el documento:', error);
-          // Puedes mostrar un mensaje de error al usuario
+        (error) => {
+          console.error('Error al crear el cuestionario:', error);
+          // Manejar el error aquí, por ejemplo, mostrar un mensaje de error
         }
       );
-  }
 
-  // Método para regresar a otra página (opcional)
-  regresar(): void {
-    // Implementar la lógica para regresar a otra página
+    // Limpiar los datos de la pregunta después de enviar el formulario
+    this.pregunta = {};
   }
 
   // Método para ir a la siguiente página (opcional)
   siguiente(): void {
     // Implementar la lógica para ir a la siguiente página
   }
+
+  closeModal(): void {
+    this.showModal = false;
+  }
+
+  // Método para mostrar el mensaje de éxito
+  showSuccess(message: string): void {
+    this.successMessage = message;
+    this.showSuccessMessage = true;
+  }
+
+  // Método para cerrar el mensaje de éxito
+  closeSuccessMessage(): void {
+    this.showSuccessMessage = false;
+  }
+
+  // Agregar el método closeSuccessModal para cerrar el modal de éxito
+  closeSuccessModal(): void {
+    this.showSuccessMessage = false;
+  }
+
+  showNewQuestionForms(): void {
+    this.showSuccessMessage = false;
+    this.showNewCuestionarioForm = false;
+    this.showNewQuestionForm = true;
+  }
+
+  regresar(): void {
+    this.showNewQuestionForm = false;
+    this.showNewCuestionarioForm = true;
+  }
+
 }

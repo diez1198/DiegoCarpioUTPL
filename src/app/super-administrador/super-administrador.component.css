@@ -85,6 +85,17 @@ h1 {
 
 
 
+/*  Titulo*/
+.titulo {
+  font-size: 60px;
+  color: black;
+  font-family: Georgia, serif;
+  margin-top: 90px;
+  margin-left: 350px ;
+  margin-bottom: 50px;
+  
+}
+
 
 
 
@@ -102,7 +113,6 @@ h1 {
   flex-wrap: wrap;
   justify-content: flex-start; /* Alinea los botones hacia el inicio del contenedor */
   width: 100%; /* Ancho del contenedor */
-  margin-top: 150px;
   margin-left: 400px; /* Margen lateral del menú lateral */
 }
 

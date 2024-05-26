@@ -20,6 +20,7 @@ import { CuestionariosDisponiblesService } from './cuestionarios-disponibles.ser
 import { EliminarCuestionarioComponent } from './eliminar-cuestionario/eliminar-cuestionario.component';
 import { NuevoCuestionarioComponent } from './nuevo-cuestionario/nuevo-cuestionario.component';
 import { MostrarEliminarCuestionariosService } from './eliminar-cuestionario/eliminar-cuestionario.service';
+import { NuevaPreguntaComponent } from './nueva-pregunta/nueva-pregunta.component';
 
 
 
@@ -39,6 +40,7 @@ import { MostrarEliminarCuestionariosService } from './eliminar-cuestionario/eli
     LoginAdministradorComponent,
     NuevoCuestionarioComponent,
     EliminarCuestionarioComponent,
+    NuevaPreguntaComponent,
   
     
   ],
