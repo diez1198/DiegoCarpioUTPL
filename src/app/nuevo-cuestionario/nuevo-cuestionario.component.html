@@ -1,6 +1,7 @@
 <!-- Titulo-->
  
-<h1 class="titulo">Crear Nuevo Cuestioario</h1>
+<h1 class="titulo" *ngIf="showNuevoCuestionarioTitulo">Crear Nuevo Cuestionario</h1>
+
 
 <!-- Formulario para crear nuevo cuestionario -->
 <div class="form-container" *ngIf="showNewCuestionarioForm">
@@ -34,7 +35,7 @@
 <div class="success-message" *ngIf="showSuccessMessage">
     <div class="success-message-content">
         <p>{{ successMessage }}</p>
-        <button class="success-ok-btn" (click)="showNewQuestionForms()">Crear Nueva Pregunta</button>
+        <button class="success-ok-btn" (click)="showNewQuestionForms()">Continuar</button>
     </div>
 </div>
 

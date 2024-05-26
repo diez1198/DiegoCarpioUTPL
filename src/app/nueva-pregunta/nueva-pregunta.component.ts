@@ -11,14 +11,17 @@ import { SharedDataService } from '../shared-data.service';
   styleUrls: ['./nueva-pregunta.component.css']
 })
 export class NuevaPreguntaComponent {
-  @Input() nombreColeccion: string = ''; // Recibe el nombre de la colección como input
+  @Input() nombreColeccion: string = ''; // INPUT NOMBRE COLECCION 
+  
   pregunta: string = '';
-  respuesta: string = '';
   opcion_a: string = '';
   opcion_b: string = '';
   opcion_c: string = '';
- 
+  respuesta: string = '';
   nombreCuestionario: string = '';
+  contador: number = 1; // Contador para las preguntas creadas
+  emptyFieldsMessage : string = '';
+  showEmptyFields: boolean = false;
 
   constructor(
     private nuevoCuestionarioService: NuevoCuestionarioService,
@@ -32,6 +35,7 @@ export class NuevaPreguntaComponent {
 
   submitForm(): void {
     // Verificar si los datos están siendo capturados correctamente
+    // no quita los null
     console.log('Datos del formulario de la nueva pregunta component:', {
       pregunta: this.pregunta,
       opcion_a: this.opcion_a,
@@ -41,10 +45,19 @@ export class NuevaPreguntaComponent {
     });
 
 
+    // Verificar si todos los campos del formulario están llenos
+  if (!this.pregunta || !this.opcion_a || !this.opcion_b || !this.opcion_c || !this.respuesta) {
+    console.error('Todos los campos del formulario deben estar llenos.');
+    this.showEmptyFieldsMessage('Todos los campos del formulario deben estar llenos');
+    return; // Detener el proceso si algún campo está vacío
+  }
+
+
     
   
-    // Construir el objeto datosDocumento utilizando las propiedades del componente
+    // Construir el objeto datosDocumento, aqui se coloco el ID y funciono bien no hay q colocar en nungun otro lado
     const datosDocumento = {
+      id: this.contador, // contador
       pregunta: this.pregunta,
       opcion_a: this.opcion_a,
       opcion_b: this.opcion_b,
@@ -64,8 +77,19 @@ console.log('Nombre de la colección antes de llamar al servicio aqui debe salir
     this.nuevoCuestionarioService.insertarNuevaPregunta(this.nombreColeccion, datosDocumento)
     .subscribe(
       (response) => {
-        console.log('Pregunta creada exitosamente:', response);
-        // Realiza acciones adicionales aquí si es necesario
+        console.log('Nuevo Documento Creado exitosamente:', response);
+        this.contador++; // Incrementa el contador cuando se crea una nueva pregunta exitosamente
+        console.log('Contador actualizado:', this.contador); // Imprime el valor actualizado del contador
+        
+        // Limpiar los campos del formulario
+        this.pregunta = '';
+        this.opcion_a = '';
+        this.opcion_b = '';
+        this.opcion_c = '';
+        this.respuesta = '';
+
+
+
       },
       (error) => {
         console.error('Error al crear la pregunta:', error);
@@ -79,7 +103,7 @@ console.log('Nombre de la colección antes de llamar al servicio aqui debe salir
 
 
 
-    // Luego, guarda los datos de la pregunta en SharedDataService
+    // guarda los datos de la pregunta en SharedDataService
     this.sharedDataService.setPreguntaData({
       pregunta: this.pregunta,
       opcion_a: this.opcion_a,
@@ -102,4 +126,17 @@ console.log('Nombre de la colección antes de llamar al servicio aqui debe salir
   regresaraCrearCuestionario(): void {
     // Implementa la lógica para regresar al formulario de creación de cuestionario aquí
   }
+
+  // Método para mostrar el mensaje de campos vacíos
+showEmptyFieldsMessage(message: string): void {
+  this.emptyFieldsMessage = message;
+  this.showEmptyFields = true;
+}
+
+// Método para ocultar el mensaje de campos vacíos
+hideEmptyFieldsMessage(): void {
+  this.showEmptyFields = false;
+}
+
+
 }

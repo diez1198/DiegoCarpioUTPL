@@ -83,11 +83,16 @@ export class SuperAdministradorComponent implements OnInit {
   this.mostrarFormularioCrearCuestionario = true;
   this.mostrarBotonesCuestionario = false;
   this.router.navigate(['/super-administrador', 'nuevo-cuestionario']); // Actualiza la navegación con la nueva ruta
+  this.showInicioTitulo = false;
+  
+  
 }
 redireccionarASuperAdministrador(): void {
   this.mostrarFormularioCrearCuestionario = false;
   this.mostrarBotonesCuestionario = true; // Mostrar los botones de los cuestionarios
   this.router.navigate(['/super-administrador']);
+  this.showInicioTitulo = true;
+
 }
 
 mostrarEliminar(): void {
@@ -96,8 +101,9 @@ mostrarEliminar(): void {
   this.router.navigate(['/super-administrador', 'eliminar-cuestionario']); // Actualiza la navegación con la nueva ruta
 }
 
+menuItemSeleccionado: string = ''; // Esta es la línea que necesitas agregar
 
-
-
+showInicioTitulo: boolean = true;
+showNuevoCuestionarioTitulo: boolean = true;
 
 }

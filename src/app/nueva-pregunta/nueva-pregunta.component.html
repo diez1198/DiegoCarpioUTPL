@@ -1,9 +1,9 @@
 
-<h1>ingresar Pregunta</h1>
 <div class="form-container">
     <form (ngSubmit)="submitForm()">
   <div class="form-group">
-    <label for="pregunta">Pregunta:</label>
+    <p class="Ingresar-Preguntas">Ingresar preguntas</p>
+    <label for="pregunta">Pregunta {{ contador }}:</label> 
     <textarea id="pregunta" name="pregunta" [(ngModel)]="pregunta" required></textarea>
   </div>
   <div class="form-group">
@@ -25,9 +25,23 @@
   <div class="form-buttons">
     <button type="button" class="regresar-btn" (click)="regresaraCrearCuestionario()">Regresar</button>
     <button type="button" class="prev-question-btn" (click)="prevQuestion()">Pregunta Anterior</button>
-    <button type="button" class="next-question-btn" (click)="nextQuestion()">Siguiente Pregunta</button>
-    <button type="submit">Guardar</button>
+    <button type="submit">Siguiente Pregunta</button>
+    <button type="button" class="Finalizar-btn" (click)="nextQuestion()">Finalizar</button>
+    
   </div>
   
     </form>
+</div>
+
+<!-- Mensaje de campos vacíos -->
+<div class="empty-fields-message" *ngIf="showEmptyFields">
+  <div class="empty-fields-message-content">
+    <p>{{ emptyFieldsMessage }}</p>
+    <button class="empty-fields-ok-btn" (click)="hideEmptyFieldsMessage()">OK</button>
+  </div>
+</div>
+
+
+<div>
+  <p>Preguntas creadas: {{ contador }}</p>
 </div>

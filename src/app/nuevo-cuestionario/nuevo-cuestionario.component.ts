@@ -38,6 +38,7 @@ export class NuevoCuestionarioComponent {
 
     // Construir datosDocumento utilizando los valores del formulario
     const datosDocumento = {
+      // esto no qutia el null y no afecta en nada
       //titulo: this.pregunta.pregunta, // Utilizar la pregunta como título del documento
       pregunta: this.pregunta.pregunta,
       opcion_a: this.pregunta.opcion_a,
@@ -57,7 +58,7 @@ export class NuevoCuestionarioComponent {
         () => {
           console.log('El nuevo cuestionario se ha creado exitosamente');
           this.sharedDataService.setNombreColeccion(this.nombre); // Set nombreColeccion
-          this.showSuccess('El nuevo cuestionario se ha creado exitosamente');
+          this.showSuccess('Su nuevo cuestionario se ha creado satisfactoriamente. A continuación, ingrese sus preguntas');
         },
         (error) => {
           console.error('Error al crear el cuestionario:', error);
@@ -98,11 +99,28 @@ export class NuevoCuestionarioComponent {
     this.showSuccessMessage = false;
     this.showNewCuestionarioForm = false;
     this.showNewQuestionForm = true;
+    this.showNuevoCuestionarioTitulo = true;
+    
+    
   }
 
   regresar(): void {
     this.showNewQuestionForm = false;
     this.showNewCuestionarioForm = true;
+    this.showNuevoCuestionarioTitulo = true;
   }
+
+  
+
+ 
+
+
+
+
+  menuItemSeleccionado: string = ''; // Esta es la línea que necesitas agregar
+
+
+  showNuevoCuestionarioTitulo: boolean = true;
+
 
 }

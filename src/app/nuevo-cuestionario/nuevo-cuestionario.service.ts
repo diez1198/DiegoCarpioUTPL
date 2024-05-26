@@ -35,7 +35,7 @@ export class NuevoCuestionarioService {
   
 
   insertarNuevaPregunta(nombreColeccion: string, datosDocumento: any): Observable<any> {
-    const url = `${this.apiUrl}/api/nueva-coleccion/${nombreColeccion}/nueva-pregunta`; //AQUI CAMBIA EL NOMBRE DEL URL Q SE CREA
+    const url = `${this.apiUrl}/api/nueva-coleccion/${nombreColeccion}/nueva-pregunta`; //AQUI CAMBIA EL NOMBRE DEL URL
     console.log('Datos recibidos en insertarNuevaPregunta:', datosDocumento);
     return this.http.post(url, datosDocumento)
       .pipe(
