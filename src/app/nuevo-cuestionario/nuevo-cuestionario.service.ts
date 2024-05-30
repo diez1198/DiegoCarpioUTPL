@@ -32,7 +32,6 @@ export class NuevoCuestionarioService {
         })
       );
   }
-  
 
   insertarNuevaPregunta(nombreColeccion: string, datosDocumento: any): Observable<any> {
     const url = `${this.apiUrl}/api/nueva-coleccion/${nombreColeccion}/nueva-pregunta`; //AQUI CAMBIA EL NOMBRE DEL URL
@@ -46,23 +45,11 @@ export class NuevoCuestionarioService {
   
         })
       );
+
   }
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  
 }
+

@@ -1,3 +1,5 @@
+//
+
 import { Component, OnInit } from '@angular/core';
 import { MostrarCuestionariosService } from './mostrar-cuestionarios.service';
 import { Router } from '@angular/router';
@@ -15,19 +17,14 @@ export class SuperAdministradorComponent implements OnInit {
   nombreCuestionario: string = '';
   databases: any[] = [];
   cuestionarios: any[] = [];
-
   mostrarFormularioCrearCuestionario: boolean = false;
-
- 
+  nombreColeccion: string = ''; // Variable para almacenar el nombre de la colección
   mostrarBotonesCuestionario: boolean = true; // Inicialmente se muestran los botones
   collections: string[] = [];  // Inicializa el array
   cuestionarioId: string | null = null; // Inicializamos la propiedad como null
-
+  documentos: any[] = []; // Agregar la declaración de la propiedad documentos
   constructor(
     private mostrarCuestionariosService: MostrarCuestionariosService,
-    
-    
-    
     private router: Router, // Agrega el Router aquí
     
   ) 
@@ -55,10 +52,47 @@ export class SuperAdministradorComponent implements OnInit {
     );
   }
   
-  verCuestionario(cuestionarioId: string): void {
+  verCuestionariosss(cuestionarioId: string): void {
+    
+    
+
     console.log('Ver cuestionario:', cuestionarioId);
     // Implementa la lógica para mostrar el cuestionario completo
   }
+
+
+  verCuestionario(collectionName: string): void {
+    this.router.navigate(['/ver-cuestionarios', collectionName]);
+  }
+
+
+
+
+  verCuestionarios(collectionName: string): void {
+    this.router.navigate(['/ver-cuestionarios', collectionName]);
+    console.log('Ver cuestionario:', collectionName);
+    this.mostrarCuestionariosService.getDocumentos(collectionName).subscribe(
+      data => {
+        this.documentos = data;
+        console.log('Documentos:', this.documentos);
+      },
+      error => {
+        console.error('Error al obtener los documentos:', error);
+      }
+    );
+  }
+
+
+
+
+
+
+
+
+
+
+
+
 
   doNothing() {}
 
@@ -69,12 +103,6 @@ export class SuperAdministradorComponent implements OnInit {
   redireccionarAEliminarCuestionario(): void {
     this.router.navigate(['/eliminar-cuestionario']); // Navega a la ruta de EliminarCuestionarioComponent
   }
-
-  
-
-  
-
- 
 
 
 
@@ -102,7 +130,6 @@ mostrarEliminar(): void {
 }
 
 menuItemSeleccionado: string = ''; // Esta es la línea que necesitas agregar
-
 showInicioTitulo: boolean = true;
 showNuevoCuestionarioTitulo: boolean = true;
 

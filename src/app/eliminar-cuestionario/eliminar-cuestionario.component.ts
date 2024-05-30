@@ -54,6 +54,7 @@ export class EliminarCuestionarioComponent implements OnInit {
     console.log('Ver cuestionario:', this.cuestionarioId);
     console.log('Ver cuestionario:', this.cuestionarioId);
     
+    
   }
 
   actualizarListaCuestionarios(): void {}
@@ -66,6 +67,7 @@ export class EliminarCuestionarioComponent implements OnInit {
     this.mostrarFormularioCrearCuestionario = false;
     this.mostrarBotonesCuestionario = true;
     this.router.navigate(['/super-administrador', 'eliminar cuestionario']);
+    location.reload();
   }
 
   redireccionarASuperAdministrador(): void {
@@ -77,6 +79,7 @@ export class EliminarCuestionarioComponent implements OnInit {
   confirmarEliminar(collection: string): void {
     this.cuestionarioAEliminar = { nombre: collection }; // Actualiza esto según sea necesario
     this.mostrarFormularioAEliminar = true;
+    
   }
 
   cancelarEliminar(): void {
@@ -101,7 +104,14 @@ export class EliminarCuestionarioComponent implements OnInit {
             console.error('Error al eliminar el cuestionario:', error);
         }
     );
+    //ventana confirma eliminar y recargar pagina
+    this.mostrarFormularioAEliminar = false;
+    location.reload();
+
+
+
 }
+
 
 
 

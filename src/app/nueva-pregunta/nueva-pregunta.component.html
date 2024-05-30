@@ -26,7 +26,9 @@
     <button type="button" class="regresar-btn" (click)="regresaraCrearCuestionario()">Regresar</button>
     <button type="button" class="prev-question-btn" (click)="prevQuestion()">Pregunta Anterior</button>
     <button type="submit">Siguiente Pregunta</button>
-    <button type="button" class="Finalizar-btn" (click)="nextQuestion()">Finalizar</button>
+    <button type="button" class="Finalizar-btn" (click)="showConfirmationExit()">Finalizar</button>
+
+
     
   </div>
   
@@ -40,6 +42,21 @@
     <button class="empty-fields-ok-btn" (click)="hideEmptyFieldsMessage()">OK</button>
   </div>
 </div>
+
+
+<!-- Ventana emergente de confirmación -->
+<div class="confirmation-popup" *ngIf="showConfirmationPopup">
+  <div class="confirmation-popup-content">
+    <p>¿Está seguro de finalizar y guardar el cuestionario?</p>
+    <div class="confirmation-buttons">
+      <button class="cancel-btn" (click)="cancelFinish()">Cancelar</button>
+      <button class="confirm-btn" (click)="finishQuestionnaire()">Aceptar</button>
+    </div>
+  </div>
+</div>
+
+
+
 
 
 <div>

@@ -1,0 +1,187 @@
+
+.preguntas-container{
+ 
+    font-family: Arial;
+    width: 90%;
+    margin: 20px auto;
+    
+  }
+
+.preguntas-container {
+    margin-top: 20px;
+  }
+  
+  .pregunta-item {
+    border: 1px solid #ccc;
+    text-align: justify;
+    padding: 15px;
+/* margen entre pregunta*/
+    margin: 10px auto;
+    
+  }
+  
+  .pregunta-titulo {
+    font-size: 28px;
+    font-weight: bold;
+    text-align: justify;
+    margin-bottom: 10px;
+  }
+  
+  .Respuestas {
+    text-align: justify;
+    font-size: 24px;
+    margin: 10px;
+  }
+  
+  .respuesta-label {
+    font-weight: bold;
+    font-style: italic;
+    font-size: 24px;
+    color: rgb(87, 87, 90);
+  }
+  
+  .respuesta {
+    font-style: italic;
+    font-weight: bold;
+    font-size: 22px;
+    color: rgb(87, 87, 90);
+  }
+  
+
+  
+
+
+
+
+
+
+/* cuestionario-general.component.css */
+
+.menu_bar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Para asegurarse de que esté por encima de otros elementos */
+  }
+
+  
+
+
+.mensaje-container {
+  padding-top: 100px; /* margen desde el borde inferior de la barra de navegacion  */
+  font-size: 36px;
+  color: #333333;
+  line-height: 1.5;
+  text-align: justify;
+  margin-bottom: 20px; /* Añadir margen inferior */
+  
+}
+
+.mensaje-container strong {
+  font-weight: bold;
+  
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 20px; /* margen botones cuestionario completo mecanica general y cuestionario de repaso mecanica general */
+}
+
+.button-container button {
+  display: inline-block;
+  margin: 0 5vw;
+  padding: 10px 20px;
+  background-color: #4c93af;
+  color: white;
+  font-size: 30px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-container button:hover {
+  background-color: #45a049;
+}
+
+
+
+/* margen desde de la barra de navegacion*/
+
+.preguntas-container {
+  margin-top: 100px;
+}
+
+
+
+
+
+
+
+
+
+button.editar-btn {
+    background-color: #4CAF50; /* Color de fondo */
+    border: none; /* Sin borde */
+    color: white; /* Color del texto */
+    padding: 8px 16px; /* Espacio alrededor del texto */
+    text-align: center; /* Alinear el texto al centro */
+    text-decoration: none; /* Sin subrayado */
+    display: block; /* Cambiar a bloque para que aparezca debajo */
+    font-size: 14px; /* Tamaño del texto */
+    margin-top: 5px; /* Espacio superior */
+    cursor: pointer; /* Cambiar el cursor al pasar por encima */
+    border-radius: 4px; /* Borde redondeado */
+  }
+  
+  button.editar-btn:hover {
+    background-color: #45a049; /* Cambiar el color de fondo al pasar por encima */
+  }
+  
+
+
+
+
+
+
+  /*formulario editar preguntas*/
+
+  .pregunta-item {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 30px;
+    width: 1600px;
+    font-weight: bold;
+  }
+  
+  .pregunta-item h3 {
+    font-size: 30px;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color:#e4b022;;
+    color: #fff;
+    cursor: pointer;
+  }
+  

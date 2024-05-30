@@ -49,16 +49,24 @@
 <h1 class="titulo" *ngIf="showInicioTitulo">Inicio</h1>
 
 
+//aqui
 <!-- Mostrar los botones de los cuestionarios si se cumple la condición -->
 <div></div>
 
 <div class="botones-cuestionario" *ngIf="mostrarBotonesCuestionario">
   <div *ngFor="let collection of collections" class="boton">
-    <button (click)="verCuestionario(collection)">
+    <button (click)="verCuestionarios(collection)">
       {{ collection }}
     </button>
   </div>
 </div>
+
+
+
+
+
+
+
 
 
 <div class="contenido">

@@ -4,6 +4,7 @@
 import { Component, Input } from '@angular/core';
 import { NuevoCuestionarioService } from '../nuevo-cuestionario/nuevo-cuestionario.service';
 import { SharedDataService } from '../shared-data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nueva-pregunta',
@@ -22,10 +23,14 @@ export class NuevaPreguntaComponent {
   contador: number = 1; // Contador para las preguntas creadas
   emptyFieldsMessage : string = '';
   showEmptyFields: boolean = false;
+  showConfirmationPopup: boolean = false; // Para controlar la visibilidad de la ventana emergente
+
 
   constructor(
     private nuevoCuestionarioService: NuevoCuestionarioService,
-    private sharedDataService: SharedDataService
+    private sharedDataService: SharedDataService,
+    private router: Router, // Agrega el Router aquí
+    
   ) {}
 
 
@@ -137,6 +142,40 @@ showEmptyFieldsMessage(message: string): void {
 hideEmptyFieldsMessage(): void {
   this.showEmptyFields = false;
 }
+
+
+
+// Método para mostrar la ventana emergente de confirmación
+showConfirmationExit(): void {
+  this.showConfirmationPopup = true;
+}
+
+// Método para ocultar la ventana emergente de confirmación
+hideConfirmationPopup(): void {
+  this.showConfirmationPopup = false;
+}
+
+// Método para finalizar el cuestionario después de confirmación
+finishQuestionnaire(): void {
+  this.router.navigate(['/super-administrador']);
+  console.log('Nuevo Documento Creado exitosamente:');
+  this.showConfirmationPopup = false;
+  location.reload();
+}
+
+// Método para cancelar la finalización del cuestionario
+cancelFinish(): void {
+  this.hideConfirmationPopup(); // Oculta la ventana emergente
+  
+
+  // Otras acciones necesarias al cancelar la finalización del cuestionario
+}
+
+
+
+
+
+
 
 
 }

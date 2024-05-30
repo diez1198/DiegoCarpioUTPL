@@ -1,0 +1,53 @@
+<div class="preguntas-container">
+  <ul>
+    <li *ngIf="preguntaEditada; else mostrarPreguntas" class="pregunta-item">
+      <!-- Formulario de edición -->
+      <h3>Editando pregunta {{ preguntaEditada.id }}</h3>
+      <label>
+        _id:
+        <input type="text" [(ngModel)]="preguntaEditada._id" readonly>
+      </label><br>
+      <label>
+        Pregunta:
+        <input type="text" [(ngModel)]="preguntaEditada.pregunta">
+      </label><br>
+      <label>
+        id:
+        <input type="text" [(ngModel)]="preguntaEditada.id" readonly>
+      </label><br>
+      <label>
+        Opción A:
+        <input type="text" [(ngModel)]="preguntaEditada.opcion_a">
+      </label><br>
+      <label>
+        Opción B:
+        <input type="text" [(ngModel)]="preguntaEditada.opcion_b">
+      </label><br>
+      <label>
+        Opción C:
+        <input type="text" [(ngModel)]="preguntaEditada.opcion_c">
+      </label><br>
+      <label>
+        Respuesta:
+        <input type="text" [(ngModel)]="preguntaEditada.respuesta">
+      </label><br>
+      <button (click)="guardarEdicion()" class="guardar-btn">Guardar</button>
+      <button (click)="preguntaEditada = null">Cancelar</button>
+    </li>
+    <!-- Si no hay pregunta editada, mostrar todas las preguntas -->
+    <ng-template #mostrarPreguntas>
+      <li *ngFor="let pregunta of documentos" class="pregunta-item">
+        <strong class="pregunta-titulo">{{ pregunta.id }}) {{ pregunta.pregunta }}</strong>
+        <div class="Respuestas">
+          <span class="opcion">A) </span> {{ pregunta.opcion_a }}<br>
+          <span class="opcion">B) </span> {{ pregunta.opcion_b }}<br>
+          <span class="opcion">C) </span> {{ pregunta.opcion_c }}<br>
+          <strong class="respuesta-label">Respuesta: </strong>
+          <span class="respuesta">{{ pregunta.respuesta }}</span>
+          <button (click)="editarPregunta(pregunta)" class="editar-btn">Editar</button>
+        </div>
+      </li>
+    </ng-template>
+  </ul>
+  <p *ngIf="!documentos || documentos.length === 0">No hay documentos disponibles.</p>
+</div>

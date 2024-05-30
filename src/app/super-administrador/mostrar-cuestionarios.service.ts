@@ -1,3 +1,5 @@
+// mostrar-cuestionario.service
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -14,4 +16,15 @@ export class MostrarCuestionariosService {
   getDatabasesAndCollections(): Observable<any> {
     return this.http.get(this.apiUrl);
   }
-}
+
+  getDocumentos(nombreColeccion: string): Observable<any> {
+    return this.http.get<any[]>(`${this.apiUrl}/${nombreColeccion}`); // Aquí ajusta la URL
+  }
+
+  
+
+
+
+  
+  }
+

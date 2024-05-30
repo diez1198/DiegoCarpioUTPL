@@ -21,6 +21,7 @@ import { EliminarCuestionarioComponent } from './eliminar-cuestionario/eliminar-
 import { NuevoCuestionarioComponent } from './nuevo-cuestionario/nuevo-cuestionario.component';
 import { MostrarEliminarCuestionariosService } from './eliminar-cuestionario/eliminar-cuestionario.service';
 import { NuevaPreguntaComponent } from './nueva-pregunta/nueva-pregunta.component';
+import { VerCuestionariosComponent } from './ver-cuestionarios/ver-cuestionarios.component';
 
 
 
@@ -41,6 +42,7 @@ import { NuevaPreguntaComponent } from './nueva-pregunta/nueva-pregunta.componen
     NuevoCuestionarioComponent,
     EliminarCuestionarioComponent,
     NuevaPreguntaComponent,
+    VerCuestionariosComponent,
   
     
   ],
