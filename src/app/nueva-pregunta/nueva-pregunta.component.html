@@ -1,63 +1,58 @@
-
 <div class="form-container">
-    <form (ngSubmit)="submitForm()">
-  <div class="form-group">
-    <p class="Ingresar-Preguntas">Ingresar preguntas</p>
-    <label for="pregunta">Pregunta {{ contador }}:</label> 
-    <textarea id="pregunta" name="pregunta" [(ngModel)]="pregunta" required></textarea>
-  </div>
-  <div class="form-group">
-    <label for="opcion_a">Opción A:</label>
-    <input type="text" id="opcion_a" name="opcion_a" [(ngModel)]="opcion_a" required>
-  </div>
-  <div class="form-group">
-    <label for="opcion_b">Opción B:</label>
-    <input type="text" id="opcion_b" name="opcion_b" [(ngModel)]="opcion_b" required>
-  </div>
-  <div class="form-group">
-    <label for="opcion_c">Opción C:</label>
-    <input type="text" id="opcion_c" name="opcion_c" [(ngModel)]="opcion_c" required>
-  </div>
-  <div class="form-group">
-    <label for="respuesta">Respuesta:</label>
-    <input type="text" id="respuesta" name="respuesta" [(ngModel)]="respuesta" required>
-  </div>
-  <div class="form-buttons">
-    <button type="button" class="regresar-btn" (click)="regresaraCrearCuestionario()">Regresar</button>
-    <button type="button" class="prev-question-btn" (click)="prevQuestion()">Pregunta Anterior</button>
-    <button type="submit">Siguiente Pregunta</button>
-    <button type="button" class="Finalizar-btn" (click)="showConfirmationExit()">Finalizar</button>
-
-
-    
-  </div>
-  
-    </form>
+  <form (ngSubmit)="submitForm()">
+      <div class="form-group">
+          <p class="Ingresar-Preguntas">Ingresar preguntas</p>
+          <label for="pregunta">Pregunta {{ contador }}:</label> 
+          <textarea id="pregunta" name="pregunta" [(ngModel)]="pregunta" required></textarea>
+      </div>
+      <div class="form-group">
+          <label for="opcion_a">Opción A:</label>
+          <input type="text" id="opcion_a" name="opcion_a" [(ngModel)]="opcion_a" required>
+      </div>
+      <div class="form-group">
+          <label for="opcion_b">Opción B:</label>
+          <input type="text" id="opcion_b" name="opcion_b" [(ngModel)]="opcion_b" required>
+      </div>
+      <div class="form-group">
+          <label for="opcion_c">Opción C:</label>
+          <input type="text" id="opcion_c" name="opcion_c" [(ngModel)]="opcion_c" required>
+      </div>
+      <div class="form-group">
+          <label for="respuesta">Respuesta:</label>
+          <input type="text" id="respuesta" name="respuesta" [(ngModel)]="respuesta" required>
+      </div>
+      <!-- Agregar campo 'item' para mostrar el número de la pregunta -->
+      <div class="form-group">
+        <label for="item">Número de Pregunta:</label>
+        <input type="number" id="item" name="item" [(ngModel)]="item" required>
+      </div>
+      <div class="form-buttons">
+          <button type="button" class="regresar-btn" (click)="regresaraCrearCuestionario()">Regresar</button>
+          <button type="button" class="prev-question-btn" (click)="prevQuestion()">Pregunta Anterior</button>
+          <button type="submit">Siguiente Pregunta</button>
+          <button type="button" class="Finalizar-btn" (click)="showConfirmationExit()">Finalizar</button>
+      </div>
+  </form>
 </div>
 
 <!-- Mensaje de campos vacíos -->
 <div class="empty-fields-message" *ngIf="showEmptyFields">
   <div class="empty-fields-message-content">
-    <p>{{ emptyFieldsMessage }}</p>
-    <button class="empty-fields-ok-btn" (click)="hideEmptyFieldsMessage()">OK</button>
+      <p>{{ emptyFieldsMessage }}</p>
+      <button class="empty-fields-ok-btn" (click)="hideEmptyFieldsMessage()">OK</button>
   </div>
 </div>
-
 
 <!-- Ventana emergente de confirmación -->
 <div class="confirmation-popup" *ngIf="showConfirmationPopup">
   <div class="confirmation-popup-content">
-    <p>¿Está seguro de finalizar y guardar el cuestionario?</p>
-    <div class="confirmation-buttons">
-      <button class="cancel-btn" (click)="cancelFinish()">Cancelar</button>
-      <button class="confirm-btn" (click)="finishQuestionnaire()">Aceptar</button>
-    </div>
+      <p>¿Está seguro de finalizar y guardar el cuestionario?</p>
+      <div class="confirmation-buttons">
+          <button class="cancel-btn" (click)="cancelFinish()">Cancelar</button>
+          <button class="confirm-btn" (click)="finishQuestionnaire()">Aceptar</button>
+      </div>
   </div>
 </div>
-
-
-
-
 
 <div>
   <p>Preguntas creadas: {{ contador }}</p>

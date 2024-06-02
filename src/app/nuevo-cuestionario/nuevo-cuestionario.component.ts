@@ -2,6 +2,8 @@
 import { Component, Input } from '@angular/core';
 import { NuevoCuestionarioService } from './nuevo-cuestionario.service';
 import { SharedDataService } from '../shared-data.service';
+import { NgModule } from '@angular/core';
+import { OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-nuevo-cuestionario',
@@ -9,7 +11,8 @@ import { SharedDataService } from '../shared-data.service';
   styleUrls: ['./nuevo-cuestionario.component.css'],
   providers: [NuevoCuestionarioService], // Se proporciona el servicio aquí
 })
-export class NuevoCuestionarioComponent {
+export class NuevoCuestionarioComponent implements OnInit {
+
 
   nombreCuestionario: string = '';
   datosDocumento: any = {};
@@ -27,6 +30,11 @@ export class NuevoCuestionarioComponent {
     private nuevoCuestionarioService: NuevoCuestionarioService,
     private sharedDataService: SharedDataService
   ) {}
+
+  
+  ngOnInit(): void {
+    // Initialization code
+  }
 
   // Método para enviar el formulario
   submitForm(): void {

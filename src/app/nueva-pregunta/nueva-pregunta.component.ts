@@ -24,6 +24,7 @@ export class NuevaPreguntaComponent {
   emptyFieldsMessage : string = '';
   showEmptyFields: boolean = false;
   showConfirmationPopup: boolean = false; // Para controlar la visibilidad de la ventana emergente
+  item: number | null = null; // Número de la pregunta
 
 
   constructor(
@@ -40,7 +41,6 @@ export class NuevaPreguntaComponent {
 
   submitForm(): void {
     // Verificar si los datos están siendo capturados correctamente
-    // no quita los null
     console.log('Datos del formulario de la nueva pregunta component:', {
       pregunta: this.pregunta,
       opcion_a: this.opcion_a,
@@ -48,67 +48,55 @@ export class NuevaPreguntaComponent {
       opcion_c: this.opcion_c,
       respuesta: this.respuesta
     });
-
-
-    // Verificar si todos los campos del formulario están llenos
-  if (!this.pregunta || !this.opcion_a || !this.opcion_b || !this.opcion_c || !this.respuesta) {
-    console.error('Todos los campos del formulario deben estar llenos.');
-    this.showEmptyFieldsMessage('Todos los campos del formulario deben estar llenos');
-    return; // Detener el proceso si algún campo está vacío
-  }
-
-
-    
   
-    // Construir el objeto datosDocumento, aqui se coloco el ID y funciono bien no hay q colocar en nungun otro lado
-    const datosDocumento = {
-      id: this.contador, // contador
-      pregunta: this.pregunta,
-      opcion_a: this.opcion_a,
-      opcion_b: this.opcion_b,
-      opcion_c: this.opcion_c,
-      respuesta: this.respuesta
-    };
-
-
-//new 
-
-
-console.log('Nombre de la colección antes de llamar al servicio aqui debe salir ya siiii ?:', this.nombreColeccion);
-console.log('Nombre de la colección antes de llamar al servicio aqui debe salir ya:', this.nombreColeccion);
-console.log('Nombre de la colección antes de llamar al servicio aqui debe salir ya:', this.nombreColeccion);
-
-
-    this.nuevoCuestionarioService.insertarNuevaPregunta(this.nombreColeccion, datosDocumento)
-    .subscribe(
-      (response) => {
-        console.log('Nuevo Documento Creado exitosamente:', response);
-        this.contador++; // Incrementa el contador cuando se crea una nueva pregunta exitosamente
-        console.log('Contador actualizado:', this.contador); // Imprime el valor actualizado del contador
-        
-        // Limpiar los campos del formulario
-        this.pregunta = '';
-        this.opcion_a = '';
-        this.opcion_b = '';
-        this.opcion_c = '';
-        this.respuesta = '';
-
-
-
-      },
-      (error) => {
-        console.error('Error al crear la pregunta:', error);
-        // Maneja el error de acuerdo a tus necesidades
-
+    // Verificar si todos los campos del formulario están llenos
+    if (!this.pregunta || !this.opcion_a || !this.opcion_b || !this.opcion_c || !this.respuesta) {
+      console.error('Todos los campos del formulario deben estar llenos.');
+      this.showEmptyFieldsMessage('Todos los campos del formulario deben estar llenos');
+      return; // Detener el proceso si algún campo está vacío
+    }
+  
+    this.nuevoCuestionarioService.getDocumentos(this.nombreColeccion).subscribe(
+      (numeroDocumentos) => {
+        const item = numeroDocumentos + 1;
+        // Construir el objeto datosDocumento
+        const datosDocumento = {
+          id: this.contador, // contador
+          item: item, // Número de la pregunta
+          pregunta: this.pregunta,
+          opcion_a: this.opcion_a,
+          opcion_b: this.opcion_b,
+          opcion_c: this.opcion_c,
+          respuesta: this.respuesta
+        };
+  
+        console.log('Nombre de la colección antes de llamar al servicio:', this.nombreColeccion);
+  
+        this.nuevoCuestionarioService.insertarNuevaPregunta(this.nombreColeccion, datosDocumento).subscribe(
+          (response) => {
+            console.log('Nuevo Documento Creado exitosamente:', response);
+            this.contador++; // Incrementa el contador cuando se crea una nueva pregunta exitosamente
+            console.log('Contador actualizado:', this.contador); // Imprime el valor actualizado del contador
+  
+            // Limpiar los campos del formulario
+            this.pregunta = '';
+            this.opcion_a = '';
+            this.opcion_b = '';
+            this.opcion_c = '';
+            this.respuesta = '';
+          },
+          (error) => {
+            console.error('Error al crear la pregunta:', error);
+            // Maneja el error de acuerdo a tus necesidades
+          }
+        );
+  
+        this.sharedDataService.setPreguntaData(datosDocumento);
       }
     );
-    this.sharedDataService.setPreguntaData(datosDocumento);
   
-
-
-
-
-    // guarda los datos de la pregunta en SharedDataService
+    // Mueve esta parte dentro del bloque de la función submitForm()
+    // para que se ejecute correctamente después de realizar la lógica de inserción de pregunta
     this.sharedDataService.setPreguntaData({
       pregunta: this.pregunta,
       opcion_a: this.opcion_a,
@@ -117,7 +105,6 @@ console.log('Nombre de la colección antes de llamar al servicio aqui debe salir
       respuesta: this.respuesta
     });
   }
-
 
 
   nextQuestion(): void {

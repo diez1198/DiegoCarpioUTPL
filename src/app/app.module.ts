@@ -22,6 +22,7 @@ import { NuevoCuestionarioComponent } from './nuevo-cuestionario/nuevo-cuestiona
 import { MostrarEliminarCuestionariosService } from './eliminar-cuestionario/eliminar-cuestionario.service';
 import { NuevaPreguntaComponent } from './nueva-pregunta/nueva-pregunta.component';
 import { VerCuestionariosComponent } from './ver-cuestionarios/ver-cuestionarios.component';
+import { NuevoCuestionarioService } from './nuevo-cuestionario/nuevo-cuestionario.service';
 
 
 
@@ -43,7 +44,7 @@ import { VerCuestionariosComponent } from './ver-cuestionarios/ver-cuestionarios
     EliminarCuestionarioComponent,
     NuevaPreguntaComponent,
     VerCuestionariosComponent,
-  
+    NuevaPreguntaComponent,
     
   ],
   imports: [
@@ -59,7 +60,8 @@ import { VerCuestionariosComponent } from './ver-cuestionarios/ver-cuestionarios
   providers: [
     TraerMecanicaGeneralService,
     CuestionariosDisponiblesService,
-    MostrarEliminarCuestionariosService
+    MostrarEliminarCuestionariosService,
+    NuevoCuestionarioService
    
 
   ],

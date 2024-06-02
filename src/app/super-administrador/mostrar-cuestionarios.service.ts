@@ -18,7 +18,7 @@ export class MostrarCuestionariosService {
   }
 
   getDocumentos(nombreColeccion: string): Observable<any> {
-    return this.http.get<any[]>(`${this.apiUrl}/${nombreColeccion}`); // Aquí ajusta la URL
+    return this.http.get<any[]>(`${this.apiUrl}/${nombreColeccion}/documentos`); // Aquí ajusta la URL
   }
 
   

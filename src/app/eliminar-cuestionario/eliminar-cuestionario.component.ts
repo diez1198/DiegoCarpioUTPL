@@ -113,17 +113,6 @@ export class EliminarCuestionarioComponent implements OnInit {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
   
 }
 

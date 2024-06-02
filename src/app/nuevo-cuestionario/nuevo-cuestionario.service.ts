@@ -1,3 +1,4 @@
+//nuevo-cuestionario service//
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
@@ -47,6 +48,30 @@ export class NuevoCuestionarioService {
       );
 
   }
+
+
+  agregarPregunta(nombreColeccion: string, datosDocumento: any): Observable<any> {
+    const url = `${this.apiUrl}/api/nueva-coleccion/${nombreColeccion}/nueva-pregunta`; //AQUI CAMBIA EL NOMBRE DEL URL
+    console.log('Datos recibidos en insertarNuevaPregunta:', datosDocumento);
+    return this.http.post(url, datosDocumento)
+      .pipe(
+        catchError(error => {
+          console.error('Error al insertar la nueva pregunta:', error);
+          return throwError('Error al insertar la nueva pregunta');
+       
+  
+        })
+      );
+
+  }
+
+
+  getDocumentos(nombreColeccion: string): Observable<number> {
+    const url = `${this.apiUrl}/api/databases/${nombreColeccion}/total-documentos`; // Endpoint para contar documentos
+    return this.http.get<number>(url);
+}
+
+
 
 
 
