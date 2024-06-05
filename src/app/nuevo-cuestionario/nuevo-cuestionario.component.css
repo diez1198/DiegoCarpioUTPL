@@ -16,6 +16,7 @@
     flex-direction: column;
     justify-content: left;
     align-items: left;
+    
     background-color: #fafafa;
   }
   
@@ -66,14 +67,47 @@
     background-color: #e4b022;
     color: #333;
     border: none;
+    text-align: center; /* Texto centrado */
     padding: 10px 15px;
     font-size: 30px;
     border-radius: 20px;
     cursor: pointer;
     transition: background-color 0.3s ease;
     justify-content: center; /* Centra los elementos horizontalmente */
-    
 }
+
+
+.btn-regresar {
+  background-color: #e42222; /* Rojo */
+  border: none; /* Sin bordes */
+  color: #333;
+  padding: 10px 15px; /* Relleno */
+  text-align: center; /* Texto centrado */
+  
+ 
+  font-size: 30px; /* Tamaño de fuente */
+  margin: 4px 2px; /* Margen */
+  cursor: pointer; /* Cursor de mano al pasar el ratón */
+  border-radius: 20px; /* Esquinas redondeadas */
+  transition: background-color 0.3s ease;
+}
+
+.btn-regresar:hover {
+  background-color: #d32f2f; /* Rojo más oscuro al pasar el ratón */
+  transform: scale(1.05); /* Aumenta el tamaño un poco al pasar el ratón */
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 .botones {
     display: flex;
@@ -88,6 +122,7 @@
 .btn-guardar:hover {
     background-color: #c49a19;
 }
+
 
   
 /*  Titulo*/
@@ -180,6 +215,7 @@
   border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  
 }
 
 .ok-btn:hover {
@@ -249,4 +285,78 @@
 
 .success-ok-btn:hover {
   background-color: #c49a19;
+}
+
+
+
+
+
+/* Estilo para la barra de navegación */
+.navbar {
+  width: 100%;
+  height: 87px;
+  background-color: #e4b022;
+  position: fixed;
+  top: 0;
+  left: 100;
+  z-index: 0;  /* Capa inferior */
+  text-align: center;
+  line-height: 70px;  /* para centrar verticalmente palabra salie */
+  color: white;
+  border-bottom: 1px solid #444;
+}
+
+/* Estilo para el menú lateral */
+.sidebar {
+  width: 250px;
+  height: 100%;
+  position: fixed;
+  top: 0;  /* Alinea con la barra de navegación superior */
+  left: 0;
+  background-color: #e4b022;
+  z-index: 2;  /* Capa superior */
+}
+
+.sidebar-menu {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar-menu li {
+  border-bottom: 1px solid #444;
+}
+
+.sidebar-menu li a {
+  color: #333;  /* color del texto del menu bar lateral */
+  font-size: 30px;/* tamaño del texto del menu bar lateral*/
+  display: block;
+  padding:  20px;
+  text-decoration: none;
+}
+
+.sidebar-menu li a:hover {
+  background-color: #8d6e19;
+}
+
+.active {
+  background-color: #271212;
+}
+
+
+
+
+
+.salir {
+  color: #333;  /* color del texto de la opcion salir */
+  font-size: 30px; /* tamaño del texto del la opcion salir */
+  text-decoration: none; /* Quita el subrayado */
+  transition: color 0.3s ease; /* Transición suave para el color del texto */
+  margin-right:50px;
+  margin-top: auto; /* Ajusta el margen superior para centrar el texto verticalmente */
+}
+
+
+.salir:hover {
+  background-color: #8d6e19;
+  color: #c49a19; /* Cambia el color del texto al pasar el cursor */
 }

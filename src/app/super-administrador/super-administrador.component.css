@@ -72,13 +72,6 @@
 
 
 
-
-
-
-
-
-
-
 .contenido-principal {
   display: flex;                /* Utilizar Flexbox */
   justify-content: center;      /* Centrar horizontalmente */
@@ -90,9 +83,6 @@
 h1 {
   margin-bottom: 20px;          /* Añadir margen inferior al título */
 }
-
-
-
 
 /*  Titulo*/
 

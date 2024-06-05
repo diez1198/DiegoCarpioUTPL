@@ -23,6 +23,7 @@ import { MostrarEliminarCuestionariosService } from './eliminar-cuestionario/eli
 import { NuevaPreguntaComponent } from './nueva-pregunta/nueva-pregunta.component';
 import { VerCuestionariosComponent } from './ver-cuestionarios/ver-cuestionarios.component';
 import { NuevoCuestionarioService } from './nuevo-cuestionario/nuevo-cuestionario.service';
+import { VerCuestionariosService } from './ver-cuestionarios.service';
 
 
 
@@ -61,7 +62,8 @@ import { NuevoCuestionarioService } from './nuevo-cuestionario/nuevo-cuestionari
     TraerMecanicaGeneralService,
     CuestionariosDisponiblesService,
     MostrarEliminarCuestionariosService,
-    NuevoCuestionarioService
+    NuevoCuestionarioService,
+    VerCuestionariosService,
    
 
   ],

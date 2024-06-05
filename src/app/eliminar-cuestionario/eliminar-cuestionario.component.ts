@@ -19,6 +19,8 @@ export class EliminarCuestionarioComponent implements OnInit {
   cuestionarioAEliminar: any;
   mostrarFormularioAEliminar: boolean = false;
   cuestionarios: any[] = [];
+  showInicioTitulo: boolean = true;
+showNuevoCuestionarioTitulo: boolean = true;
 
   constructor(
     private router: Router,
@@ -59,21 +61,31 @@ export class EliminarCuestionarioComponent implements OnInit {
 
   actualizarListaCuestionarios(): void {}
 
-  MostrarCuestionariosService(): void {}
+
+  //formulario nuevo cuestionario
+  MostrarCuestionariosService(): void {
+    this.mostrarFormularioCrearCuestionario = true;
+    this.mostrarBotonesCuestionario = false;
+    this.router.navigate(['/super-administrador/nuevo']); // Actualiza la navegación con la nueva ruta
+    this.showInicioTitulo = false;
+    
+
+  }
 
   doNothing() {}
 
   mostrarEliminar(): void {
     this.mostrarFormularioCrearCuestionario = false;
     this.mostrarBotonesCuestionario = true;
-    this.router.navigate(['/super-administrador', 'eliminar cuestionario']);
-    location.reload();
+    this.router.navigate(['/super-administrador/eliminar-cuestionario']);
+    
   }
 
   redireccionarASuperAdministrador(): void {
     this.mostrarFormularioCrearCuestionario = false;
     this.mostrarBotonesCuestionario = true;
-    this.router.navigate(['/super-administrador']);
+    this.router.navigate(['/super-administrador/inicio']);
+    
   }
 
   confirmarEliminar(collection: string): void {
@@ -110,6 +122,13 @@ export class EliminarCuestionarioComponent implements OnInit {
 
 
 
+}
+
+mostrarFormulario(): void {
+  this.mostrarFormularioCrearCuestionario = true;
+  this.mostrarBotonesCuestionario = false;
+  this.router.navigate(['/super-administrador/nuevo']);
+  this.showInicioTitulo = false;
 }
 
 

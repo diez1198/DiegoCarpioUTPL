@@ -28,24 +28,12 @@ const routes: Routes = [
   { path: 'simuladorGeneral', component: SimuladorGeneralComponent},
   { path: 'simuladorMecanicaGeneral', component: SimuladorMecanicaGeneralComponent},
   { path: 'administrador', component: LoginAdministradorComponent },
-  { path: 'nuevo-cuestionario', component: NuevoCuestionarioComponent },
-  {
-    path: 'super-administrador',
-    component: SuperAdministradorComponent,
-    children: [
-      { path: 'nuevo-cuestionario', component: NuevoCuestionarioComponent },
-    ]
-  },
-  {
-    path: 'super-administrador/eliminar-cuestionario',
-    component: EliminarCuestionarioComponent
-  },
+  { path: 'super-administrador/nuevo', component: NuevoCuestionarioComponent },
+  {path: 'super-administrador/eliminar-cuestionario',component: EliminarCuestionarioComponent},
   { path: 'eliminar-cuestionario', component: EliminarCuestionarioComponent }, // Ruta para el componente EliminarCuestionarioComponent
-
-  { path: 'super-administrador', component: SuperAdministradorComponent },
-  { path: 'ver-cuestionarios/:nombreColeccion', component: VerCuestionariosComponent },
+  { path: 'super-administrador/inicio', component: SuperAdministradorComponent },
+  { path: 'super-administrador/ver-cuestionarios/:nombreColeccion', component: VerCuestionariosComponent },
   { path: '', redirectTo: '/super-administrador', pathMatch: 'full' }
-
 ];
 
 

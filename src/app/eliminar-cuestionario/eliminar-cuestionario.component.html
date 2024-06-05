@@ -1,56 +1,67 @@
 
-<div class="navbar">
-    <ul class="nav-menu">
-      <!-- Tus otros elementos del menú aquí -->
-    </ul>
-  
-    <a class="salir" routerLink="/salir" [class.active]="activeMenuItem === 'Salir'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
-      Salir
-    </a>
-  </div>
-  
-  <div class="sidebar">
-    <!-- Menú lateral -->
-    <nav>
-      <ul class="sidebar-menu">
-        <li>
-          <a routerLink="/dashboard" [class.active]="activeMenuItem === 'Dashboard'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
-            Administradores 
-          </a>
-        </li>
-        <li>
-          <a (click)="redireccionarASuperAdministrador()" [class.active]="activeMenuItem === 'Inicioadm'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
-            Inicio
-          </a>
-        </li>
-        <li>
-    <a (click)="MostrarCuestionariosService()" [class.active]="activeMenuItem === 'Nuevo'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
-      Nuevo
-    </a>
-  </li>
-  <li>
-    <a (click)="mostrarEliminar()" [class.active]="activeMenuItem === 'Nuevo'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
-      Eliminar
-    </a>
-  </li>
-  
-  
-        <li>
-          <a routerLink="/ayuda" [class.active]="activeMenuItem === 'Ayuda'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
-            Modificar
-          </a>
-        </li>
-      </ul>
-    </nav>
-  </div>
-
 
  <!-- Titulo-->
  
-  <h1 class="titulo">Eliminar Cuestionarios</h1>
+ <div class="navbar">
+  <ul class="nav-menu">
+    <!-- Tus otros elementos del menú aquí -->
+  </ul>
+  <a class="salir" routerLink="/salir" [class.active]="activeMenuItem === 'Salir'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
+    Salir
+  </a>
+</div>
+
+<div class="sidebar">
+  <nav>
+    <ul class="sidebar-menu">
+      <li>
+        <a routerLink="/dashboard" [class.active]="activeMenuItem === 'Dashboard'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
+          Administradores 
+        </a>
+      </li>
+      <li>
+        <a (click)="redireccionarASuperAdministrador()" [class.active]="activeMenuItem === 'Inicioadm'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
+          Inicio
+        </a>
+      </li>
+      <li>
+        <a (click)="mostrarFormulario()" [class.active]="activeMenuItem === 'Nuevo'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
+          Nuevo
+        </a>
+      </li>
+      <li>
+        <a (click)="mostrarEliminar()" [class.active]="activeMenuItem === 'Eliminar'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
+          Eliminar
+        </a>
+      </li>
+      <li>
+        <a routerLink="/ayuda" [class.active]="activeMenuItem === 'Ayuda'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
+          Modificar
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+ <h1 class="titulo" *ngIf="showInicioTitulo"> Eliminar Cuestionarios</h1>
  <!-- Mostrar los botones de los cuestionarios si se cumple la condición -->
 
  <div class="botones-cuestionario" *ngIf="mostrarBotonesCuestionario">
@@ -62,25 +73,24 @@
 </div>
 
 
+
+
+<div class="nuevo-cuestionario">
+  <div *ngIf="mostrarFormularioCrearCuestionario" class="formulario-crear-cuestionario">
+    <app-nuevo-cuestionario></app-nuevo-cuestionario>
+  </div>
+</div>
+
+
 <!-- mensaje para borrar-->
 
-  <div *ngIf="mostrarFormularioAEliminar" class="formulario-eliminar">
-    <div class="modal">
-      <div class="modal-content">
-        <span class="close" (click)="cancelarEliminar()">&times;</span>
-        <p>¿Estás seguro de que deseas eliminar la colección <strong>{{ cuestionarioAEliminar?.nombre }}</strong>?</p>
-        <button (click)="eliminarCuestionario(cuestionarioAEliminar?.nombre)">Confirmar</button>
-        <button (click)="cancelarEliminar()">Cancelar</button>
-      </div>
+<div *ngIf="mostrarFormularioAEliminar" class="formulario-eliminar">
+  <div class="modal">
+    <div class="modal-content">
+      <span class="close" (click)="cancelarEliminar()">&times;</span>
+      <p>¿Estás seguro de que deseas eliminar la colección <strong>{{ cuestionarioAEliminar?.nombre }}</strong>?</p>
+      <button style="background-color: #ff0000; color: #ffffff;;font-size: 30px;" (click)="eliminarCuestionario(cuestionarioAEliminar?.nombre)">Confirmar</button>
+      <button (click)="cancelarEliminar()">Cancelar</button>
     </div>
   </div>
-  
-  <ul>
-    <li *ngFor="let collection of collections" (dblclick)="confirmarEliminar(collection)">
-      {{ collection }}
-      <button (click)="confirmarEliminar(collection)">Eliminar</button>
-    </li>
-  </ul>
-  
-
- 
+</div>

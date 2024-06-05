@@ -1,37 +1,31 @@
-//
-
 import { Component, OnInit } from '@angular/core';
 import { MostrarCuestionariosService } from './mostrar-cuestionarios.service';
 import { Router } from '@angular/router';
-
 
 @Component({
   selector: 'app-super-administrador',
   templateUrl: './super-administrador.component.html',
   styleUrls: ['./super-administrador.component.css'],
-  
 })
 export class SuperAdministradorComponent implements OnInit {
-
   activeMenuItem: string = '';
   nombreCuestionario: string = '';
   databases: any[] = [];
   cuestionarios: any[] = [];
   mostrarFormularioCrearCuestionario: boolean = false;
-  nombreColeccion: string = ''; // Variable para almacenar el nombre de la colección
-  mostrarBotonesCuestionario: boolean = true; // Inicialmente se muestran los botones
-  collections: string[] = [];  // Inicializa el array
-  cuestionarioId: string | null = null; // Inicializamos la propiedad como null
-  documentos: any[] = []; // Agregar la declaración de la propiedad documentos
+  nombreColeccion: string = ''; 
+  mostrarBotonesCuestionario: boolean = true; 
+  collections: string[] = [];
+  cuestionarioId: string | null = null;
+  documentos: any[] = [];
+  showInicioTitulo: boolean = true;
+  showNuevoCuestionarioTitulo: boolean = true;
+  menuItemSeleccionado: string = '';
+
   constructor(
     private mostrarCuestionariosService: MostrarCuestionariosService,
-    private router: Router, // Agrega el Router aquí
-    
-  ) 
-  {
-
-  }
-
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.mostrarCuestionariosService.getDatabasesAndCollections().subscribe(
@@ -40,8 +34,6 @@ export class SuperAdministradorComponent implements OnInit {
           database.collections = database.collections.filter((collection: string) => collection !== 'oplog.rs');
           return database;
         });
-
-        // Inicializa el array collections
         this.databases.forEach(database => {
           this.collections = this.collections.concat(database.collections);
         });
@@ -51,25 +43,9 @@ export class SuperAdministradorComponent implements OnInit {
       }
     );
   }
-  
-  verCuestionariosss(cuestionarioId: string): void {
-    
-    
-
-    console.log('Ver cuestionario:', cuestionarioId);
-    // Implementa la lógica para mostrar el cuestionario completo
-  }
-
-
-  verCuestionario(collectionName: string): void {
-    this.router.navigate(['/ver-cuestionarios', collectionName]);
-  }
-
-
-
 
   verCuestionarios(collectionName: string): void {
-    this.router.navigate(['/ver-cuestionarios', collectionName]);
+    this.router.navigate(['super-administrador/ver-cuestionarios', collectionName]);
     console.log('Ver cuestionario:', collectionName);
     this.mostrarCuestionariosService.getDocumentos(collectionName).subscribe(
       data => {
@@ -82,55 +58,33 @@ export class SuperAdministradorComponent implements OnInit {
     );
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-  doNothing() {}
-
   navigateToNuevoCuestionario(): void {
     this.router.navigate(['/nuevo']);
   }
 
   redireccionarAEliminarCuestionario(): void {
-    this.router.navigate(['/eliminar-cuestionario']); // Navega a la ruta de EliminarCuestionarioComponent
+    this.router.navigate(['/eliminar-cuestionario']);
   }
 
-
-
-// FORMULARIO DEL NUEVO CUESTIONARIO
   mostrarFormulario(): void {
-  this.mostrarFormularioCrearCuestionario = true;
-  this.mostrarBotonesCuestionario = false;
-  this.router.navigate(['/super-administrador', 'nuevo-cuestionario']); // Actualiza la navegación con la nueva ruta
-  this.showInicioTitulo = false;
-  
-  
-}
-redireccionarASuperAdministrador(): void {
-  this.mostrarFormularioCrearCuestionario = false;
-  this.mostrarBotonesCuestionario = true; // Mostrar los botones de los cuestionarios
-  this.router.navigate(['/super-administrador']);
-  this.showInicioTitulo = true;
+    this.mostrarFormularioCrearCuestionario = true;
+    this.mostrarBotonesCuestionario = false;
+    this.router.navigate(['/super-administrador/nuevo']);
+    this.showInicioTitulo = false;
+  }
 
-}
+  redireccionarASuperAdministrador(): void {
+    this.mostrarFormularioCrearCuestionario = false;
+    this.mostrarBotonesCuestionario = true;
+    this.router.navigate(['/super-administrador/inicio']);
+    this.showInicioTitulo = true;
+  }
 
-mostrarEliminar(): void {
-  this.mostrarFormularioCrearCuestionario = true;
-  this.mostrarBotonesCuestionario = true;
-  this.router.navigate(['/super-administrador', 'eliminar-cuestionario']); // Actualiza la navegación con la nueva ruta
-}
+  mostrarEliminar(): void {
+    this.mostrarFormularioCrearCuestionario = true;
+    this.mostrarBotonesCuestionario = true;
+    this.router.navigate(['/super-administrador/eliminar-cuestionario']);
+  }
 
-menuItemSeleccionado: string = ''; // Esta es la línea que necesitas agregar
-showInicioTitulo: boolean = true;
-showNuevoCuestionarioTitulo: boolean = true;
-
+  doNothing() {}
 }

@@ -314,7 +314,7 @@ eliminarDocumento(nombreColeccion: string | null, id: number | null | undefined)
 
 
 
-
+cancelarPregunta(){}
 
 
 

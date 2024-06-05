@@ -19,7 +19,7 @@ export class LoginAdministradorComponent implements OnInit {
   ngOnInit(): void {
     this.authService.isLoggedIn$.subscribe(isLoggedIn => {
       if (isLoggedIn) {
-        this.router.navigate(['/super-administrador']);
+        this.router.navigate(['/super-administrador/inicio']);
       }
     });
   }

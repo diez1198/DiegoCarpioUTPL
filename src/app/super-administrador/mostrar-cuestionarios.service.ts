@@ -21,8 +21,6 @@ export class MostrarCuestionariosService {
     return this.http.get<any[]>(`${this.apiUrl}/${nombreColeccion}/documentos`); // Aquí ajusta la URL
   }
 
-  
-
 
 
   

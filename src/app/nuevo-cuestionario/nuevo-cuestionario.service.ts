@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -64,6 +65,7 @@ export class NuevoCuestionarioService {
       );
 
   }
+
 
 
   getDocumentos(nombreColeccion: string): Observable<number> {

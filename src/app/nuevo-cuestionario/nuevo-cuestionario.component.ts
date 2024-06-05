@@ -1,9 +1,9 @@
 //nuevo-cuestionario-component
-import { Component, Input } from '@angular/core';
+import { Component} from '@angular/core';
 import { NuevoCuestionarioService } from './nuevo-cuestionario.service';
 import { SharedDataService } from '../shared-data.service';
-import { NgModule } from '@angular/core';
 import { OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nuevo-cuestionario',
@@ -20,21 +20,41 @@ export class NuevoCuestionarioComponent implements OnInit {
   nombreColeccion: string = ''; // Variable para almacenar el nombre de la colección
   errorMessage: string = '';
   showModal: boolean = false;
+  mostrarFormularioCrearCuestionario: boolean = false;
   showSuccessMessage: boolean = false;
   showNewQuestionForm: boolean = false;
+  mostrarFormularioAEliminar: boolean = false;
   showNewCuestionarioForm: boolean = true;
   successMessage: string = '';
+  activeMenuItem: string = '';
   pregunta: any = {};
-
+  mostrarBotonesCuestionario: boolean = true;
+  showInicioTitulo: boolean = true;
+  cuestionarioNombre: string = '';
   constructor(
     private nuevoCuestionarioService: NuevoCuestionarioService,
-    private sharedDataService: SharedDataService
+    private sharedDataService: SharedDataService,
+    private router : Router
   ) {}
 
+
+
+   //formulario nuevo cuestionario
+   MostrarCuestionariosService(): void {
+    this.mostrarFormularioCrearCuestionario = true;
+    this.mostrarBotonesCuestionario = false;
+    this.router.navigate(['/super-administrador', 'nuevo-cuestionario']); // Actualiza la navegación con la nueva ruta
+    this.showInicioTitulo = false;
+    
+
+  }
   
   ngOnInit(): void {
     // Initialization code
   }
+
+  
+  doNothing() {}
 
   // Método para enviar el formulario
   submitForm(): void {
@@ -118,9 +138,36 @@ export class NuevoCuestionarioComponent implements OnInit {
     this.showNuevoCuestionarioTitulo = true;
   }
 
+
+  redireccionarASuperAdministrador(): void {
+    this.mostrarFormularioCrearCuestionario = false;
+    this.mostrarBotonesCuestionario = true;
+    this.router.navigate(['/super-administrador/inicio']);
+    
+  }
+
   
 
+  regresarInicio() {
+    this.router.navigate(['/super-administrador/inicio']);  // Navega a la página de inicio
+  }
+
  
+
+  mostrarFormulario(): void {
+    this.mostrarFormularioCrearCuestionario = true;
+    this.mostrarBotonesCuestionario = false;
+    this.router.navigate(['/super-administrador/nuevo']);
+    this.showInicioTitulo = false;
+  }
+
+  mostrarEliminar(): void {
+    this.mostrarFormularioCrearCuestionario = false;
+    this.mostrarBotonesCuestionario = true;
+    this.router.navigate(['/super-administrador/eliminar-cuestionario']);
+    
+  }
+
 
 
 

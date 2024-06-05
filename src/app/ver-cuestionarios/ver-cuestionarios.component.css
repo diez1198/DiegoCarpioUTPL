@@ -1,41 +1,56 @@
+
+.contenedor-edicion {
+  background-color: #e9ecef;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+/* contenedor para visualizar pregunta*/
+.contenedor-pregunta {
+  padding: 15px;
+  width: 85%;
+  border-bottom: 1px solid #ddd;
+}
+
+/*             CONTENEDOR CUESTIONARIO          */
 .preguntas-container {
   font-family: Arial;
-  width: 90%;
+  width: 85%;
   margin: 20px auto;
-  margin-top: 50px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
 .pregunta-item {
   border: 4px solid #ccc;
   text-align: justify;
   padding: 15px;
+  font-size: 27px;
   margin: 10px auto;
 }
 
 .pregunta-titulo {
-  font-size: 28px;
+  font-size: 29px; 
   font-weight: bold;
   text-align: justify;
   margin-bottom: 10px;
 }
 
-.Respuestas {
-  text-align: justify;
-  font-size: 24px;
-  margin: 10px;
-}
+
 
 .respuesta-label {
   font-weight: bold;
   font-style: italic;
-  font-size: 24px;
+  font-size: 29px;
   color: rgb(87, 87, 90);
 }
 
 .respuesta {
   font-style: italic;
   font-weight: bold;
-  font-size: 22px;
+  font-size: 29px;
   color: rgb(87, 87, 90);
 }
 
@@ -60,7 +75,7 @@
   border-radius: 4px;
   min-width: 90%; /* Largo barra interlineada */
   cursor: text;
-  font-size: 25px; /* Tamaño de fuente de las preguntas */
+  font-size: 29px; /* Tamaño de fuente de las preguntas */
   font-style: italic;
   border: 3px dashed #979797; /* Borde del span */
   color: #837e7e; /* Color del texto */
@@ -68,6 +83,7 @@
   white-space: nowrap; /* Mantiene el texto en una sola línea */
   overflow: hidden; /* Oculta el desbordamiento de texto */
   text-overflow: ellipsis; /* Añade puntos suspensivos si el texto es demasiado largo */
+  
 }
 .editable:focus {
   outline:auto;
@@ -75,7 +91,38 @@
   background-color: #f1d892;
 }
 
-button.editar-btn, button.guardar-btn {
+
+.btn-agregar {
+  background-color: #4CAF50; /* Color de fondo */
+  border: none; /* Sin borde */
+  color: white; /* Color del texto */
+  padding: 10px 20px; /* Espaciado interno */
+  text-align: center; /* Alineación del texto */
+  text-decoration: none; /* Sin decoración de texto */
+  margin-left: 160px;
+  font-size: 25px; /* Tamaño de fuente */
+  margin-left: 180px;
+  cursor: pointer; /* Cambia el cursor al pasar el ratón */
+  border-radius: 5px; /* Bordes redondeados */
+  display: block;
+  margin-top: 20px;
+}
+
+
+.btn-agregar:hover {
+  background-color: #45a049; /* Cambia el color de fondo al pasar el ratón */
+}
+
+
+
+
+
+
+
+
+
+
+button.editar-btn {
   background-color: #e4b022;
   border: none;
   color: white;
@@ -89,6 +136,24 @@ button.editar-btn, button.guardar-btn {
   border-radius: 4px;
   font-size: 20px;
 }
+
+
+
+button.guardar-btn {
+  background-color: #29a143;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 17px;
+  margin-top: 5px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 30px;
+}
+
 
 
 
@@ -146,7 +211,25 @@ button.referencia-btn{
 
 
 
-button.cancelar-btn {
+button.cancelar-btn{
+  background-color: #c55521;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin-top: 5px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-left:20px;
+  font-size: 30px;
+
+}
+
+
+button.CancelarPregunta-btn {
   background-color: #c55521;
   border: none;
   color: white;
@@ -164,6 +247,10 @@ button.cancelar-btn {
 }
 
 
+
+
+
+
 button.editar-btn:hover, button.guardar-btn:hover {
   background-color: #8d6e19;
 }
@@ -173,10 +260,10 @@ button.editar-btn:hover, button.guardar-btn:hover {
 
 
 
-
+/* contenedor labels editor de preguntas*/
 
 .contenedor-labels {
-  background-color: #f9f9f9; /* Color de fondo del contenedor */
+  background-color: #fff6c3; /* Color de fondo del contenedor */
   padding: 10px; /* Espaciado interno */
   border: 1px solid #ccc; /* Borde */
   border-radius: 8px; /* Bordes redondeados */
@@ -187,12 +274,10 @@ button.editar-btn:hover, button.guardar-btn:hover {
 .contenedor-labels  label {
   display: block; /* Hace que cada label ocupe una línea completa */
   margin-bottom: 1px; /* Espaciado inferior entre labels */
-  font-size: 25px; /* Tamaño de fuente de los labels */
-  
+  font-size: 27px; /* Tamaño de fuente de los labels */
+  background-color: #fff6c3; /* Color de fondo del contenedor */
   font-weight: bold;
 }
-
-
 
 
 /*  Titulo*/
@@ -216,6 +301,7 @@ button.editar-btn:hover, button.guardar-btn:hover {
 
 .titulo:hover {
   color: #c49a19; /* Cambio de color al pasar el ratón */
+  
   background-color: #e0e0e0; /* Cambio de fondo al pasar el ratón */
 }
 
@@ -233,38 +319,27 @@ button.editar-btn:hover, button.guardar-btn:hover {
 
 .nueva-pregunta-container {
   font-family: Arial;
-  width: 70%;
+  width: 85%;
   margin: 20px auto;
   background-color: #e7dbbb; /* Color de fondo del contenedor */
   padding: 10px; /* Espaciado interno */
   border: 1px solid #ccc; /* Borde */
   border-radius: 8px; /* Bordes redondeados */
-
-
-    position: fixed; /* Hacer que el contenedor sea flotante */
-    top: 50%; /* Posicionamiento vertical: centrado */
-    left: 50%; /* Posicionamiento horizontal: centrado */
-    transform: translate(-50%, -50%); /* Centrar el contenedor respecto a su propio tamaño */
-    
-    padding: 10px; /* Espaciado interno */
-    border: 1px solid #ccc; /* Borde */
-    border-radius: 8px; /* Bordes redondeados */
-    z-index: 999; /* Asegurar que esté delante de otros elementos */
+  position: fixed; /* Hacer que el contenedor sea flotante */
+  top: 50%; /* Posicionamiento vertical: centrado */
+  left: 50%; /* Posicionamiento horizontal: centrado */
+  transform: translate(-50%, -50%); /* Centrar el contenedor respecto a su propio tamaño */
+  padding: 10px; /* Espaciado interno */
+  border: 1px solid #ccc; /* Borde */
+  border-radius: 8px; /* Bordes redondeados */
+  z-index: 999; /* Asegurar que esté delante de otros elementos */
   }
   
 
 
 
-.form-group {
-  margin-bottom: 15px;
-  
- 
-}
 
-label {
-  font-weight: bold;
-  
-}
+
 
 button.guardarNuevaPregunta-btn {
   cursor: pointer;
@@ -281,20 +356,15 @@ button.guardarNuevaPregunta-btn {
 
 .form-control {
   width: 100%;
-
-  
   border: 10px solid #200e0e;
   box-sizing: border-box;
-
-
-
   display: block; /* Hace que cada label ocupe una línea completa */
   padding: 5px;
   border: none;
   border-radius: 4px;
   min-width: 100; /* Largo barra interlineada */
   cursor: text;
-  font-size: 25px; /* Tamaño de fuente de las preguntas */
+  font-size: 28px; /* Tamaño de fuente de las preguntas */
   font-style: italic;
   border: 3px dashed #979797; /* Borde del span */
   color: #837e7e; /* Color del texto */

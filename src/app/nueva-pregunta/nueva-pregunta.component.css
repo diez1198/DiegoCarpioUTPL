@@ -6,12 +6,10 @@
     border: 2px solid black;
     padding: 20px;
     border-radius: 10px;
-    width: 1600px;
+    width: 1500px;
     font-size: 30px;
     
-    
-
-
+  
   }
 
 
@@ -22,6 +20,22 @@
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.1); /* Sombra del formulario */
     font-weight: bold;
   }
+  
+
+  .form-group input[type="file"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: 3px solid #ddd;
+    border-radius: 4px;
+    font-size: 30px;
+    box-sizing: border-box;
+    cursor: pointer;
+    background-color: #b6aeae; /* Fondo más claro */
+    font-style: italic;
+  }
+
+
   
   label {
     display: block;
@@ -40,8 +54,6 @@
     height: 100px; /* Ajusta la altura según sea necesario */
   }
   
-
-
 
   .form-buttons {
     display: flex;
@@ -76,7 +88,7 @@
   
   /*  Titulo*/
 .ingresar {
-    font-size: 35px;
+    font-size: 30px;
     color: black; /* Color base */
     font-family: 'Georgia', serif; 
     margin-top: 100px;
@@ -98,11 +110,12 @@
   }
   
   .Ingresar-Preguntas{
-    font-size: 50px;
+    width: 100%;
+    font-size: 35px;
     color: black; /* Color base */
     font-family: 'Georgia', serif;
     margin-top: 10px;
-    margin-bottom: 60px;
+    margin-bottom: 30px;
     font-style: italic; /* Hace que la letra sea cursiva */
     text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3); /* Sombra para darle profundidad */
     letter-spacing: 2px; /* Espaciado entre letras */
@@ -117,11 +130,6 @@
     color: #c49a19; /* Cambio de color al pasar el ratón */
     background-color: #e0e0e0; /* Cambio de fondo al pasar el ratón */
   }
-
-
-
-
-  
 
 
   

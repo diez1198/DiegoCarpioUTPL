@@ -2,14 +2,12 @@
   <ul class="nav-menu">
     <!-- Tus otros elementos del menú aquí -->
   </ul>
-
   <a class="salir" routerLink="/salir" [class.active]="activeMenuItem === 'Salir'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
     Salir
   </a>
 </div>
 
 <div class="sidebar">
-  <!-- Menú lateral -->
   <nav>
     <ul class="sidebar-menu">
       <li>
@@ -23,17 +21,15 @@
         </a>
       </li>
       <li>
-  <a (click)="mostrarFormulario()" [class.active]="activeMenuItem === 'Nuevo'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
-    Nuevo
-  </a>
-</li>
-<li>
-  <a (click)="mostrarEliminar()" [class.active]="activeMenuItem === 'Inicioadm'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
-    Eliminar
-  </a>
-</li>
-
-
+        <a (click)="mostrarFormulario()" [class.active]="activeMenuItem === 'Nuevo'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
+          Nuevo
+        </a>
+      </li>
+      <li>
+        <a (click)="mostrarEliminar()" [class.active]="activeMenuItem === 'Eliminar'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
+          Eliminar
+        </a>
+      </li>
       <li>
         <a routerLink="/ayuda" [class.active]="activeMenuItem === 'Ayuda'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
           Modificar
@@ -43,13 +39,7 @@
   </nav>
 </div>
 
-
-<!-- Titulo-->
- 
 <h1 class="titulo" *ngIf="showInicioTitulo">Inicio</h1>
-
-<!-- Mostrar los botones de los cuestionarios si se cumple la condición -->
-<div></div>
 
 <div class="botones-cuestionario" *ngIf="mostrarBotonesCuestionario">
   <div *ngFor="let collection of collections" class="boton">
@@ -59,22 +49,8 @@
   </div>
 </div>
 
-
-
-
-
-
-
-
-
 <div class="contenido">
-  
   <div *ngIf="mostrarFormularioCrearCuestionario" class="formulario-crear-cuestionario">
     <app-nuevo-cuestionario></app-nuevo-cuestionario>
   </div>
 </div>
-
-
-
-
-
