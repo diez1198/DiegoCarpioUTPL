@@ -4,6 +4,7 @@ import { NuevoCuestionarioService } from './nuevo-cuestionario.service';
 import { SharedDataService } from '../shared-data.service';
 import { OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-nuevo-cuestionario',
@@ -31,10 +32,14 @@ export class NuevoCuestionarioComponent implements OnInit {
   mostrarBotonesCuestionario: boolean = true;
   showInicioTitulo: boolean = true;
   cuestionarioNombre: string = '';
+  isLoggedIn: boolean = false;
+isAdmin: boolean = false; // Agregar propiedad isAdmin para mostrar/ocultar elementos específicos para super administradores
+
   constructor(
     private nuevoCuestionarioService: NuevoCuestionarioService,
     private sharedDataService: SharedDataService,
-    private router : Router
+    private router : Router,
+    private authService: AuthService 
   ) {}
 
 
@@ -50,7 +55,10 @@ export class NuevoCuestionarioComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    // Initialization code
+    this.authService.isLoggedIn$.subscribe(isLoggedIn => {
+      this.isLoggedIn = isLoggedIn;
+      this.isAdmin = this.authService.isAdmin; // Actualiza el valor de isAdmin cuando cambia el estado de autenticación
+    });
   }
 
   
@@ -168,6 +176,10 @@ export class NuevoCuestionarioComponent implements OnInit {
     
   }
 
+  onLogout() {
+    this.authService.logout();
+    this.router.navigate(['/inicio']); // Redirigir a inicio después del logout
+  }
 
 
 

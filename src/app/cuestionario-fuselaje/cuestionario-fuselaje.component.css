@@ -1,146 +1,140 @@
+/* cuestionario-general.component.css */
+
+.menu_bar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000; /* Para asegurarse de que esté por encima de otros elementos */
+}
+
+.contenido-cuestionario {
+font-family: Arial;
+width: 90%;
+margin: 20px auto;
+}
+
 .mensaje-container {
-  font-family: Arial;
-  font-size: 36px;
-  color: #333;
-  line-height: 1.5;
-  width: 90%; /* Ancho relativo pantalla */
-  margin: 20px auto; /* Margen  */
-  text-align: justify;
+padding-top: 100px; /* margen desde el borde inferior de la barra de navegacion  */
+font-size: 36px;
+color: #333333;
+line-height: 1.5;
+text-align: justify;
+margin-bottom: 20px; /* Añadir margen inferior */
 }
 
 .mensaje-container strong {
-  font-weight: bold; /*  negrita */
-  
+font-weight: bold;
+}
+
+.button-container {
+text-align: center;
+margin-top: 20px; /* margen botones cuestionario completo mecanica general y cuestionario de repaso mecanica general */
+}
+
+.button-container button {
+display: inline-block;
+margin: 0 5vw;
+padding: 10px 20px;
+background-color: #4c93af;
+color: white;
+font-size: 30px;
+border-radius: 4px;
+border: none;
+cursor: pointer;
+transition: background-color 0.3s ease;
+}
+
+.button-container button:hover {
+background-color: #45a049;
+}
+
+.contenedor-edicion {
+background-color: #e9ecef;
+padding: 15px;
+border-radius: 8px;
+margin-bottom: 20px;
+}
+
+/* contenedor para visualizar pregunta*/
+.contenedor-pregunta {
+padding: 15px;
+width: 85%;
+border-bottom: 1px solid #ddd;
+}
+
+/* CONTENEDOR CUESTIONARIO */
+.preguntas-container {
+font-family: Arial;
+width: 85%;
+margin: 20px auto;
+background-color: #fff;
+padding: 20px;
+border-radius: 8px;
+box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.pregunta-item {
+border: 4px solid #ccc;
+text-align: justify;
+padding: 15px;
+font-size: 27px;
+margin: 10px auto;
+}
+
+.pregunta-titulo {
+font-size: 29px;
+font-weight: bold;
+text-align: justify;
+margin-bottom: 10px;
+}
+
+.respuesta-label {
+font-weight: bold;
+font-style: italic;
+font-size: 29px;
+color: rgb(87, 87, 90);
+}
+
+.respuesta {
+font-style: italic;
+font-weight: bold;
+font-size: 29px;
+color: rgb(87, 87, 90);
 }
 
 
-th {
-    padding: 0 150px;
-  }
-  
-  pre {
-    font-family: "Arial", sans-serif;
-    font-size: 25px;
-  }
-  
-  strong {
-    font-weight: bold;
-  }
-
-  .italic {
-    font-style: italic;
-  }
-
-  pre strong {
-    font-weight: bold;
-  }
-
-  #preguntas-container {
-    text-align: justify;
-   
-    font-size: 28px;
-    
-    text-align: justify;
-    margin-bottom: 10px;
-    margin: 20px auto; /* Margen  */
-    width: 90%; /* Ancho relativo pantalla */
-  }
-  #preguntas-container {/* CUESTIONARIO CON SOLO 1 RESPUESTA  Y TAMBIEN SOLO PREGUNTAS*/
-    font-size: 28px;
-    border: 1px solid #ccc;
-    text-align: justify;
-    margin-bottom: 10px;
-    margin: 20px auto; /* Margen  */
-    width: 90%; /* Ancho relativo pantalla */
-  }
-  
-  #button-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-    display: inline-block;
-    margin: 0 5vw; /* margen horizontal segun ancho de la pantalla */
-    padding: 10px 20px;
-    background-color: #4c93af;
-    color: white;
-    font-size: 30px;
-    border-radius: 4px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    
-  }
-  
-  .button-container button {   /*  4 BOTONES DENTRO DE CUESTIONARIO FUSELAJE*/
-    display: inline-block;
-      padding: 10px 20px;
-      background-color: #4c93af;
-      color: white;
-      font-size: 30px;
-      border-radius: 4px;
-      border: none;
-      cursor: pointer;
-      margin: 10px;
-      transition: background-color 0.3s ease;
-
-  }
-
-  .button-container button:hover {   /*  4 BOTONES DENTRO DE CUESTIONARIO FUSELAJE*/
-    background-color: #45a049;
-  }
-    
-    
-  .button-container {
-    text-align: center; /* Alinea  centro */
+.respuesta-correcta {
+  background-color: yellow;
 }
-    
-    
-    
-   
-    
 
 
 
 
 
-    
-  
-  .examen-info {
-    font-size: 25px;
-    text-align: center;
-    text-align: justify;
-    line-height: 2;
-    margin: 20px auto; /* Agrega margen superior e inferior de 20px y centrado horizontal */
-    max-width: 800px; /* Establece el ancho máximo en 600px */
-  }
-  
+.opcion-correcta {
+  background-color: yellow;
+  font-weight: bold; /* Opcional: Puedes agregar negrita u otros estilos visuales */
+}
 
 
 
-  #todo-container {   /* CUESTIONARIO 3 OPCIONES Y BOTON DE RESPUESTA RESPUESTA Y TAMBIEN SOLO LAS 3 OPCIONES*/
-    max-width: 90%; /* Ancho máximo del contenedor */
-    text-align: center;
-    margin: 20px auto; /* Margen superior e inferior de 20px y margen izquierdo y derecho de 60px */
-    text-align: justify; /* Justifica el texto dentro del contenedor */
-    font-size: 28px;
-    
-    text-align: justify;
-    margin-bottom: 10px;
-    margin: 20px auto; /* Margen  */
-    width: 90%; /* Ancho relativo pantalla */
-  }
 
-  #opciones-pregunta {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  #opciones-pregunta p {
-    margin: 0;
-    
-  }
-  .mi-boton-estilo {
-    background-color: rgb(0, 255, 13);
-  }
-  
-  
+
+
+.boton-marcar {
+  background-color: #e4b022; /* Fondo verde */
+  color: white; /* Texto blanco */
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 25px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.boton-marcar:hover {
+  background-color: #8d6e19; /* Cambio de color al pasar el mouse */
+}

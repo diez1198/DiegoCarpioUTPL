@@ -80,3 +80,15 @@
     text-align: center;
     color: #555;
 }
+
+
+
+
+
+
+.error-message {
+    color: #ff0000; /* Color rojo para indicar error */
+    font-size: 30px;
+    margin-top: 5px; /* Espacio arriba del mensaje */
+  }
+  

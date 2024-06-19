@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { AppComponent } from '../app.component';
+import { VerCuestionariosService } from '../ver-cuestionarios.service';
 
 @Component({
   selector: 'app-cuestionario-fuselaje',
@@ -9,247 +8,85 @@ import { AppComponent } from '../app.component';
 })
 export class CuestionarioFuselajeComponent implements OnInit {
  
-  jsonContent: string = '';// Variable to store the JSON content
- 
-
-  constructor(private http: HttpClient, private appComponent: AppComponent) { }
-
-  ngOnInit() {}
-
-
+  documentos: any[] = [];
+  mostrarRespuestas: boolean = false; // Bandera para controlar si se muestran las respuestas marcadas
+  mostrarRespuestaCompleta: boolean = true; // Variable para controlar la visibilidad de respuestas
+  mostrarEtiquetaRespuesta: boolean = true; // Variable para controlar la visibilidad de la etiqueta "Respuesta:"
+  mostrarBotonMarcar: boolean = true;
   
-  onMenuItemClick() {
-    const preguntasContainer = document.getElementById("preguntas-container");
-    const optionsContainer = document.getElementById("opciones-container");
-    const todoContainer = document.getElementById("todo-container");
 
-    if (!preguntasContainer || !optionsContainer || !todoContainer) {
-      console.error("Alguno de los elementos no existe en el DOM");
-      return;
-    }
 
-    preguntasContainer.innerHTML = '';
-    optionsContainer.innerHTML = '';
-    todoContainer.innerHTML = '';
 
-    this.http.get<any>('assets/json/CuestionarioMecanicaGeneralVer12.json').subscribe(data => {
-      for (const item of data.data) {
-        if (item.pregunta) {
-          item.pregunta = '<strong>' + item.pregunta + '</strong>';
-          preguntasContainer.innerHTML += `<div>${item.pregunta}</div><br>`;
-        }
-      }
 
-      this.jsonContent = JSON.stringify(data.data, null, 70);
-    });
+
+
+
+
+
+  constructor(private verCuestionariosService: VerCuestionariosService) {}
+
+  ngOnInit(): void {
+    this.mostrarBotonMarcar = false;
+    this.obtenerDocumentos('Mecanica Fuselaje');
   }
 
-
-  onShowOptionsClick() {
-    const preguntasContainer = document.getElementById("preguntas-container");
-    const optionsContainer = document.getElementById("opciones-container");
-    const todoContainer = document.getElementById("todo-container");
-  
-    if (!preguntasContainer || !optionsContainer || !todoContainer) {
-      console.error("Alguno de los elementos no existe en el DOM");
-      return;
-    }
-  
-    preguntasContainer.innerHTML = '';
-    optionsContainer.innerHTML = '';
-    todoContainer.innerHTML = '';
-  
-    this.http.get<any>('assets/json/CuestionarioMecanicaGeneralVer12.json').subscribe(data => {
-      for (const item of data.data) {
-        if (item.pregunta && item.opcion && item.respuesta) {
-          preguntasContainer.innerHTML += `<div><strong>${item.pregunta}</strong></div>`;
-  
-          const opcionesPregunta = document.createElement("div");
-          opcionesPregunta.classList.add("opciones-pregunta");
-  
-          for (let i = 0; i < item.opcion.length; i++) {
-            item.opcion[i] = item.opcion[i].replace(/[]+. /, "");
-            opcionesPregunta.innerHTML += `<p>${item.opcion[i]}</p>`;
-          }
-  
-          preguntasContainer.appendChild(opcionesPregunta);
-          preguntasContainer.innerHTML += `<div><em>Respuesta: ${item.respuesta}</em></div><br>`;
-        }
+  obtenerDocumentos(nombreColeccion: string): void {
+    this.verCuestionariosService.getDocumentos(nombreColeccion).subscribe(
+      data => {
+        this.documentos = data.map((doc: any) => ({
+          ...doc,
+          mostrarRespuesta: false // Agregar propiedad para controlar visibilidad de la respuesta por pregunta
+        }));
+      },
+      error => {
+        console.error('Error al obtener los documentos:', error);
       }
-      this.jsonContent = JSON.stringify(data.data, null, 4);
-    });
+    );
   }
- 
 
+  onCuestionarioMecanicaGeneralRespuestaClick(): void {
+    this.mostrarRespuestas = !this.mostrarRespuestas; // Invierte el valor de mostrarRespuestas
+    this.mostrarRespuestaCompleta = false; // Oculta la respuesta completa
+    this.mostrarEtiquetaRespuesta = false; // Oculta la etiqueta "Respuesta:"
+    this.mostrarBotonMarcar = true;
+    console.log('Mostrando respuestas marcadas...', this.mostrarRespuestas);
+  }
 
-
-
-
-
-
-
-
-
-  
- 
-
-
-  onTodoClick() {
-    const preguntasContainer = document.getElementById("preguntas-container");
-    const opcionesContainer = document.getElementById("opciones-container");
-    const todoContainer = document.getElementById("todo-container");
-  
-    if (!preguntasContainer || !opcionesContainer || !todoContainer) {
-      console.error("Alguno de los elementos no existe en el DOM");
-      return;
+  encontrarOpcionCorrecta(respuesta: string, opcionA: string, opcionB: string, opcionC: string): string | null {
+    if (!respuesta || typeof respuesta !== 'string') {
+      return null;
     }
-  
-    preguntasContainer.innerHTML = "";
-    opcionesContainer.innerHTML = "";
-    todoContainer.innerHTML = "";
-  
-    this.http.get<any>("assets/json/CuestionarioMecanicaGeneralVer12.json").subscribe((data) => {
-      for (const item of data.data) {
-        if (item.pregunta) {
-          item.pregunta = "<strong>" + item.pregunta + "</strong>";
-          const preguntaContainer = document.createElement("div");
-          preguntaContainer.id = `pregunta-${item.id}`;
-          preguntaContainer.innerHTML = `${item.pregunta} <br><button id="responder-${item.id}" data-id="${item.id}" class="boton-pregunta">Responder Pregunta ${item.id}</button>`;
-          const boton = preguntaContainer.querySelector(`#responder-${item.id}`);
-          if (boton) {
-           boton.classList.add("mi-boton-estilo");
-           boton.setAttribute("style", "background-color: blue; color: white; border: 1px solid black;");// para poder dar estilo al boton en css
 
-          }// verificacion de nulidad por que sin el ? salia b
-          
-          todoContainer.appendChild(preguntaContainer);
-  
-          // Agregar opciones de la pregunta
-          if (item.opcion) {
-            const opcionesPregunta = document.createElement("div");
-            opcionesPregunta.classList.add("opciones-pregunta");
-            for (let i = 0; i < item.opcion.length; i++) {
-              item.opcion[i] = item.opcion[i].replace(/[]+\. /, "");
-              const opcion = document.createElement("p");
-              opcion.textContent = item.opcion[i];
-              if (item.opcion[i] === item.respuesta) {
-                opcion.classList.add("respuesta-correcta");
-                //para marcar respuestas correctas solo poner aqui  opcion.style.backgroundColor = "yellow";
-                
-              }
-              opcionesPregunta.appendChild(opcion);
-            }
-            preguntaContainer.appendChild(opcionesPregunta);
-          }
-  
-          // Agregar evento click al botón "Responder Pregunta"
-          const botonesResponder = document.querySelectorAll("button[id^='responder-']");
-          botonesResponder.forEach((boton) => {
-            boton.addEventListener("click", () => {
-              const preguntaId = boton.getAttribute("data-id");
-            if (preguntaId) {
-              const opcionesPregunta = document.querySelector(`#pregunta-${preguntaId} .opciones-pregunta`);
-              if (opcionesPregunta) {
-                opcionesPregunta.querySelectorAll("p").forEach((opcion) => {
-                  if (opcion.classList.contains("respuesta-correcta")) {
-                    opcion.style.backgroundColor = "yellow";
-                  } else {
-                    opcion.style.backgroundColor = "transparent";
-                  }
-                });
-              } else {
-                console.error("No se pudo encontrar el contenedor de opciones de la pregunta");
-              }
-            } else {
-              console.error("El atributo data-id no existe en el botón");
-            }
+    const trimmedRespuesta = respuesta.trim();
+    const trimOpcionA = opcionA ? opcionA.toString().trim() : '';
+    const trimOpcionB = opcionB ? opcionB.toString().trim() : '';
+    const trimOpcionC = opcionC ? opcionC.toString().trim() : '';
 
-          
-
-          });
-        
-        
-      
-      });
-
-
+    if (trimmedRespuesta === trimOpcionA) {
+      return 'A';
+    } else if (trimmedRespuesta === trimOpcionB) {
+      return 'B';
+    } else if (trimmedRespuesta === trimOpcionC) {
+      return 'C';
+    } else {
+      return null;
     }
+  }
+
+  onCompletoMecanicaGeneralClick(): void {
+    this.mostrarRespuestas = false; 
+    this.mostrarRespuestaCompleta = true; 
+    this.mostrarEtiquetaRespuesta = true;
+    this.mostrarBotonMarcar = false;
     
-  }
-  
-    });
-    
-  
-  }
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  on3opciones() {
-    const preguntasContainer = document.getElementById("preguntas-container");
-    const optionsContainer = document.getElementById("opciones-container");
-    const todoContainer = document.getElementById("todo-container");
-
-    if (!preguntasContainer || !optionsContainer || !todoContainer) {
-      console.error("Alguno de los elementos no existe en el DOM");
-      return;
-    }
-
-    preguntasContainer.innerHTML = '';
-    optionsContainer.innerHTML = '';
-    todoContainer.innerHTML = '';
-
-    this.http.get<any>('assets/json/CuestionarioMecanicaGeneralVer12.json').subscribe(data => {
-      for (const item of data.data) {
-        if (item.pregunta) {
-          item.pregunta = '<strong>' + item.pregunta + '</strong>';
-          todoContainer.innerHTML += `<div>${item.pregunta}</div>`;
-            
-        }
-
-        if (item.opcion) {
-          const opcionesPregunta = document.createElement("div");
-          opcionesPregunta.classList.add("opciones-pregunta");
-          for (let i = 0; i < item.opcion.length; i++) {
-            item.opcion[i] = item.opcion[i].replace(/[]+. /, "");
-            opcionesPregunta.innerHTML += `<p>${item.opcion[i]}</p>`;
-          }
-          todoContainer.appendChild(opcionesPregunta);
-        }
-
-
-
-      }
-      this.jsonContent = JSON.stringify(data.data, null, 20);
-
-
-      
-
-
-    });
+    console.log('Restableciendo a modo normal...');
   }
 
+  marcarOpcionCorrecta(pregunta: any): void {
+    const respuestaCorrecta = this.encontrarOpcionCorrecta(pregunta.respuesta, pregunta.opcion_a, pregunta.opcion_b, pregunta.opcion_c);
+    pregunta.respuestaMarcada = respuestaCorrecta;
+  }
 
-
-
-
+ 
 
 }

@@ -14,10 +14,12 @@ import { SuperAdministradorComponent } from './super-administrador/super-adminis
 import { NuevoCuestionarioComponent } from './nuevo-cuestionario/nuevo-cuestionario.component';
 import { EliminarCuestionarioComponent } from './eliminar-cuestionario/eliminar-cuestionario.component';
 import { VerCuestionariosComponent } from './ver-cuestionarios/ver-cuestionarios.component';
+import { InicioComponent } from './inicio/inicio.component'; // Importa el nuevo componente
 
 
 const routes: Routes = [
-  { path: 'inicio', component: CuestionarioGeneralComponent },
+ 
+  { path: 'inicio', component: InicioComponent }, // Configura la ruta para el nuevo componente
   { path: '', redirectTo: '/inicio', pathMatch: 'full' }, // Ruta de inicio
   { path: 'inicioTest', component: AppComponent }, // Ruta para el componente AppComponent
   { path: 'rdac65', component: Rdac65Component }, // Ruta para el componente Rdac65Component

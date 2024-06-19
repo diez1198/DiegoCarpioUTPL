@@ -18,6 +18,7 @@ import { Cloudinary } from 'cloudinary-core'; // Importa el SDK de Cloudinary
   styleUrls: ['./ver-cuestionarios.component.css']
 })
 export class VerCuestionariosComponent implements OnInit {
+  activeMenuItem: string = '';
   documentos: any[] = [];
   nombreColeccion: string | null = '';
   nombreCuestionario: string = '';
@@ -229,7 +230,7 @@ obtenerUltimoID(nombreColeccion: string): Observable<number> {
   }
 
 
-
+  doNothing() {}
   
 
 
@@ -326,6 +327,14 @@ convertirIdANumero() {
     // Convierte id a un número entero usando parseInt()
     this.nuevaPregunta.id = parseInt(this.nuevaPregunta.id);
   }
+}
+
+
+redireccionarASuperAdministrador(): void {
+ 
+ 
+  this.router.navigate(['/super-administrador/inicio']);
+  
 }
 
 

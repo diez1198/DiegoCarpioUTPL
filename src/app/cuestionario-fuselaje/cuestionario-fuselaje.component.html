@@ -1,18 +1,41 @@
-<div>
-  <div class="espacio-entre-header-y-contenido"> <!-- Nuevo div con margen superior -->
-    <div class="mensaje-container">
-      <p>En este apartado se mostrará el Cuestionario de Mecánica Fuselaje para la obtención de la licencia de Mecánico Aeronáutico de la Dirección de Aviación Civil del Ecuador.</p>
-      <p>Como usuario, usted podrá elegir las siguientes opciones:</p>
-      <p><strong>Cuestionario Completo de Mecánica Fuselaje:</strong> Le permitirá observar el cuestionario con su respuesta correcta marcada.</p>
-      <p><strong>Cuestionario de Repaso de Mecánica Fuselaje:</strong> Le permitirá observar el cuestionario con un botón que le permitirá marcar la respuesta correcta después de que usted elija una opción de respuesta.</p>
-    </div>
-    <div class="button-container">
-      <button (click)="onShowOptionsClick()">Mostrar el Cuestionario con su respuesta</button>
-      <button (click)="onTodoClick()">Mostrar el Cuestionario con sus 3 opciones de respuesta y boton responder</button>
-    </div>
-    <div id="preguntas-container"></div>
-    <div id="opciones-container"></div>
-    <div id="todo-container"></div>
+
+<!-- cuestionario-general.component.html -->
+
+<div class="contenido-cuestionario">
+  <div class="mensaje-container">
+    <p>En este apartado se mostrará el Cuestionario de Mecánica Fuselaje para la obtención de la licencia de Mecánico Aeronáutico de la Dirección de Aviación Civil del Ecuador.</p>
+    <p>Como usuario, usted podrá elegir las siguientes opciones:</p>
+    <p><strong>Cuestionario Completo de Mecánica Fuselaje:</strong> Le permitirá observar el cuestionario con su respuesta correcta marcada.</p>
+    <p><strong>Cuestionario de Repaso de Mecánica Fuselaje:</strong> Le permitirá observar el cuestionario con un botón que le permitirá marcar la respuesta correcta después de que usted elija una opción de respuesta.</p>
+  </div>
+  <div class="button-container">
+    <button (click)="onCompletoMecanicaGeneralClick()">Cuestionario Completo de Mecánica General</button>
+    <button (click)="onCuestionarioMecanicaGeneralRespuestaClick()">Cuestionario de Repaso de Mecánica General</button>
+  </div>
+  <div class="preguntas-container">
+    <ul>
+      <li *ngFor="let pregunta of documentos" class="pregunta-item">
+        <strong class="pregunta-titulo">{{ pregunta.id }}) {{ pregunta.pregunta }}</strong>
+        <div class="respuestas">
+          <span class="opcion"
+                [ngClass]="{'opcion-correcta': mostrarRespuestas && pregunta.respuestaMarcada === 'A'}">
+            A) {{ pregunta.opcion_a }}</span><br>
+          <span class="opcion"
+                [ngClass]="{'opcion-correcta': mostrarRespuestas && pregunta.respuestaMarcada === 'B'}">
+            B) {{ pregunta.opcion_b }}</span><br>
+          <span class="opcion"
+                [ngClass]="{'opcion-correcta': mostrarRespuestas && pregunta.respuestaMarcada === 'C'}">
+            C) {{ pregunta.opcion_c }}</span><br>
+            <button *ngIf="mostrarBotonMarcar && !pregunta.respuestaMarcada" class="boton-marcar" (click)="marcarOpcionCorrecta(pregunta)">Marcar Opción Correcta</button>
+           
+          <strong class="respuesta-label" *ngIf="mostrarEtiquetaRespuesta">Respuesta: </strong>
+          <span class="respuesta" *ngIf="mostrarRespuestaCompleta">{{ pregunta.respuesta }}</span>
+        </div>
+        <div class="respuestas" *ngIf="pregunta.imagen">
+          <img [src]="pregunta.imagen" alt="Imagen de la pregunta" class="pregunta-imagen">
+        </div>
+      </li>
+    </ul>
+    <p *ngIf="!documentos || documentos.length === 0">No hay documentos disponibles.</p>
   </div>
 </div>
-

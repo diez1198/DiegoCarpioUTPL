@@ -423,3 +423,46 @@ button {
 button:hover {
   background-color: #ddd;
 }
+
+
+
+
+
+
+
+.regresar {
+  color: #333;  /* color del texto de la opcion salir */
+  font-size: 35px; /* tamaño del texto del la opcion salir */
+  text-decoration: none; /* Quita el subrayado */
+  position: fixed;
+ 
+  margin-top: auto; /* Ajusta el margen superior para centrar el texto verticalmente */
+
+
+  padding: 20px;
+ color: #333;  /* color del texto de la opcion salir */
+
+}
+
+.regresar:hover {
+  background-color: #8d6e19;
+  color: #c49a19; 
+}
+
+.navbar {
+  width: 100%;
+  height: 87px;
+  background-color: #e4b022;
+  position: fixed;
+  top: 0;
+ 
+
+ 
+  color: white;
+  border-bottom: 1px solid #444;
+  
+}
+
+ 
+
+ 

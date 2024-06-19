@@ -5,7 +5,8 @@
   <ul class="nav-menu">
     <!-- Tus otros elementos del menú aquí -->
   </ul>
-  <a class="salir" routerLink="/salir" [class.active]="activeMenuItem === 'Salir'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
+  <!-- boton salir-->
+  <a class="salir" (click)="onLogout()" [class.active]="activeMenuItem === 'Salir'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
     Salir
   </a>
 </div>
@@ -15,7 +16,7 @@
     <ul class="sidebar-menu">
       <li>
         <a routerLink="/dashboard" [class.active]="activeMenuItem === 'Dashboard'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
-          Administradores 
+          <span class="admin-type">{{ isAdmin ? 'Super Administrador' : 'Administrador' }}</span>
         </a>
       </li>
       <li>
@@ -33,9 +34,9 @@
           Eliminar
         </a>
       </li>
-      <li>
+      <li *ngIf="isAdmin">
         <a routerLink="/ayuda" [class.active]="activeMenuItem === 'Ayuda'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
-          Modificar
+          Crear administrador
         </a>
       </li>
     </ul>

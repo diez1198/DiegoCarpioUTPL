@@ -1,27 +1,55 @@
 /* Estilo para la barra de navegación */
+
+
 .navbar {
   width: 100%;
   height: 87px;
   background-color: #e4b022;
   position: fixed;
   top: 0;
-  left: 100;
-  z-index: 0;  /* Capa inferior */
-  text-align: center;
-  line-height: 70px;  /* para centrar verticalmente palabra salie */
+ 
+
+ 
   color: white;
   border-bottom: 1px solid #444;
+  
 }
+
+
+
+
+
+
+
+.salir {
+  color: #333;  /* color del texto de la opcion salir */
+  font-size: 30px; /* tamaño del texto del la opcion salir */
+  text-decoration: none; /* Quita el subrayado */
+  transition: color 0.3s ease; /* Transición suave para el color del texto */
+  margin-right:50px;
+  
+}
+
+ 
+
+
+
+
+
+
+
+
+
 
 /* Estilo para el menú lateral */
 .sidebar {
-  width: 250px;
+  width: 350px;
   height: 100%;
   position: fixed;
   top: 0;  /* Alinea con la barra de navegación superior */
   left: 0;
   background-color: #e4b022;
-  z-index: 2;  /* Capa superior */
+ 
 }
 
 .sidebar-menu {
@@ -53,18 +81,28 @@
 
 
 
-.salir {
-  color: #333;  /* color del texto de la opcion salir */
-  font-size: 30px; /* tamaño del texto del la opcion salir */
-  text-decoration: none; /* Quita el subrayado */
-  transition: color 0.3s ease; /* Transición suave para el color del texto */
-  margin-right:50px;
-  margin-top: auto; /* Ajusta el margen superior para centrar el texto verticalmente */
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 .salir:hover {
   background-color: #8d6e19;
+
+  
   color: #c49a19; /* Cambia el color del texto al pasar el cursor */
 }
 
@@ -80,9 +118,7 @@
   flex-direction: column;       /* Alinear elementos en columna */
 }
 
-h1 {
-  margin-bottom: 20px;          /* Añadir margen inferior al título */
-}
+
 
 /*  Titulo*/
 
@@ -91,7 +127,7 @@ h1 {
   color: black; /* Color base */
   font-family: 'Georgia', serif;
   margin-top: 100px;
-  margin-left: 350px;
+  margin-left: 400px;
   margin-bottom: 50px;
   font-style: italic; /* Hace que la letra sea cursiva */
   text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3); /* Sombra para darle profundidad */
@@ -162,4 +198,13 @@ h1 {
 
 .boton button:hover {
   background-color: #ccb26c;
+}
+
+
+
+.admin-type {
+  font-weight: bold;
+  color: #000000; 
+  font-style: italic;
+  
 }

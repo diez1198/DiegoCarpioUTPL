@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MostrarEliminarCuestionariosService } from './eliminar-cuestionario.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-eliminar-cuestionario',
@@ -21,10 +22,14 @@ export class EliminarCuestionarioComponent implements OnInit {
   cuestionarios: any[] = [];
   showInicioTitulo: boolean = true;
 showNuevoCuestionarioTitulo: boolean = true;
+isLoggedIn: boolean = false;
+isAdmin: boolean = false; // Agregar propiedad isAdmin para mostrar/ocultar elementos específicos para super administradores
+
 
   constructor(
     private router: Router,
-    private mostrarEliminarCuestionariosService: MostrarEliminarCuestionariosService
+    private mostrarEliminarCuestionariosService: MostrarEliminarCuestionariosService,
+    private authService: AuthService 
   ) {}
 
   ngOnInit(): void {
@@ -43,6 +48,11 @@ showNuevoCuestionarioTitulo: boolean = true;
         console.error('Error al obtener las bases de datos y colecciones:', error);
       }
     );
+    this.authService.isLoggedIn$.subscribe(isLoggedIn => {
+      this.isLoggedIn = isLoggedIn;
+      this.isAdmin = this.authService.isAdmin; // Actualiza el valor de isAdmin cuando cambia el estado de autenticación
+    });
+
   }
 
   verCuestionario(collection: string): void {
@@ -131,6 +141,10 @@ mostrarFormulario(): void {
   this.showInicioTitulo = false;
 }
 
+onLogout() {
+  this.authService.logout();
+  this.router.navigate(['/inicio']); // Redirigir a inicio después del logout
+}
 
   
 }

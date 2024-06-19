@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MostrarCuestionariosService } from './mostrar-cuestionarios.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-super-administrador',
@@ -21,10 +22,13 @@ export class SuperAdministradorComponent implements OnInit {
   showInicioTitulo: boolean = true;
   showNuevoCuestionarioTitulo: boolean = true;
   menuItemSeleccionado: string = '';
+  isLoggedIn: boolean = false;
+  isAdmin: boolean = false; // Agregar propiedad isAdmin para mostrar/ocultar elementos específicos para super administradores
 
   constructor(
     private mostrarCuestionariosService: MostrarCuestionariosService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService 
   ) {}
 
   ngOnInit(): void {
@@ -42,6 +46,11 @@ export class SuperAdministradorComponent implements OnInit {
         console.error('Error al obtener las bases de datos y colecciones:', error);
       }
     );
+
+    this.authService.isLoggedIn$.subscribe(isLoggedIn => {
+      this.isLoggedIn = isLoggedIn;
+      this.isAdmin = this.authService.isAdmin; // Actualiza el valor de isAdmin cuando cambia el estado de autenticación
+    });
   }
 
   verCuestionarios(collectionName: string): void {
@@ -87,4 +96,9 @@ export class SuperAdministradorComponent implements OnInit {
   }
 
   doNothing() {}
+
+  onLogout() {
+    this.authService.logout();
+    this.router.navigate(['/inicio']); // Redirigir a inicio después del logout
+  }
 }

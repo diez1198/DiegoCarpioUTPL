@@ -158,10 +158,10 @@ export class NuevaPreguntaComponent {
 
   // Método para finalizar el cuestionario después de confirmación
   finishQuestionnaire(): void {
-    this.router.navigate(['/super-administrador']);
+    this.router.navigate(['/super-administrador/inicio']);
     console.log('Nuevo Documento Creado exitosamente:');
     this.showConfirmationPopup = false;
-    location.reload();
+    
   }
 
   // Método para cancelar la finalización del cuestionario

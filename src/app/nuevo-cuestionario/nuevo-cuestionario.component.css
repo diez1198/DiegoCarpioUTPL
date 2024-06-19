@@ -131,7 +131,7 @@
   color: black; /* Color base */
   font-family: 'Georgia', serif;
   margin-top: 100px;
-  margin-left: 350px;
+  margin-left: 400px;
   margin-bottom: 50px;
   font-style: italic; /* Hace que la letra sea cursiva */
   text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3); /* Sombra para darle profundidad */
@@ -308,7 +308,7 @@
 
 /* Estilo para el menú lateral */
 .sidebar {
-  width: 250px;
+  width: 350px;
   height: 100%;
   position: fixed;
   top: 0;  /* Alinea con la barra de navegación superior */
@@ -358,5 +358,13 @@
 
 .salir:hover {
   background-color: #8d6e19;
-  color: #c49a19; /* Cambia el color del texto al pasar el cursor */
+  color: #c49a19; 
+}
+
+
+.admin-type {
+  font-weight: bold;
+  color: #000000; 
+  font-style: italic;
+ 
 }

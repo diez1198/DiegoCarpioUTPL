@@ -16,7 +16,7 @@
   display: flex;
   align-items: center; /* Alinear elementos verticalmente al centro */
   list-style-type: none; /* Eliminar puntos de lista */
-  padding: 10;
+
   margin: 0;
 }
 
@@ -30,18 +30,6 @@
 /* Estilo específico para el botón Administrador */
 .menu-list li.administrador {
   margin-left: auto; /* Empujar el botón al final del contenedor */
-}
-
-
-
-.menu_bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000; /* Asegura que esté por encima de otros elementos */
-  display: flex;
-  justify-content: space-between; /* Esto alinea los elementos a los extremos */
 }
 
 

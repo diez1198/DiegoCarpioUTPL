@@ -33,6 +33,17 @@ export class VerCuestionariosService {
       map((documentos: any[]) => documentos.filter((pregunta: any) => this.preguntaCompleta(pregunta)))
     );
   }
+
+
+
+  
+ 
+
+
+  getDocumentosGen(nombreColeccion: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/${nombreColeccion}`);
+  }
+
   private preguntaCompleta(pregunta: any): boolean {
     return pregunta.pregunta !== null && pregunta.opcion_a !== null &&
            pregunta.opcion_b !== null && pregunta.opcion_c !== null &&

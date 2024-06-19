@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../auth.service'; // Asegúrate de que la ruta sea correcta
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login-administrador',
@@ -14,29 +14,35 @@ export class LoginAdministradorComponent implements OnInit {
     password: ''
   };
 
+  errorMessage: string = '';
+
   constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.authService.isLoggedIn$.subscribe(isLoggedIn => {
       if (isLoggedIn) {
-        this.router.navigate(['/super-administrador/inicio']);
+        if (this.authService.isAdmin) {
+          this.router.navigate(['/super-administrador/inicio']);
+        } else {
+          this.router.navigate(['/super-administrador/inicio']);
+        }
       }
     });
   }
 
   onSubmit() {
-    // Aquí puedes agregar la lógica para autenticar al usuario
-    // Por ejemplo, puedes verificar si el usuario y la contraseña son válidos
-    // Si son válidos, llamas al método login del AuthService
-    if (this.user.username === 'admin' && this.user.password === 'admin') {
-      this.authService.login(); // Llama al método login del AuthService
+    // Validación de credenciales
+    if (this.user.username === 'superadmin' && this.user.password === 'superadmin') {
+      this.authService.login('superadmin', 'superadmin');
+    } else if (this.user.username === 'admin' && this.user.password === 'admin') {
+      this.authService.login('admin', 'admin');
     } else {
-      alert('Usuario o contraseña incorrectos');
+      this.errorMessage = 'Credenciales incorrectas. Por favor, intenta de nuevo.';
     }
   }
 
   onLogout() {
-    // Aquí puedes agregar la lógica para cerrar sesión
-    this.authService.logout(); // Llama al método logout del AuthService
+    this.authService.logout();
+    this.router.navigate(['/inicio']); // Redirigir a inicio después del logout
   }
 }

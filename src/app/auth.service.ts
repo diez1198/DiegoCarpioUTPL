@@ -5,18 +5,34 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private _isLoggedIn = new BehaviorSubject<boolean>(false);
-  isLoggedIn$ = this._isLoggedIn.asObservable();
+  private loggedIn = new BehaviorSubject<boolean>(false);
+  isLoggedIn$ = this.loggedIn.asObservable();
+  isAdmin: boolean = false;
 
-  // ... (El resto de tus métodos)
+  constructor() {
+    this.loggedIn.next(this.isAuthenticated());
+  }
 
-  login() {
-    // Aquí colocarías la lógica para iniciar sesión
-    this._isLoggedIn.next(true);
+  login(username: string, password: string) {
+    // Aquí deberías implementar la lógica para validar las credenciales y establecer el estado de autenticación
+    if (username === 'superadmin' && password === 'superadmin') {
+      this.loggedIn.next(true);
+      this.isAdmin = true; // Establecer isAdmin a true si las credenciales corresponden a un super administrador
+    } else if (username === 'admin' && password === 'admin') {
+      this.loggedIn.next(true);
+      this.isAdmin = false; // Establecer isAdmin a false si las credenciales corresponden a un administrador normal
+    } else {
+      this.loggedIn.next(false);
+      this.isAdmin = false; // Si las credenciales no coinciden con ninguna, isAdmin será false
+    }
   }
 
   logout() {
-    // Aquí colocarías la lógica para cerrar sesión
-    this._isLoggedIn.next(false);
+    this.loggedIn.next(false);
+    this.isAdmin = false; // Al hacer logout, resetear isAdmin a false
+  }
+
+  isAuthenticated(): boolean {
+    return this.loggedIn.value;
   }
 }

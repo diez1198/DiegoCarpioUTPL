@@ -24,6 +24,8 @@ import { NuevaPreguntaComponent } from './nueva-pregunta/nueva-pregunta.componen
 import { VerCuestionariosComponent } from './ver-cuestionarios/ver-cuestionarios.component';
 import { NuevoCuestionarioService } from './nuevo-cuestionario/nuevo-cuestionario.service';
 import { VerCuestionariosService } from './ver-cuestionarios.service';
+import { InicioComponent } from './inicio/inicio.component';
+import { AuthService } from './auth.service';
 
 
 
@@ -46,6 +48,7 @@ import { VerCuestionariosService } from './ver-cuestionarios.service';
     NuevaPreguntaComponent,
     VerCuestionariosComponent,
     NuevaPreguntaComponent,
+    InicioComponent,
     
   ],
   imports: [
@@ -64,6 +67,7 @@ import { VerCuestionariosService } from './ver-cuestionarios.service';
     MostrarEliminarCuestionariosService,
     NuevoCuestionarioService,
     VerCuestionariosService,
+    AuthService,
    
 
   ],

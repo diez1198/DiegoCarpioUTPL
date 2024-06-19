@@ -1,3 +1,16 @@
+
+
+
+<div class="navbar">
+  <ul class="nav-superior">
+    <!-- Tus otros elementos del menú aquí -->
+  </ul>
+   <!-- boton salir-->
+   <a class="regresar" (click)="redireccionarASuperAdministrador()" [class.active]="activeMenuItem === 'regresar'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
+    Regresar
+  </a>
+</div>
+
 <div>
   <h1 class="titulo">Visualizar y Editar Cuestionarios</h1>
   <button (click)="mostrarFormulario()" class="btn-agregar">Agregar Nueva Pregunta</button>
