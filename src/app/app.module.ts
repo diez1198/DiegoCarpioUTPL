@@ -26,6 +26,7 @@ import { NuevoCuestionarioService } from './nuevo-cuestionario/nuevo-cuestionari
 import { VerCuestionariosService } from './ver-cuestionarios.service';
 import { InicioComponent } from './inicio/inicio.component';
 import { AuthService } from './auth.service';
+import { CrearAdministradorComponent } from './crear-administrador/crear-administrador.component';
 
 
 
@@ -49,6 +50,7 @@ import { AuthService } from './auth.service';
     VerCuestionariosComponent,
     NuevaPreguntaComponent,
     InicioComponent,
+    CrearAdministradorComponent,
     
   ],
   imports: [

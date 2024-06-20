@@ -76,6 +76,6 @@ export class AppComponent implements OnInit, OnDestroy {
   doNothing() {}
 
   isPaginaInicio(): boolean {
-    return this.router.url === '/inicioTest';
+    return this.router.url === '/principal';
   }
 }

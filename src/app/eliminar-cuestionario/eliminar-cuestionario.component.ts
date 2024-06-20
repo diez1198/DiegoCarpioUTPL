@@ -21,10 +21,9 @@ export class EliminarCuestionarioComponent implements OnInit {
   mostrarFormularioAEliminar: boolean = false;
   cuestionarios: any[] = [];
   showInicioTitulo: boolean = true;
-showNuevoCuestionarioTitulo: boolean = true;
-isLoggedIn: boolean = false;
-isAdmin: boolean = false; // Agregar propiedad isAdmin para mostrar/ocultar elementos específicos para super administradores
-
+  showNuevoCuestionarioTitulo: boolean = true;
+  isLoggedIn: boolean = false;
+  isAdmin: boolean = false; 
 
   constructor(
     private router: Router,
@@ -48,11 +47,11 @@ isAdmin: boolean = false; // Agregar propiedad isAdmin para mostrar/ocultar elem
         console.error('Error al obtener las bases de datos y colecciones:', error);
       }
     );
+
     this.authService.isLoggedIn$.subscribe(isLoggedIn => {
       this.isLoggedIn = isLoggedIn;
       this.isAdmin = this.authService.isAdmin; // Actualiza el valor de isAdmin cuando cambia el estado de autenticación
     });
-
   }
 
   verCuestionario(collection: string): void {
@@ -65,21 +64,18 @@ isAdmin: boolean = false; // Agregar propiedad isAdmin para mostrar/ocultar elem
     //////
     console.log('Ver cuestionario:', this.cuestionarioId);
     console.log('Ver cuestionario:', this.cuestionarioId);
-    
-    
   }
 
-  actualizarListaCuestionarios(): void {}
+  actualizarListaCuestionarios(): void {
+    this.mostrarBotonesCuestionario = true;
+  }
 
-
-  //formulario nuevo cuestionario
+  // formulario nuevo cuestionario
   MostrarCuestionariosService(): void {
     this.mostrarFormularioCrearCuestionario = true;
     this.mostrarBotonesCuestionario = false;
     this.router.navigate(['/super-administrador/nuevo']); // Actualiza la navegación con la nueva ruta
     this.showInicioTitulo = false;
-    
-
   }
 
   doNothing() {}
@@ -88,20 +84,17 @@ isAdmin: boolean = false; // Agregar propiedad isAdmin para mostrar/ocultar elem
     this.mostrarFormularioCrearCuestionario = false;
     this.mostrarBotonesCuestionario = true;
     this.router.navigate(['/super-administrador/eliminar-cuestionario']);
-    
   }
 
   redireccionarASuperAdministrador(): void {
     this.mostrarFormularioCrearCuestionario = false;
     this.mostrarBotonesCuestionario = true;
     this.router.navigate(['/super-administrador/inicio']);
-    
   }
 
   confirmarEliminar(collection: string): void {
     this.cuestionarioAEliminar = { nombre: collection }; // Actualiza esto según sea necesario
     this.mostrarFormularioAEliminar = true;
-    
   }
 
   cancelarEliminar(): void {
@@ -112,40 +105,34 @@ isAdmin: boolean = false; // Agregar propiedad isAdmin para mostrar/ocultar elem
   eliminarCuestionario(collection: string): void {
     // Lógica para eliminar la colección
 
-     // Imprime el valor de collectionName en la consola
-     console.log('Nombre de la colección a eliminar:', collection);
-     console.log('Nombre de la colección a eliminar:', collection);
-     console.log('Nombre de la colección a eliminar:', collection);
+    // Imprime el valor de collectionName en la consola
+    console.log('Nombre de la colección a eliminar:', collection);
+    console.log('Nombre de la colección a eliminar:', collection);
+    console.log('Nombre de la colección a eliminar:', collection);
     this.mostrarEliminarCuestionariosService.eliminarCuestionario(collection).subscribe(
-        response => {
-            console.log('Cuestionario eliminado:', response);
-            // Actualizar la lista de colecciones después de la eliminación
-            this.actualizarListaCuestionarios();
-        },
-        error => {
-            console.error('Error al eliminar el cuestionario:', error);
-        }
+      response => {
+        console.log('Cuestionario eliminado:', response);
+        // Actualizar la lista de colecciones después de la eliminación
+        this.actualizarListaCuestionarios();
+      },
+      error => {
+        console.error('Error al eliminar el cuestionario:', error);
+      }
     );
-    //ventana confirma eliminar y recargar pagina
+    // ventana confirma eliminar y recargar pagina
     this.mostrarFormularioAEliminar = false;
     location.reload();
+  }
 
+  mostrarFormulario(): void {
+    this.mostrarFormularioCrearCuestionario = true;
+    this.mostrarBotonesCuestionario = false;
+    this.router.navigate(['/super-administrador/nuevo']);
+    this.showInicioTitulo = false;
+  }
 
-
+  onLogout() {
+    this.authService.logout();
+    this.router.navigate(['/principal']); // Redirigir a inicio después del logout
+  }
 }
-
-mostrarFormulario(): void {
-  this.mostrarFormularioCrearCuestionario = true;
-  this.mostrarBotonesCuestionario = false;
-  this.router.navigate(['/super-administrador/nuevo']);
-  this.showInicioTitulo = false;
-}
-
-onLogout() {
-  this.authService.logout();
-  this.router.navigate(['/inicio']); // Redirigir a inicio después del logout
-}
-
-  
-}
-

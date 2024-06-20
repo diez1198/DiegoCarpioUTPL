@@ -9,7 +9,7 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./inicio.component.css']
 })
 export class InicioComponent implements OnInit {
-  activeMenuItem: string = 'inicio';
+  activeMenuItem: string = 'principal';
   isLoggedIn: boolean = false;
 
   constructor(private router: Router, private http: HttpClient, public authService: AuthService) {
@@ -30,6 +30,6 @@ export class InicioComponent implements OnInit {
 
   onLogout() {
     this.authService.logout();
-    this.router.navigate(['/inicio']); // Redirigir a inicio después del logout
+    this.router.navigate(['/principal']); // Redirigir a inicio después del logout
   }
 }

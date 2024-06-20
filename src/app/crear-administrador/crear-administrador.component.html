@@ -1,0 +1,84 @@
+
+ <!-- Titulo-->
+ 
+ <div class="navbar">
+    <ul class="nav-menu">
+    </ul>
+     <!-- boton salir-->
+     <a class="salir" (click)="onLogout()" [class.active]="activeMenuItem === 'Salir'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
+      Salir
+    </a>
+  </div>
+  
+  <div class="sidebar">
+    <nav>
+      <ul class="sidebar-menu">
+        <li>
+            <a routerLink="/dashboard" [class.active]="activeMenuItem === 'Dashboard'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
+              <span class="admin-type">Super Administrador</span>
+            </a>
+          </li>
+          
+        <li>
+          <a (click)="redireccionarASuperAdministrador()" [class.active]="activeMenuItem === 'Inicioadm'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
+            Inicio
+          </a>
+        </li>
+        <li>
+          <a (click)="mostrarFormulario()" [class.active]="activeMenuItem === 'Nuevo'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
+            Nuevo
+          </a>
+        </li>
+        <li>
+          <a (click)="mostrarEliminar()" [class.active]="activeMenuItem === 'Eliminar'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
+            Eliminar
+          </a>
+        </li>
+        <li>
+            <a routerLink="super-administrador/crearadmin" [class.active]="activeMenuItem === 'Ayuda'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
+              Crear administrador
+            </a>
+          </li>
+          
+      </ul>
+    </nav>
+  </div>
+  
+  
+  
+  
+  <h1 class="titulo" *ngIf="showNuevoCuestionarioTitulo">Crear Administrador</h1>
+
+
+
+  
+  
+
+  <div class="admin-container">
+    <div>
+      <h2>Crear Administrador</h2>
+      <form (submit)="addAdmin()">
+        <div class="form-group">
+          <label for="username" class="form-label">Username:</label>
+          <input type="text" id="username" [(ngModel)]="username" name="username" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="password" class="form-label">Password:</label>
+          <input type="password" id="password" [(ngModel)]="password" name="password" class="form-control" required>
+        </div>
+        <button type="submit" class="btn-nuevocuestionario">Crear</button>
+      </form>
+      <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+      <p *ngIf="successMessage" class="success">{{ successMessage }}</p>
+    
+      <div class="admin-list-container">
+        <h3>Eliminar Administrador</h3>
+        <ul class="admin-list">
+          <li *ngFor="let admin of admins" class="admin-item">
+            {{ admin.username }} <button (click)="removeAdmin(admin.username)" class="btn-eliminar">Eliminar</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  

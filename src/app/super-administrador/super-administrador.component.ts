@@ -23,7 +23,7 @@ export class SuperAdministradorComponent implements OnInit {
   showNuevoCuestionarioTitulo: boolean = true;
   menuItemSeleccionado: string = '';
   isLoggedIn: boolean = false;
-  isAdmin: boolean = false; // Agregar propiedad isAdmin para mostrar/ocultar elementos específicos para super administradores
+  isAdmin: boolean = false;
 
   constructor(
     private mostrarCuestionariosService: MostrarCuestionariosService,
@@ -49,17 +49,15 @@ export class SuperAdministradorComponent implements OnInit {
 
     this.authService.isLoggedIn$.subscribe(isLoggedIn => {
       this.isLoggedIn = isLoggedIn;
-      this.isAdmin = this.authService.isAdmin; // Actualiza el valor de isAdmin cuando cambia el estado de autenticación
+      this.isAdmin = this.authService.isAdmin;
     });
   }
 
   verCuestionarios(collectionName: string): void {
     this.router.navigate(['super-administrador/ver-cuestionarios', collectionName]);
-    console.log('Ver cuestionario:', collectionName);
     this.mostrarCuestionariosService.getDocumentos(collectionName).subscribe(
       data => {
         this.documentos = data;
-        console.log('Documentos:', this.documentos);
       },
       error => {
         console.error('Error al obtener los documentos:', error);
@@ -97,8 +95,14 @@ export class SuperAdministradorComponent implements OnInit {
 
   doNothing() {}
 
+  navigateToCrearAdmin(): void {
+    this.router.navigate(['/super-administrador/crearadmin']);
+  }
+
+
+
   onLogout() {
     this.authService.logout();
-    this.router.navigate(['/inicio']); // Redirigir a inicio después del logout
+    this.router.navigate(['/principal']);
   }
 }

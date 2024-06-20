@@ -15,11 +15,13 @@ import { NuevoCuestionarioComponent } from './nuevo-cuestionario/nuevo-cuestiona
 import { EliminarCuestionarioComponent } from './eliminar-cuestionario/eliminar-cuestionario.component';
 import { VerCuestionariosComponent } from './ver-cuestionarios/ver-cuestionarios.component';
 import { InicioComponent } from './inicio/inicio.component'; // Importa el nuevo componente
+import { CrearAdministradorComponent } from './crear-administrador/crear-administrador.component';
+
 
 
 const routes: Routes = [
  
-  { path: 'inicio', component: InicioComponent }, // Configura la ruta para el nuevo componente
+  { path: 'principal', component: InicioComponent }, // Configura la ruta para el nuevo componente
   { path: '', redirectTo: '/inicio', pathMatch: 'full' }, // Ruta de inicio
   { path: 'inicioTest', component: AppComponent }, // Ruta para el componente AppComponent
   { path: 'rdac65', component: Rdac65Component }, // Ruta para el componente Rdac65Component
@@ -35,7 +37,8 @@ const routes: Routes = [
   { path: 'eliminar-cuestionario', component: EliminarCuestionarioComponent }, // Ruta para el componente EliminarCuestionarioComponent
   { path: 'super-administrador/inicio', component: SuperAdministradorComponent },
   { path: 'super-administrador/ver-cuestionarios/:nombreColeccion', component: VerCuestionariosComponent },
-  { path: '', redirectTo: '/super-administrador', pathMatch: 'full' }
+  { path: '', redirectTo: '/super-administrador', pathMatch: 'full' },
+  { path: 'super-administrador/crearadmin', component: CrearAdministradorComponent },
 ];
 
 
