@@ -15,17 +15,7 @@
   }
   
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
   /* Estilo para el menú lateral */
   .sidebar {
     width: 350px;
@@ -104,6 +94,32 @@
     font-style: italic;
     
   }
+
+  
+  /*  Titulo*/
+.titulo {
+  font-size: 60px;
+  color: black; /* Color base */
+  font-family: 'Georgia', serif;
+  margin-top: 100px;
+  margin-left: 400px;
+  margin-bottom: 50px;
+  font-style: italic; /* Hace que la letra sea cursiva */
+  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3); /* Sombra para darle profundidad */
+  letter-spacing: 2px; /* Espaciado entre letras */
+  border-bottom: 3px solid #c49a19;; /* Línea inferior */
+  padding-bottom: 10px; /* Espaciado para la línea inferior */
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para el contenedor */
+  display: inline-block; /* Para que el padding y borde afecten solo al contenido */
+  transition: color 0.3s ease, background-color 0.3s ease; /* Transición suave para el color y fondo */
+}
+
+.titulo:hover {
+  color: #c49a19; /* Cambio de color al pasar el ratón */
+  background-color: #e0e0e0; /* Cambio de fondo al pasar el ratón */
+}
+
   
   
   
@@ -111,162 +127,121 @@
 
  /* formulairo crear administrador */ 
  /* formulairo crear administrador */
-
- .admin-container {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    font-size: 25px;
-  }
-  
-  .admin-container h2,
-  .admin-container h3 {
-    margin-top: 0;
-    color: #333;
-  }
-  
-  .admin-container form {
-    margin-bottom: 20px;
-  }
-  
-  .admin-container label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-  
-  .admin-container input[type="text"],
-  .admin-container input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
-  
-  .admin-container button {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .admin-container button:hover {
-    background-color: #45a049;
-  }
-  
-  .admin-container .error {
-    color: red;
-    margin-top: 10px;
-  }
-  
-  .admin-container .success {
-    color: green;
-    margin-top: 10px;
-  }
-  
-  .admin-container ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .admin-container li {
-    margin-bottom: 5px;
-  }
-  
-  .admin-container li button {
-    padding: 5px 10px;
-    background-color: #f44336;
-    color: white;
-    border: none;
-    border-radius: 4px;
-
-    cursor: pointer;
-  }
-  
-  .admin-container li button:hover {
-    background-color: #d32f2f;
-  }
-  
-
-
-
-
-
-.admin-list-container {
-  text-align: left; /* Centrar contenido horizontalmente */
+/* Estilos para el formulario crear administrador */
+.admin-container {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  font-size: 25px;
   
 
 }
 
+.admin-container h2,
+.admin-container h3 {
+  margin-top: 0;
+  color: #333;
+}
 
+.admin-container form {
+  margin-bottom: 20px;
+}
 
+.admin-container label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
 
+.admin-container input[type="text"],
+.admin-container input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
 
+.admin-container button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
 
+.admin-container button:hover {
+  background-color: #45a049;
+}
 
+.admin-container .error {
+  color: red;
+  margin-top: 10px;
+}
 
+.admin-container .success {
+  color: green;
+  margin-top: 10px;
+}
 
+.admin-container ul {
+  list-style-type: none;
+  padding: 0;
+}
 
+.admin-container li {
+  margin-bottom: 5px;
+}
 
+.admin-container li button {
+  padding: 5px 10px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
 
+.admin-container li button:hover {
+  background-color: #d32f2f;
+}
 
+/* Estilos para la lista de administradores */
+.admin-list-container {
+  width: 100%;
+}
 
-  
-  /* Estilos adaptados para botones */
+.admin-list {
+  margin: 0;
+  padding: 0;
+}
 
-  
-  
-  .btn-eliminar {
-    background-color: #e42222;
-    border: none;
-    color: #333;
-    padding: 5px 10px;
-    text-align: center;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .btn-eliminar:hover {
-    background-color: #d32f2f;
-  }
-  
+.admin-item {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}
 
+.admin-item-content {
+  display: flex;
+  align-items: center; /* Centra verticalmente los elementos */
+  justify-content: space-between; /* Espacia los elementos uniformemente */
+}
 
+.btn-eliminar {
+  background-color: red;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-right: 30px;
+  ;
+}
 
-
-
-  /*  Titulo*/
-.titulo {
-    font-size: 60px;
-    color: black; /* Color base */
-    font-family: 'Georgia', serif;
-    margin-top: 100px;
-    margin-left: 400px;
-    margin-bottom: 50px;
-    font-style: italic; /* Hace que la letra sea cursiva */
-    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3); /* Sombra para darle profundidad */
-    letter-spacing: 2px; /* Espaciado entre letras */
-    border-bottom: 3px solid #c49a19;; /* Línea inferior */
-    padding-bottom: 10px; /* Espaciado para la línea inferior */
-    border-radius: 10px; /* Bordes redondeados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para el contenedor */
-    display: inline-block; /* Para que el padding y borde afecten solo al contenido */
-    transition: color 0.3s ease, background-color 0.3s ease; /* Transición suave para el color y fondo */
-  }
-  
-  .titulo:hover {
-    color: #c49a19; /* Cambio de color al pasar el ratón */
-    background-color: #e0e0e0; /* Cambio de fondo al pasar el ratón */
-  }
-  
-  
+.btn-eliminar:hover {
+  background-color: #d32f2f;
+}

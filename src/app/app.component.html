@@ -54,6 +54,34 @@
                   </li>
                 </ul>
               </li>
+
+              <!-- Menú desplegable -->
+                <li class="nav-item dropdown">
+                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                   Simuladores
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li>
+                  <a routerLink="/simuladorGeneral" class="dropdown-item" [class.active]="activeMenuItem === 'Simulador General'">
+                   Simulador General
+                  </a>
+                </li>
+              <li>
+                 <a routerLink="/simuladorFuselaje" class="dropdown-item" [class.active]="activeMenuItem === 'Simulador Fuselaje'">
+                  Simulador Fuselaje
+                </a>
+              </li>
+              <li>
+              <a routerLink="/simuladorMotores" class="dropdown-item" [class.active]="activeMenuItem === 'Simulador Motores'">
+                  Simulador Motores
+                </a>
+                </li>
+              </ul>
+              </li>
+
+
+
+
               <li class="administrador">
                 <a routerLink="/administrador" [class.active]="activeMenuItem === 'Administrador'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
                   Ingresar

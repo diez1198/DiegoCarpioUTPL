@@ -56,29 +56,36 @@
 
   <div class="admin-container">
     <div>
-      <h2>Crear Administrador</h2>
-      <form (submit)="addAdmin()">
-        <div class="form-group">
-          <label for="username" class="form-label">Username:</label>
-          <input type="text" id="username" [(ngModel)]="username" name="username" class="form-control" required>
-        </div>
-        <div class="form-group">
-          <label for="password" class="form-label">Password:</label>
-          <input type="password" id="password" [(ngModel)]="password" name="password" class="form-control" required>
-        </div>
-        <button type="submit" class="btn-nuevocuestionario">Crear</button>
-      </form>
-      <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
-      <p *ngIf="successMessage" class="success">{{ successMessage }}</p>
+        <h2>Crear Administrador</h2>
+        <form (submit)="addAdmin()">
+            <div class="form-group">
+                <label for="username" class="form-label">Username:</label>
+                <input type="text" id="username" [(ngModel)]="username" name="username" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="password" class="form-label">Password:</label>
+                <input type="password" id="password" [(ngModel)]="password" name="password" class="form-control" required>
+            </div>
+            <button type="submit" class="btn-nuevocuestionario">Crear</button>
+        </form>
+        <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+        <p *ngIf="successMessage" class="success">{{ successMessage }}</p>
     
-      <div class="admin-list-container">
-        <h3>Eliminar Administrador</h3>
-        <ul class="admin-list">
-          <li *ngFor="let admin of admins" class="admin-item">
-            {{ admin.username }} <button (click)="removeAdmin(admin.username)" class="btn-eliminar">Eliminar</button>
-          </li>
-        </ul>
-      </div>
+        <div class="admin-list-container">
+            <h3>Eliminar Administrador</h3>
+            <ul class="admin-list">
+                <li *ngFor="let admin of admins" class="admin-item">
+                    <div class="admin-item-content">
+                        <span>{{ admin.username }}</span>
+                        <button (click)="removeAdmin(admin.username)" class="btn-eliminar">Eliminar</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
-  </div>
-  
+</div>
+
+
+
+
+
