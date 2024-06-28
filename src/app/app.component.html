@@ -25,59 +25,82 @@
                 </a>
               </li>
 
-              <li>
-                <a routerLink="simuladorGeneral" [class.active]="activeMenuItem === 'Simuladores'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
-                  Simuladores
-                </a>
-              </li>
+              
 
-              <!-- Menú desplegable -->
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Cuestionarios
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li>
-                    <a routerLink="/cuestionarioGeneral" class="dropdown-item" [class.active]="activeMenuItem === 'Cuestionario General'">
-                      Cuestionario General
-                    </a>
-                  </li>
-                  <li>
-                    <a routerLink="/cuestionarioFuselaje" class="dropdown-item" [class.active]="activeMenuItem === 'Cuestionario Fuselaje'">
-                      Cuestionario Fuselaje
-                    </a>
-                  </li>
-                  <li>
-                    <a routerLink="/cuestionarioMotores" class="dropdown-item" [class.active]="activeMenuItem === 'Cuestionario Motores'">
-                      Cuestionario Motores
-                    </a>
-                  </li>
-                </ul>
-              </li>
+              
 
-              <!-- Menú desplegable -->
-                <li class="nav-item dropdown">
-                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                   Simuladores
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li>
-                  <a routerLink="/simuladorGeneral" class="dropdown-item" [class.active]="activeMenuItem === 'Simulador General'">
-                   Simulador General
-                  </a>
-                </li>
-              <li>
-                 <a routerLink="/simuladorFuselaje" class="dropdown-item" [class.active]="activeMenuItem === 'Simulador Fuselaje'">
-                  Simulador Fuselaje
-                </a>
-              </li>
-              <li>
-              <a routerLink="/simuladorMotores" class="dropdown-item" [class.active]="activeMenuItem === 'Simulador Motores'">
-                  Simulador Motores
-                </a>
-                </li>
-              </ul>
-              </li>
+             
+
+
+
+
+<!-- Componente AppComponent -->
+<li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Cuestionarios
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+    <li>
+      <a routerLink="/cuestionarioGeneral" class="dropdown-item" [class.active]="activeMenuItem === 'Cuestionario General'">
+        Cuestionario General
+      </a>
+    </li>
+    <li>
+      <a routerLink="/cuestionarioFuselaje" class="dropdown-item" [class.active]="activeMenuItem === 'Cuestionario Fuselaje'">
+        Cuestionario Fuselaje
+      </a>
+    </li>
+    <li>
+      <a routerLink="/cuestionarioMotores" class="dropdown-item" [class.active]="activeMenuItem === 'Cuestionario Motores'">
+        Cuestionario Motores
+      </a>
+    </li>
+    <li *ngFor="let collection of filteredCollections">
+      <a class="dropdown-item" routerLink="/cuestionarios-admin" [queryParams]="{ collection: collection }">{{ collection }}</a>
+    </li>
+    
+  </ul>
+</li>
+
+<!-- Menú desplegable de Simuladores -->
+<li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Simuladores
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+    <li>
+      <a routerLink="/simuladorGeneral" class="dropdown-item" [class.active]="activeMenuItem === 'Simulador General'">
+        Simulador General
+      </a>
+    </li>
+    <li>
+      <a routerLink="/simuladorFuselaje" class="dropdown-item" [class.active]="activeMenuItem === 'Simulador Fuselaje'">
+        Simulador Fuselaje
+      </a>
+    </li>
+    <li>
+      <a routerLink="/simuladorMotores" class="dropdown-item" [class.active]="activeMenuItem === 'Simulador Motores'">
+        Simulador Motores
+      </a>
+    </li>
+    <!-- Filtrar y mostrar otras simulaciones -->
+   
+
+    <li *ngFor="let collection of filteredCollections">
+      <a class="dropdown-item"
+         [routerLink]="['/simuladores-admin']"
+         [queryParams]="{ collection: collection }"
+         (click)="verSimuladores(collection)">
+        {{ collection }}
+      </a>
+    </li>
+    
+
+
+
+    
+  </ul>
+</li>
 
 
 

@@ -1,19 +1,16 @@
-// mostrar-cuestionarios.service.ts
-
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root' // Esto garantiza que el servicio esté disponible en toda la aplicación
+  providedIn: 'root'
 })
 export class MostrarCuestionariosService {
+  private apiUrl = 'http://localhost:3001/api/databases'; // Asegúrate de que la URL sea correcta
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  // Método para obtener los cuestionarios
-  getCuestionarios(): Observable<any[]> {
-    return this.http.get<any[]>('/api/cuestionarios');
+  getDatabasesAndCollections(): Observable<any> {
+    return this.http.get<any>(this.apiUrl);
   }
-
 }

@@ -27,6 +27,10 @@ import { VerCuestionariosService } from './ver-cuestionarios.service';
 import { InicioComponent } from './inicio/inicio.component';
 import { AuthService } from './auth.service';
 import { CrearAdministradorComponent } from './crear-administrador/crear-administrador.component';
+import { SimuladorFuselajeComponent } from './simulador-fuselaje/simulador-fuselaje.component';
+import { SimuladorMotoresComponent } from './simulador-motores/simulador-motores.component';
+import { CuestionariosAdminComponent } from './cuestionarios-admin/cuestionarios-admin.component';
+import { SimuladoresAdminComponent } from './simuladores-admin/simuladores-admin.component';
 
 
 
@@ -51,6 +55,10 @@ import { CrearAdministradorComponent } from './crear-administrador/crear-adminis
     NuevaPreguntaComponent,
     InicioComponent,
     CrearAdministradorComponent,
+    SimuladorFuselajeComponent,
+    SimuladorMotoresComponent,
+    CuestionariosAdminComponent,
+    SimuladoresAdminComponent,
     
   ],
   imports: [

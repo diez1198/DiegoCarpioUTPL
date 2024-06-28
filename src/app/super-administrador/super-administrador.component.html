@@ -42,6 +42,7 @@
 </div>
 
 <h1 class="titulo" *ngIf="isLoggedIn && showInicioTitulo">Inicio</h1>
+<h1 class="Subtitulo" *ngIf="isLoggedIn && showInicioTitulo"> Para visualizar y editar un cuestionario de doble click sobre el botón correspondiente</h1>
 
 <div class="botones-cuestionario" *ngIf="isLoggedIn && mostrarBotonesCuestionario">
   <div *ngFor="let collection of collections" class="boton">
