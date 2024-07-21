@@ -1,12 +1,9 @@
-
-
-
 <div class="navbar">
   <ul class="nav-superior">
-    <!-- Tus otros elementos del menú aquí -->
+    <!-- Puedes agregar elementos de navegación si es necesario -->
   </ul>
-   <!-- boton salir-->
-   <a class="regresar" (click)="redireccionarASuperAdministrador()" [class.active]="activeMenuItem === 'regresar'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
+  <a class="regresar" (click)="redireccionarASuperAdministrador()" [class.active]="activeMenuItem === 'regresar'"
+    (mouseenter)="doNothing()" (mouseleave)="doNothing()">
     Regresar
   </a>
 </div>
@@ -15,6 +12,8 @@
   <h1 class="titulo">Visualizar y Editar Cuestionarios</h1>
   <button (click)="mostrarFormulario()" class="btn-agregar">Agregar Nueva Pregunta</button>
 </div>
+
+<!-- Editar  preguntas -->
 <div class="preguntas-container">
   <ul>
     <li *ngFor="let pregunta of documentos" class="pregunta-item">
@@ -47,27 +46,28 @@
           </label><br>
           <label>
             Respuesta:
-            <span contenteditable="true" (blur)="updatePregunta($event, preguntaEditada, 'respuesta')" class="editable">
-              {{ preguntaEditada.respuesta }}
-            </span>
+            <select id="respuesta" name="respuesta" [(ngModel)]="preguntaEditada.respuesta" class="form-control" required>
+              <option [value]="preguntaEditada.opcion_a">Opción A: {{ preguntaEditada.opcion_a }}</option>
+              <option [value]="preguntaEditada.opcion_b">Opción B: {{ preguntaEditada.opcion_b }}</option>
+              <option [value]="preguntaEditada.opcion_c">Opción C: {{ preguntaEditada.opcion_c }}</option>
+            </select>
           </label><br>
           <label>
-            Referencia Actual:<button *ngIf="pregunta.imagen" (click)="quitarImagen(pregunta)"class="quitarimagen-btn">Quitar Imagen</button>
+            <button *ngIf="pregunta.imagen" (click)="quitarImagen(pregunta)" class="quitarimagen-btn">Quitar Imagen</button>
           </label><br>
+
           <div *ngIf="preguntaEditada.imagen">
-            <img [src]="preguntaEditada.imagen" alt="Imagen actual de la pregunta" class="pregunta-imagen">
+            <img [src]="preguntaEditada.imagen" alt="Imagen de la pregunta" class="pregunta-imagen">
           </div>
+
           <label for="nuevaImagen">Nueva Referencia:</label>
           <input type="file" id="nuevaImagen" (change)="onImageSelected($event)" class="form-control">
         </div>
-        <button (click)="guardarEdicion(preguntaEditada)" class="guardar-btn">Guardar</button>
+        <button (click)="guardarEdicion()" class="guardar-btn">Guardar</button>
         <button (click)="cancelarEdicion()" class="cancelar-btn">Cancelar</button>
       </div>
 
-     
-
-
-
+      <!-- Mostrar preguntas -->
       <ng-template #mostrarPreguntas>
         <strong class="pregunta-titulo">{{ pregunta.id }}) {{ pregunta.pregunta }}</strong>
         <div class="respuestas">
@@ -77,31 +77,24 @@
           <strong class="respuesta-label">Respuesta: </strong>
           <span class="respuesta">{{ pregunta.respuesta }}</span>
         </div>
-        <div class="respuestas" *ngIf="pregunta.imagen"> <!-- Aquí se añade la condición para mostrar el botón -->
-          <button (click)="toggleImagen(pregunta)" class="referencia-btn">Ver Referencia</button>
+        <div class="respuestas" *ngIf="pregunta.imagen">
+          <img [src]="pregunta.imagen" alt="Imagen de la pregunta" class="pregunta-imagen">
         </div>
-          <!-- Añadir imagen aquí -->
-          <div *ngIf="pregunta.imagen && pregunta.mostrarImagen">
-            <img [src]="pregunta.imagen" alt="Imagen de la pregunta" class="pregunta-imagen">
-          </div>
-        
         <button (click)="editarPregunta(pregunta)" class="editar-btn">Editar</button>
         <button (click)="eliminarDocumento(nombreColeccion, pregunta.id)" class="eliminar-btn">Eliminar</button>
       </ng-template>
     </li>
   </ul>
-  <p *ngIf="!documentos || documentos.length === 0">No hay documentos disponibles.</p>
+  <p *ngIf="!documentos || documentos.length === 0">Cargando....</p>
 </div>
 
-
-
-
-
+<!-- Nueva pregunta-->
 <div *ngIf="mostrarNuevoFormulario" class="nueva-pregunta-container">
   <h2>Agregar Nueva Pregunta</h2>
   <div class="form-group">
     <label for="id">ID</label>
-    <input type="text" id="id" [(ngModel)]="nuevaPregunta.id" (change)="convertirIdANumero()" class="form-control">
+    <input type="text" id="id" [(ngModel)]="nuevoId" [readonly]="true" class="form-control readonly-input">
+
   </div>
   <div class="form-group">
     <label for="pregunta">Pregunta:</label>
@@ -122,9 +115,9 @@
   <div class="form-group">
     <label for="respuesta">Respuesta:</label>
     <select id="respuesta" [(ngModel)]="nuevaPregunta.respuesta" class="form-control">
-      <option value="A">Opción A</option>
-      <option value="B">Opción B</option>
-      <option value="C">Opción C</option>
+      <option [value]="nuevaPregunta.opcion_a">Opción A: {{ nuevaPregunta.opcion_a }}</option>
+      <option [value]="nuevaPregunta.opcion_b">Opción B: {{ nuevaPregunta.opcion_b }}</option>
+      <option [value]="nuevaPregunta.opcion_c">Opción C: {{ nuevaPregunta.opcion_c }}</option>
     </select>
   </div>
   <div class="form-group">
@@ -132,4 +125,5 @@
     <input type="file" id="imagen" (change)="onImageSelected($event)" class="form-control">
   </div>
   <button (click)="agregarNuevaPregunta()" class="guardarNuevaPregunta-btn">Guardar Pregunta</button>
+  <button (click)="cerrarFormulario()" class="cerrar-formulario-btn">Cerrar</button>
 </div>

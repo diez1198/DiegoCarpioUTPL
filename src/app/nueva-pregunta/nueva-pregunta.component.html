@@ -17,14 +17,19 @@
       <label for="opcion_c">Opción C:</label>
       <input type="text" id="opcion_c" name="opcion_c" [(ngModel)]="opcion_c" required>
     </div>
+
+
+
     <div class="form-group">
       <label for="respuesta">Respuesta:</label>
-      <input type="text" id="respuesta" name="respuesta" [(ngModel)]="respuesta" required>
+      <select id="respuesta" name="respuesta" [(ngModel)]="respuesta" class="form-control" required>
+        <option [value]="opcion_a">Opción A: {{ opcion_a }}</option>
+        <option [value]="opcion_b">Opción B: {{ opcion_b }}</option>
+        <option [value]="opcion_c">Opción C: {{ opcion_c }}</option>
+      </select>
     </div>
-    <div class="form-group">
-      <label for="item">Número de Pregunta:</label>
-      <input type="number" id="item" name="item" [(ngModel)]="item" required>
-    </div>
+
+
     <div class="form-group">
       <label for="imagen">Agregar Imagen de Referencia:</label>
       <input type="file" id="imagen" (change)="onImageSelected($event)" class="form-control">

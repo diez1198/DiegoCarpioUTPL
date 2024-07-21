@@ -1,33 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router'; // Importa Router también
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { VerCuestionariosService } from '../ver-cuestionarios.service';
+
 @Component({
   selector: 'app-simuladores-admin',
   templateUrl: './simuladores-admin.component.html',
   styleUrls: ['./simuladores-admin.component.css']
 })
 export class SimuladoresAdminComponent implements OnInit {
-
-  
   documentos: any[] = [];
+  todosDocumentos: any[] = []; // Para almacenar todos los documentos
   mostrarRespuestas: boolean = false;
   mostrarRespuestaCompleta: boolean = true;
   mostrarEtiquetaRespuesta: boolean = true;
   mostrarBotonMarcar: boolean = true;
-  selectedCollection: string = ''; // O inicializa con el valor predeterminado que desees
-  
+  selectedCollection: string = '';
   respuestasCorrectas: number = 0;
   mostrarCalificacion: boolean = false;
   preguntasRespondidas: number = 0;
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router, // Incluye Router en el constructor
+    private router: Router,
     private verCuestionariosService: VerCuestionariosService
   ) {}
 
   ngOnInit(): void {
-    // Leer parámetros de la URL al iniciar el componente
+    this.mostrarBotonMarcar = false;
     this.route.queryParams.subscribe((params: Params) => {
       if (params['collection']) {
         this.selectedCollection = params['collection'];
@@ -35,7 +34,7 @@ export class SimuladoresAdminComponent implements OnInit {
       }
     });
   }
-  
+
   onSeleccionarColeccion(nombreColeccion: string): void {
     this.selectedCollection = nombreColeccion;
     this.loadDocumentos(nombreColeccion);
@@ -44,40 +43,46 @@ export class SimuladoresAdminComponent implements OnInit {
   loadDocumentos(collectionName: string): void {
     this.verCuestionariosService.getDocumentos(collectionName).subscribe(
       data => {
-        this.documentos = data.map((doc: any) => ({
+        this.todosDocumentos = data.map((doc: any) => ({
           ...doc,
-          mostrarRespuesta: false
+          mostrarRespuesta: false,
+          opciones: [
+            { texto: doc.opcion_a, seleccionada: false, letra: 'A', respuestaIncorrecta: false },
+            { texto: doc.opcion_b, seleccionada: false, letra: 'B', respuestaIncorrecta: false },
+            { texto: doc.opcion_c, seleccionada: false, letra: 'C', respuestaIncorrecta: false }
+          ]
         }));
+        // Inicialmente, mostrar todos los documentos
+        this.documentos = [...this.todosDocumentos];
+        console.log('Documentos cargados:', this.documentos);
       },
       error => {
         console.error('Error al obtener los documentos:', error);
       }
     );
   }
+
   onCuestionarioMecanicaGeneralRespuestaClick(): void {
     this.mostrarRespuestas = !this.mostrarRespuestas;
     this.mostrarRespuestaCompleta = false;
     this.mostrarEtiquetaRespuesta = false;
     this.mostrarBotonMarcar = true;
+
+    // Verificar que haya documentos disponibles antes de intentar obtener un subconjunto aleatorio
+    if (this.todosDocumentos.length > 0) {
+      // Seleccionar 100 preguntas aleatorias de todos los documentos
+      this.documentos = this.getRandomSubset(this.todosDocumentos, 100);
+      console.log('Preguntas aleatorias seleccionadas:', this.documentos);
+    } else {
+      console.warn('No hay documentos disponibles para seleccionar preguntas aleatorias.');
+    }
+
+    console.log('Mostrando respuestas marcadas...', this.mostrarRespuestas);
   }
 
-  onCompletoMecanicaGeneralClick(): void {
-    this.mostrarRespuestas = false;
-    this.mostrarRespuestaCompleta = true;
-    this.mostrarEtiquetaRespuesta = true;
-    this.mostrarBotonMarcar = false;
-  }
-
-  verSimuladores(collection: string) {
-    this.router.navigate(['/simuladores-admin'], { queryParams: { collection: collection } });
-  }
-
-
-  marcarOpcionCorrecta(pregunta: any): void {
-    // Aquí podrías implementar la lógica para marcar la opción correcta si lo necesitas
-    // Por ejemplo:
-    // const respuestaCorrecta = this.encontrarOpcionCorrecta(pregunta.respuesta, pregunta.opcion_a, pregunta.opcion_b, pregunta.opcion_c);
-    // pregunta.respuestaMarcada = respuestaCorrecta;
+  getRandomSubset(array: any[], size: number): any[] {
+    const shuffled = [...array].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, size);
   }
 
   encontrarOpcionCorrecta(respuesta: string, opcionA: string, opcionB: string, opcionC: string): string | null {
@@ -99,6 +104,34 @@ export class SimuladoresAdminComponent implements OnInit {
     } else {
       return null;
     }
+  }
+
+  onCompletoMecanicaGeneralClick(): void {
+    this.mostrarRespuestas = false;
+    this.mostrarRespuestaCompleta = true;
+    this.mostrarEtiquetaRespuesta = true;
+    this.mostrarBotonMarcar = false;
+    // Restablecer los documentos a todos los documentos
+    this.documentos = [...this.todosDocumentos];
+    console.log('Restableciendo a modo normal...');
+  }
+
+  marcarOpcionCorrecta(pregunta: any): void {
+    const respuestaCorrecta = this.encontrarOpcionCorrecta(pregunta.respuesta, pregunta.opciones[0].texto, pregunta.opciones[1].texto, pregunta.opciones[2].texto);
+    pregunta.respuestaMarcada = respuestaCorrecta;
+  }
+
+  onOpcionSeleccionada(pregunta: any, opcion: any): void {
+    pregunta.opciones.forEach((op: any) => {
+      if (op !== opcion) {
+        op.seleccionada = false;
+      }
+    });
+
+    const respuestaCorrecta = this.encontrarOpcionCorrecta(pregunta.respuesta, pregunta.opciones[0].texto, pregunta.opciones[1].texto, pregunta.opciones[2].texto);
+    const esCorrecta = respuestaCorrecta === opcion.letra;
+    console.log('Opción seleccionada:', opcion);
+    console.log('¿La opción seleccionada es correcta?', esCorrecta);
   }
 
   calificar(): void {
@@ -125,16 +158,6 @@ export class SimuladoresAdminComponent implements OnInit {
     this.mostrarCalificacion = false;
   }
 
-  verRespuestasIncorrectas(): void {
-    this.documentos.forEach((pregunta: any) => {
-      const respuestaCorrecta = this.encontrarOpcionCorrecta(pregunta.respuesta, pregunta.opciones[0].texto, pregunta.opciones[1].texto, pregunta.opciones[2].texto);
-      pregunta.opciones.forEach((opcion: any) => {
-        opcion.respuestaIncorrecta = opcion.seleccionada && opcion.letra !== respuestaCorrecta;
-        this.mostrarCalificacion = false;
-      });
-    });
-  }
-
   Reiniciar(): void {
     // Desmarcar todas las respuestas y restablecer otras variables
     this.documentos.forEach((pregunta: any) => {
@@ -144,13 +167,24 @@ export class SimuladoresAdminComponent implements OnInit {
       });
       pregunta.respuestaMarcada = null; // Desmarcar respuesta marcada
     });
+
+    // Restablecer otros estados si es necesario
+    this.mostrarCalificacion = false;
+    this.mostrarRespuestas = false;
+    this.mostrarRespuestaCompleta = true;
+    this.mostrarEtiquetaRespuesta = true;
+
+    // Volver al inicio de la página (pregunta 1)
+    window.scrollTo(0, 0); // Mueve la ventana al inicio de la página
   }
 
-  onOpcionSeleccionada(pregunta: any, opcion: any): void {
-    pregunta.opciones.forEach((op: any) => {
-      if (op !== opcion) {
-        op.seleccionada = false;
-      }
+  verRespuestasIncorrectas(): void {
+    this.documentos.forEach((pregunta: any) => {
+      const respuestaCorrecta = this.encontrarOpcionCorrecta(pregunta.respuesta, pregunta.opciones[0].texto, pregunta.opciones[1].texto, pregunta.opciones[2].texto);
+      pregunta.opciones.forEach((opcion: any) => {
+        opcion.respuestaIncorrecta = opcion.seleccionada && opcion.letra !== respuestaCorrecta;
+        this.mostrarCalificacion = false;
+      });
     });
   }
 }

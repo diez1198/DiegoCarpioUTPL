@@ -1,68 +1,73 @@
 <div class="contenido-cuestionario">
-    <div class="mensaje-container">
-      <p>En este apartado se mostrará el simulador del examen de Mecánica Fuselaje para la obtención de la licencia de Mecánico Aeronáutico de la Dirección de Aviación Civil del Ecuador.</p>
-      <p>Como usuario, usted podrá elegir las siguientes opciones:</p>
-      <p><strong>Examen completo:</strong> Le permitirá realizar el examen con todas las preguntas del cuestionario</p>
-      <p><strong>Simulador examen:</strong> Le permitirá realizar el simulador del examen que corresponde a 100 preguntas aleatorias</p>
-    </div>
-    <div class="button-container">
-      <button (click)="onCompletoMecanicaGeneralClick()">Examen completo</button>
-      <button (click)="onCuestionarioMecanicaGeneralRespuestaClick()">Simulador examen</button>
-    </div>
-    <div class="cuestionario-y-boton">
-      <div class="preguntas-container">
-  
-        <ul>
-          <li *ngFor="let pregunta of documentos" class="pregunta-item">
-            <strong class="pregunta-titulo">{{ pregunta.id }}) {{ pregunta.pregunta }}</strong>
-            <div class="respuestas">
-              <div *ngFor="let opcion of pregunta.opciones" class="opcion-con-checkbox" [class.respuesta-incorrecta]="opcion.respuestaIncorrecta">
-                <label class="checkbox-container">
-                  <input type="checkbox" [(ngModel)]="opcion.seleccionada" (change)="onOpcionSeleccionada(pregunta, opcion)">
-                  <span class="checkmark"></span>
-                  <span class="opcion">
-                    {{ opcion.letra }}) {{ opcion.texto }}
-                  </span>
-                </label>
-              </div>
-              <button *ngIf="mostrarBotonMarcar && !pregunta.respuestaMarcada" class="boton-marcar" (click)="marcarOpcionCorrecta(pregunta)">Marcar Opción Correcta</button>
-              <strong class="respuesta-label" *ngIf="mostrarEtiquetaRespuesta">Respuesta: </strong>
-              <span class="respuesta" *ngIf="mostrarRespuestaCompleta">{{ pregunta.respuesta }}</span>
+  <div class="mensaje-container">
+    <p>En este apartado se mostrará el simulador del examen de Mecánica General para la obtención de la licencia de Mecánico Aeronáutico de la Dirección de Aviación Civil del Ecuador.</p>
+    <p>Como usuario, usted podrá elegir las siguientes opciones:</p>
+    <p><strong>Examen completo:</strong> Le permitirá realizar el examen con todas las preguntas del cuestionario</p>
+    <p><strong>Simulador examen:</strong> Le permitirá realizar el simulador del examen que corresponde a 100 preguntas aleatorias</p>
+  </div>
+  <div class="button-container">
+    <button (click)="onCompletoMecanicaGeneralClick()">Examen completo</button>
+    <button (click)="onCuestionarioMecanicaGeneralRespuestaClick()">{{ botonTexto }}</button>
+    <button *ngIf="mostrarBotonMarcar && !examenIniciado" (click)="iniciarExamen()" id="btnEmpezarExamen" class="btn btn-primary">Empezar examen</button>
+  </div>
+  <div class="cuestionario-y-boton">
+    <div class="preguntas-container">
+      <ul>
+        <li *ngFor="let pregunta of enRevision ? preguntasIncorrectas : documentos; let i = index" class="pregunta-item" [id]="'pregunta-' + i">
+          <strong class="pregunta-titulo">{{ pregunta.id }}) {{ pregunta.pregunta }}</strong>
+          <div class="respuestas">
+            <div *ngFor="let opcion of pregunta.opciones" class="opcion-con-checkbox"
+                 [class.respuesta-incorrecta]="opcion.esIncorrecta && pregunta.respondida && enRevision"
+                 [class.respuesta-correcta]="opcion.esCorrecta && pregunta.respondida && enRevision">
+              <label class="checkbox-container">
+                <input type="checkbox" [(ngModel)]="opcion.seleccionada"
+                       (change)="onOpcionSeleccionada(pregunta, opcion)"
+                       [disabled]="examenIniciado && !examenEnCurso">
+                <span class="checkmark"></span>
+                <span class="opcion">{{ opcion.letra }}) {{ opcion.texto }}</span>
+              </label>
             </div>
-            <div class="respuestas" *ngIf="pregunta.imagen">
-              <img [src]="pregunta.imagen" alt="Imagen de la pregunta" class="pregunta-imagen">
-            </div>
-          </li>
-        </ul>
-        
-        
-  
-        
-        <p *ngIf="!documentos || documentos.length === 0">No hay documentos disponibles.</p>
-      </div>
-      <div class="boton-calificar-container">
-        <button (click)="calificar()" class="boton-calificar">Revisar</button>
-      </div>
+            <strong class="respuesta-label" *ngIf="mostrarEtiquetaRespuesta">Respuesta: </strong>
+            <span class="respuesta" *ngIf="mostrarRespuestaCompleta">{{ pregunta.respuesta }}</span>
+          </div>
+          <div class="respuestas" *ngIf="pregunta.imagen">
+            <img [src]="pregunta.imagen" alt="Imagen de la pregunta" class="pregunta-imagen">
+          </div>
+        </li>
+      </ul>
+      <p *ngIf="(!enRevision && (!documentos || documentos.length === 0)) || (enRevision && preguntasIncorrectas.length === 0)">No hay documentos disponibles.</p>
     </div>
   </div>
-  
-  
-  
-  
-   <!-- Formulario HTML para mostrar la calificación -->
-   <div class="calificacion-formulario" *ngIf="mostrarCalificacion">
-   
-    <form>
-      <div class="form-group">
-        <label>Preguntas respondidas:</label>
-        <input type="text" class="form-control" value="{{ preguntasRespondidas }}" readonly>
-      </div>
-      <div class="form-group">
-        <label>Respuestas correctas:</label>
-        <input type="text" class="form-control" value="{{ respuestasCorrectas }}" readonly>
-      </div>
-      <button type="button" class="btn btn-primary" (click)="cerrarCalificacion()">Cerrar</button>
-      <button type="button" class="btn btn-primary" (click)="verRespuestasIncorrectas()">Marcar Respuestas Incorrectas</button>
-      <button type="button" class="btn btn-primary" (click)="Reiniciar()">Reiniciar</button>
-    </form>
-  </div>
+</div>
+<div *ngIf="!examenIniciado" class="boton-revisar-container">
+  <button (click)="revisar()" class="boton-revisar">Revisar</button>
+</div>
+<div class="boton-calificar-container">
+  <button (click)="calificar()" class="boton-calificar">Terminar</button>
+</div>
+
+<!-- Formulario HTML para mostrar la calificación -->
+<div class="calificacion-formulario" *ngIf="mostrarCalificacion">
+  <form>
+    <div class="form-group">
+      <label>Preguntas respondidas:</label>
+      <input type="text" class="form-control" value="{{ preguntasRespondidas }}" readonly>
+    </div>
+    <div class="form-group">
+      <label>Respuestas correctas:</label>
+      <input type="text" class="form-control" value="{{ respuestasCorrectas }}" readonly>
+    </div>
+    <button type="button" class="btn btn-primary" (click)="cerrarCalificacion()">Cerrar</button>
+    <button type="button" class="btn btn-primary" (click)="verRespuestasIncorrectas()">Mostrar Respuestas Incorrectas</button>
+    <button type="button" class="btn btn-primary" (click)="Reiniciar()" [disabled]="enRevision">Reiniciar</button>
+  </form>
+</div>
+
+<!-- Contador de tiempo -->
+<div *ngIf="examenIniciado" class="contador-tiempo">
+  <p>Tiempo restante: {{ formatTime(tiempoRestanteEnSegundos) }}</p>
+</div>
+
+<div class="feedback-container">
+  <p *ngIf="mostrarFeedback">{{ feedbackMensaje }}</p>
+</div>

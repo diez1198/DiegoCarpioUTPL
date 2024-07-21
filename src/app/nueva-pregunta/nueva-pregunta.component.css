@@ -1,6 +1,25 @@
 /* Estilos para el formulario de nueva pregunta */
 
 
+.Finalizar-btn {
+  background-color: blue; /* Color del botón habilitado */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.Finalizar-btn.button-disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+.button-disabled {
+  background-color: gray; /* Color del botón deshabilitado */
+  cursor: not-allowed;
+}
+
 .form-container {
     margin: 0 auto; /* Centra el formulario horizontalmente */
     border: 2px solid black;
@@ -291,4 +310,61 @@
 
 .confirmation-buttons {
   background-color: #c49a19;
+}
+
+
+
+
+
+.Finalizar-btn {
+  background-color: blue; /* Color del botón habilitado */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.button-disabled {
+  background-color: gray; /* Color del botón deshabilitado */
+  cursor: not-allowed;
+}
+
+
+
+
+
+.form-group label {
+  display: block; /* Hacer que la etiqueta ocupe toda la línea */
+  font-weight: bold; /* Hacer que el texto sea negrita */
+  margin-bottom: 0.5rem; /* Espacio entre la etiqueta y el select */
+  color: #333; /* Color del texto */
+}
+
+
+
+/* Estilos para el select */
+.form-group select {
+  width: 100%; /* Hacer que el select ocupe todo el ancho del contenedor */
+  padding: 0.5rem; /* Espacio interno del select */
+  border: 1px solid #ced4da; /* Borde del select */
+  border-radius: 4px; /* Esquinas redondeadas del select */
+  font-size: 25px; /* Tamaño de fuente del select */
+  background-color: #fff; /* Fondo blanco para el select */
+  color: #495057; /* Color del texto dentro del select */
+  transition: border-color 0.2s ease-in-out; /* Transición suave para el borde */
+  font-weight: bold; /* Hacer que el texto sea negrita */
+}
+
+/* Estilos para el select cuando está enfocado */
+.form-group select:focus {
+  border-color: #007bff; /* Color del borde al enfocar */
+  outline: none; /* Quitar el contorno del select al enfocar */
+  font-size: 30px; /* Tamaño de fuente del select */
+  font-weight: bold; /* Hacer que el texto sea negrita */
+}
+
+/* Opcional: Estilo para la opción seleccionada */
+.form-group option {
+  padding: 0.5rem; /* Espacio interno de las opciones */
 }

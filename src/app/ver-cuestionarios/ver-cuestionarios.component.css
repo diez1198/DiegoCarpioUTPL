@@ -147,7 +147,7 @@ button.guardar-btn {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 17px;
+  font-size: 20px;
   margin-top: 5px;
   cursor: pointer;
   border-radius: 4px;
@@ -348,6 +348,7 @@ button.guardarNuevaPregunta-btn {
   border-radius: 5px;
   background-color: #e4b022;
   color: white;
+  font-size: 20px;
 }
 
 .btn:hover {
@@ -465,4 +466,25 @@ button:hover {
 
  
 
- 
+.cerrar-formulario-btn {
+  background-color: #c55521; /* Rojo */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+
+
+input[readonly] {
+  background-color: #f0f0f0; /* Color de fondo gris claro */
+  color: #888; /* Color de texto gris */
+  border: 1px solid #ccc; /* Borde gris */
+  cursor: not-allowed; /* Cursor de no permitido */
+}

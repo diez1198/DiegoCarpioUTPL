@@ -198,20 +198,17 @@
   
   
   .boton-calificar-container {
-    position: fixed;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 1000; /* Para asegurarse de que esté sobre otros elementos */
+    margin-left: 200px;
+   
   }
   
   .boton-calificar {
-    padding: 10px 20px;
+    top: 0%;
     background-color: #2196F3;
     color: white;
     border: none;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 30px;
     border-radius: 5px;
   }
   
@@ -234,7 +231,7 @@
   
   
   .calificacion-formulario {
-    font-size: 30px;
+    font-size: 35px;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -309,4 +306,97 @@
     background-color: #ffe6e6; /* Cambiar a tu color de fondo */
     padding: 10px;
     margin-bottom: 10px;
+  }
+
+
+  .contador-tiempo {
+    position: fixed;
+    top: 80px; /* Ajusta la distancia desde la parte superior según sea necesario */
+    left: 0px; /* Ajusta la distancia desde la izquierda según sea necesario */
+    background-color: #e9d08c; /* Color de fondo del contador */
+    padding: 10px; /* Espacio interno del contador */
+    border: 1px solid #ccc; /* Borde del contador */
+    border-radius: 5px; /* Bordes redondeados */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+  }
+  
+  /* Estilos para el texto del contador de tiempo */
+  .contador-tiempo p {
+    margin: 0;
+    font-size: 30px;
+    color: #333; /* Color del texto */
+  }
+
+  .btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  
+
+
+
+  
+  .feedback-container {
+    position: fixed;
+    top: 200px; 
+    left:0px; 
+    background-color: #e9d08c; /* fondo */
+    width: 95%;
+   
+    border-radius: 5px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    z-index: 1000; /* encima  elementos */
+  }
+  
+  /* contador de tiempo */
+  .feedback-container p {
+    margin: 0;
+    font-size: 30px;
+    color: #333; 
+  }
+
+ 
+  .respuesta-correcta {
+    border: 2px solid #3cff00; /* Cambiar a tu color de borde */
+    background-color: #d6ffbb; /* Cambiar a tu color de fondo */
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  
+
+
+
+
+
+
+  .boton-revisar-container {
+    position: fixed;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000; /* Para asegurarse de que esté sobre otros elementos */
+   
+  }
+  
+  .boton-revisar {
+    padding: 10px 20px;
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 25px;
+    border-radius: 10px;
+  }
+  
+  .boton-revisar:hover {
+    background-color: #1976D2;
   }

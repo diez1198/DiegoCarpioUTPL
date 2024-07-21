@@ -132,7 +132,7 @@ export class NuevaPreguntaComponent {
   }
 
   regresaraCrearCuestionario(): void {
-    // Implementa la lógica para regresar al formulario de creación de cuestionario aquí
+    this.router.navigate(['/super-administrador/inicio']);
   }
 
   // Método para mostrar el mensaje de campos vacíos
@@ -148,8 +148,22 @@ export class NuevaPreguntaComponent {
 
   // Método para mostrar la ventana emergente de confirmación
   showConfirmationExit(): void {
-    this.showConfirmationPopup = true;
+    // Verificar si todos los campos están vacíos
+    const allFieldsEmpty = !this.pregunta && !this.opcion_a && !this.opcion_b && !this.opcion_c && !this.respuesta;
+  
+    // Verificar si todos los campos están llenos
+    const allFieldsFilled = this.pregunta && this.opcion_a && this.opcion_b && this.opcion_c && this.respuesta;
+  
+    // Si todos los campos están vacíos o todos están llenos, permitir mostrar la ventana de confirmación
+    if (allFieldsEmpty || allFieldsFilled) {
+      this.showConfirmationPopup = true;
+    } else {
+      // Mostrar mensaje de advertencia si algunos campos están llenos y otros vacíos
+      console.error('Todos los campos del formulario deben estar llenos o todos vacíos.');
+      this.showEmptyFieldsMessage('Para guardar el cuestionario, llene todos los campos de la pregunta o deje vacíos todos los campos. Recuerde que las preguntas solo se guardan si todos los campos están completos.');
+    }
   }
+  
 
   // Método para ocultar la ventana emergente de confirmación
   hideConfirmationPopup(): void {
@@ -157,12 +171,81 @@ export class NuevaPreguntaComponent {
   }
 
   // Método para finalizar el cuestionario después de confirmación
+ 
+
   finishQuestionnaire(): void {
-    this.router.navigate(['/super-administrador/inicio']);
-    console.log('Nuevo Documento Creado exitosamente:');
-    this.showConfirmationPopup = false;
-    
+    // Verificar si todos los campos están vacíos
+    const allFieldsEmpty = !this.pregunta && !this.opcion_a && !this.opcion_b && !this.opcion_c && !this.respuesta;
+  
+    // Verificar si todos los campos están llenos
+    const allFieldsFilled = this.pregunta && this.opcion_a && this.opcion_b && this.opcion_c && this.respuesta;
+  
+    // Verificar si es la última pregunta (esto depende de cómo determines si es la última pregunta)
+    // Aquí asumo que hay un método para determinar esto, reemplázalo con la lógica adecuada
+   
+  
+    // Si todos los campos están vacíos y es la última pregunta, solo navegar
+    if (allFieldsEmpty) {
+      this.router.navigate(['/super-administrador/inicio']);
+      return;
+    }
+  
+    // Si todos los campos están vacíos o todos están llenos, proceder a guardar
+    if (allFieldsEmpty || allFieldsFilled) {
+      console.log('Datos del formulario de la nueva pregunta component:', {
+        pregunta: this.pregunta,
+        opcion_a: this.opcion_a,
+        opcion_b: this.opcion_b,
+        opcion_c: this.opcion_c,
+        respuesta: this.respuesta
+      });
+  
+      this.nuevoCuestionarioService.getDocumentos(this.nombreColeccion).subscribe(
+        (numeroDocumentos) => {
+          const item = numeroDocumentos + 1;
+          const datosDocumento = {
+            id: this.contador,
+            item: item,
+            pregunta: this.pregunta,
+            opcion_a: this.opcion_a,
+            opcion_b: this.opcion_b,
+            opcion_c: this.opcion_c,
+            respuesta: this.respuesta,
+            imagen: '' // Inicialmente vacío, se actualizará después de la carga
+          };
+  
+          if (this.selectedFile) {
+            this.uploadImageToCloudinary(this.selectedFile).subscribe(
+              response => {
+                datosDocumento.imagen = response.secure_url;
+                this.savePregunta(datosDocumento);
+              },
+              error => {
+                console.error('Error al subir la imagen:', error);
+                alert('Error al subir la imagen. Por favor, intenta de nuevo.');
+              }
+            );
+          } else {
+            this.savePregunta(datosDocumento);
+            this.router.navigate(['/super-administrador/inicio']);
+            console.log('Nuevo Documento Creado exitosamente:');
+            this.showConfirmationPopup = false;
+          }
+        }
+      );
+    } else {
+      // Mostrar mensaje de advertencia si algunos campos están llenos y otros vacíos
+      console.error('Todos los campos del formulario deben estar llenos o todos vacíos.');
+      this.showEmptyFieldsMessage('Todos los campos del formulario deben estar llenos o todos vacíos.');
+    }
   }
+  
+
+
+
+
+
+  
 
   // Método para cancelar la finalización del cuestionario
   cancelFinish(): void {

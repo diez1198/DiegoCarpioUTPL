@@ -30,19 +30,25 @@ export class VerCuestionariosService {
   
   getDocumentos(nombreColeccion: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/${nombreColeccion}/documentos`).pipe(
-      map((documentos: any[]) => documentos.filter((pregunta: any) => this.preguntaCompleta(pregunta)))
+      map((documentos: any[]) => 
+        documentos
+          .filter((pregunta: any) => this.preguntaCompleta(pregunta))
+          .sort((a, b) => a.id - b.id) // Ordenar por el campo 'id'
+      )
     );
   }
 
 
-
   
  
-
-
   getDocumentosGen(nombreColeccion: string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/${nombreColeccion}`);
+    return this.http.get<any[]>(`${this.apiUrl}/${nombreColeccion}`).pipe(
+      map(documentos => documentos.sort((a, b) => a.id - b.id)) // Ordenar por el campo 'id'
+    );
   }
+
+  
+
 
   private preguntaCompleta(pregunta: any): boolean {
     return pregunta.pregunta !== null && pregunta.opcion_a !== null &&
@@ -75,6 +81,11 @@ export class VerCuestionariosService {
 eliminarDocumento(nombreColeccion: string, id: number): Observable<any> {
   const url = `${this.apiUrl}/${nombreColeccion}/${id}/eliminar-documento`;
   return this.http.delete(url);
+}
+
+
+obtenerUltimoID(nombreColeccion: string): Observable<number> {
+  return this.http.get<number>(`${this.apiUrl}/${nombreColeccion}/ultimo-id`);
 }
 
 
