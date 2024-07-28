@@ -87,7 +87,7 @@ export class SimuladorFuselajeComponent implements OnInit, AfterViewInit  {
     if (this.botonTexto === 'Simulador examen') {
       this.router.navigateByUrl('/simuladorFuselaje/iniciar');
       this.botonTexto = 'Empezar examen';
-      this.examenIniciado = false; // Asegúrate de restablecer el estado de examenIniciado
+      this.examenIniciado = true; // Asegúrate de restablecer el estado de examenIniciado
     } else if (this.botonTexto === 'Empezar examen') {
       this.iniciarExamen(); // Iniciar el examen sin cambiar las preguntas
     }
@@ -187,6 +187,9 @@ export class SimuladorFuselajeComponent implements OnInit, AfterViewInit  {
   }
 
 
+
+
+  
 
 
   calificar(): void {
@@ -311,14 +314,14 @@ export class SimuladorFuselajeComponent implements OnInit, AfterViewInit  {
 
 
 
- // Método para iniciar el contador
+ // iniciar el contador
  iniciarContador(): void {
   this.intervaloContador = setInterval(() => {
     this.tiempoRestanteEnSegundos--;
     if (this.tiempoRestanteEnSegundos <= 0) {
       this.detenerContador();
     }
-  }, 1000); // Actualiza el contador cada segundo (1000 ms)
+  }, 1000); // Actualiza el contador cada segundo 
 }
 
 

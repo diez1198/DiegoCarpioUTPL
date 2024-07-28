@@ -87,8 +87,9 @@ export class AppComponent implements OnInit, OnDestroy {
   }
   verSimuladores(collectionName: string) {
     this.activeMenuItem = collectionName;
-    this.router.navigate(['/simuladores-admin'], { queryParams: { collection: collectionName } });
+    this.router.navigate(['/simuladores-admin/completo'], { queryParams: { collection: collectionName } });
   }
+  
   
 
 

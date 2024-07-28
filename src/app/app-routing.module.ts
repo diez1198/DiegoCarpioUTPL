@@ -28,6 +28,7 @@ const routes: Routes = [
   { path: 'cuestionarioMotores', component: CuestionarioMotoresComponent },
   { path: 'CuetionarioGeneralData', component: CuestionarioGeneralComponent },
   { path: 'simuladorGeneral', component: SimuladorGeneralComponent },
+  
   { path: 'simuladorGeneral/completo', component: SimuladorGeneralComponent },
   { path: 'simuladorGeneral/iniciar', component: SimuladorGeneralComponent },
   { path: 'simuladorFuselaje', component: SimuladorFuselajeComponent },
@@ -36,6 +37,8 @@ const routes: Routes = [
   { path: 'simuladorFuselaje/completo', component: SimuladorFuselajeComponent },
   { path: 'simuladorFuselaje/revisar', component: SimuladorFuselajeComponent },
   { path: 'simuladorMotores', component: SimuladorMotoresComponent },
+  { path: 'simuladorMotores/completo', component: SimuladorMotoresComponent },
+  { path: 'simuladorMotores/iniciar', component: SimuladorMotoresComponent },
   { path: 'simuladorMecanicaGeneral', component: SimuladorMecanicaGeneralComponent },
   { path: 'administrador', component: LoginAdministradorComponent },
   { path: 'super-administrador/nuevo', component: NuevoCuestionarioComponent },
@@ -45,6 +48,14 @@ const routes: Routes = [
   { path: 'super-administrador/crearadmin', component: CrearAdministradorComponent },
   { path: 'cuestionarios-admin', component: CuestionariosAdminComponent },
   { path: 'simuladores-admin', component: SimuladoresAdminComponent },
+  { path: 'simuladores-admin/completo', component: SimuladoresAdminComponent },
+  { path: 'simuladores-admin/completo/:nombreColeccion', component: SimuladoresAdminComponent },
+  { path: 'simuladores-admin/simulador', component: SimuladoresAdminComponent },
+  { path: 'simuladores-admin/simulador/:nombreColeccion', component: SimuladoresAdminComponent },
+  { path: 'cuestionarios-admin/repaso', component: CuestionariosAdminComponent },
+  { path: 'cuestionarios-admin/completo', component: CuestionariosAdminComponent },
+
+  
   { path: '', redirectTo: '/inicio', pathMatch: 'full' }, // Ruta por defecto
   { path: '**', redirectTo: '/cuestionarioGeneral', pathMatch: 'full' }, // Ruta por defecto para rutas no encontradas
 ];

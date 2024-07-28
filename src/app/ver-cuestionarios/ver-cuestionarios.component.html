@@ -10,7 +10,22 @@
 
 <div>
   <h1 class="titulo">Visualizar y Editar Cuestionarios</h1>
+  
+  <div *ngIf="!isMecanicaCollection()">
+    <div class="button-container">
+      <button type="button" class="seteo-btn" (click)="seteo()">Configurar parámetros para el modo simulador de examen</button>
+    </div>
+    <p class="configuraciones-texto">
+      Número de preguntas para generar el simulador del examen (número de preguntas aleatorias): {{ numPreguntas || 'No configurado' }}
+      <br>
+      Tiempo para resolver el simulador del examen : {{ horas || '0' }}:{{ minutos || '00' }}
+    </p>
+  </div>
+
+  
   <button (click)="mostrarFormulario()" class="btn-agregar">Agregar Nueva Pregunta</button>
+ 
+  
 </div>
 
 <!-- Editar  preguntas -->
@@ -126,4 +141,24 @@
   </div>
   <button (click)="agregarNuevaPregunta()" class="guardarNuevaPregunta-btn">Guardar Pregunta</button>
   <button (click)="cerrarFormulario()" class="cerrar-formulario-btn">Cerrar</button>
+</div>
+
+<!-- formuilario elegir preguntas aleotirias y tiempo -->
+<div *ngIf="isModalOpen" class="modal">
+  <div class="modal-content">
+    <button class="close-button" (click)="closeModal()">&times;</button>
+    <h2>Configuraciones</h2>
+    <label for="numPreguntas">Número de preguntas aleatorias para generar el simulador del examen:</label>
+    <input type="number" id="numPreguntas" [(ngModel)]="numPreguntas" min="1">
+
+    <label for="tiempoContador">Tiempo del Contador (hh:mm):</label>
+    <div id="tiempoContador">
+      <input type="number" [(ngModel)]="horas" placeholder="hh" min="0">
+      <span>:</span>
+      <input type="number" [(ngModel)]="minutos" placeholder="mm" min="0" max="59">
+    </div>
+
+    <button (click)="applySettings()">Aplicar</button>
+    <button (click)="closeModal()">Cerrar</button>
+  </div>
 </div>

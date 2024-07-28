@@ -56,7 +56,7 @@
       </a>
     </li>
     <li *ngFor="let collection of filteredCollections">
-      <a class="dropdown-item" routerLink="/cuestionarios-admin" [queryParams]="{ collection: collection }">{{ collection }}</a>
+      <a class="dropdown-item" routerLink="/cuestionarios-admin/completo" [queryParams]="{ collection: collection }">{{ collection }}</a>
     </li>
     
   </ul>
@@ -69,7 +69,7 @@
   </a>
   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
     <li>
-      <a routerLink="/simuladorGeneral" class="dropdown-item" [class.active]="activeMenuItem === 'Simulador General'">
+      <a routerLink="/simuladorGeneral/completo" class="dropdown-item" [class.active]="activeMenuItem === 'Simulador General'">
         Simulador General
       </a>
     </li>
@@ -79,22 +79,18 @@
       </a>
     </li>
     <li>
-      <a routerLink="/simuladorMotores" class="dropdown-item" [class.active]="activeMenuItem === 'Simulador Motores'">
+      <a routerLink="/simuladorMotores/completo" class="dropdown-item" [class.active]="activeMenuItem === 'Simulador Motores'">
         Simulador Motores
       </a>
     </li>
     <!-- Filtrar y mostrar otras simulaciones -->
    
 
-    <li *ngFor="let collection of filteredCollections">
-      <a class="dropdown-item"
-         [routerLink]="['/simuladores-admin']"
-         [queryParams]="{ collection: collection }"
-         (click)="verSimuladores(collection)">
-        {{ collection }}
-      </a>
-    </li>
-    
+   <li *ngFor="let collection of filteredCollections"><a class="dropdown-item" (click)="verSimuladores(collection)">{{ collection }}
+   </a>
+</li>
+
+
 
 
 

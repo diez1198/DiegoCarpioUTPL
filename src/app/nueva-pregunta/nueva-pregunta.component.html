@@ -2,6 +2,15 @@
   <form (ngSubmit)="submitForm()">
     <div class="form-group">
       <p class="Ingresar-Preguntas">Ingresar preguntas</p>
+      <button type="button" class="seteo-btn" (click)="seteo()">Configurar parámetros para el modo simulador de examen</button> 
+<!-- Contenedor para mostrar seteo -->
+<div class="configuraciones-contenedor" *ngIf="numPreguntas || horas || minutos">
+  <p class="configuraciones-texto">
+    Número de preguntas para generar el simulador del examen (número de preguntas aleatorias): <span *ngIf="numPreguntas; else noConfig">{{ numPreguntas }}</span><ng-template #noConfig><strong>No configurado</strong></ng-template>
+    <br>
+    Tiempo para resolver el simulador del examen : {{ horas || '0' }}:{{ minutos || '00' }}
+  </p>
+</div>
       <label for="pregunta">Pregunta {{ contador }}:</label>
       <textarea id="pregunta" name="pregunta" [(ngModel)]="pregunta" required></textarea>
     </div>
@@ -36,7 +45,6 @@
     </div>
     <div class="form-buttons">
       <button type="button" class="regresar-btn" (click)="regresaraCrearCuestionario()">Regresar</button>
-      <button type="button" class="prev-question-btn" (click)="prevQuestion()">Pregunta Anterior</button>
       <button type="submit">Siguiente Pregunta</button>
       <button type="button" class="Finalizar-btn" (click)="showConfirmationExit()">Finalizar</button>
     </div>
@@ -69,4 +77,27 @@
 
 <div>
   <p>Preguntas creadas: {{ contador }}</p>
+</div>
+
+
+<!-- formuilario elegir preguntas aleotirias y tiempo -->
+
+
+<div *ngIf="isModalOpen" class="modal">
+  <div class="modal-content">
+    <button class="close-button" (click)="closeModal()">&times;</button>
+    <h2>Configuraciones</h2>
+    <label for="numPreguntas">Número de preguntas aleatorias para generar el simulador del examen:</label>
+    <input type="number" id="numPreguntas" [(ngModel)]="numPreguntas" min="1">
+
+    <label for="tiempoContador">Tiempo del Contador (hh:mm):</label>
+    <div id="tiempoContador">
+      <input type="number" [(ngModel)]="horas" placeholder="hh" min="0">
+      <span>:</span>
+      <input type="number" [(ngModel)]="minutos" placeholder="mm" min="0" max="59">
+    </div>
+
+    <button (click)="applySettings()">Aplicar</button>
+    <button (click)="closeModal()">Cerrar</button>
+  </div>
 </div>

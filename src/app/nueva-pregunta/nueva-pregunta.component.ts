@@ -22,6 +22,10 @@ export class NuevaPreguntaComponent {
   contador: number = 1; // Contador para las preguntas creadas
   emptyFieldsMessage : string = '';
   showEmptyFields: boolean = false;
+  isModalOpen: boolean = false; // Estado del modal
+  horas: number = 0;
+  minutos: number = 0;
+  numPreguntas: number = 0; // Inicializado con un valor predeterminado
   showConfirmationPopup: boolean = false; // Para controlar la visibilidad de la ventana emergente
   item: number | null = null; // Número de la pregunta
   selectedFile: File | null = null; // Para el archivo de imagen seleccionado
@@ -243,13 +247,62 @@ export class NuevaPreguntaComponent {
 
 
 
+  seteo(): void {
+    this.isModalOpen = true; // Abre el modal
+  }
 
 
-  
+  closeModal(): void {
+    this.isModalOpen = false; // Cierra el modal
+    
+  }
+
+
+
+
 
   // Método para cancelar la finalización del cuestionario
   cancelFinish(): void {
     this.hideConfirmationPopup(); // Oculta la ventana emergente
     // Otras acciones necesarias al cancelar la finalización del cuestionario
   }
+
+
+  applySettings(): void {
+    // Guardar configuraciones específicas para la colección actual en localStorage
+    localStorage.setItem(`${this.nombreColeccion}_numPreguntas`, this.numPreguntas.toString());
+    localStorage.setItem(`${this.nombreColeccion}_horas`, this.horas.toString());
+    localStorage.setItem(`${this.nombreColeccion}_minutos`, this.minutos.toString());
+  
+    // Imprimir en consola para verificar los valores
+    console.log(`Configuración guardada para la colección "${this.nombreColeccion}":`);
+    console.log(`Número de preguntas: ${localStorage.getItem(`${this.nombreColeccion}_numPreguntas`)}`);
+    console.log(`Horas: ${localStorage.getItem(`${this.nombreColeccion}_horas`)}`);
+    console.log(`Minutos: ${localStorage.getItem(`${this.nombreColeccion}_minutos`)}`);
+  
+    // Cerrar el modal
+    this.closeModal();
+  }
+// Función para guardar los datos localmente (se usa en el submitForm y finishQuestionnaire)
+saveToLocalStorage(collectionName: string, numQuestions: number, timer: number): void {
+  console.log('Guardando en localStorage:', { collectionName, numQuestions, timer });
+  localStorage.setItem('collectionName', collectionName);
+  localStorage.setItem('numQuestions', numQuestions.toString());
+  localStorage.setItem('timer', timer.toString());
+
+  // Verificar que los datos se guardaron correctamente
+  console.log('Datos guardados en localStorage:', {
+    collectionName: localStorage.getItem('collectionName'),
+    numQuestions: localStorage.getItem('numQuestions'),
+    timer: localStorage.getItem('timer')
+  });
+}
+
+
+
+
+
+
+
+
 }

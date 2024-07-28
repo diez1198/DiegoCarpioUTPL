@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params,Router } from '@angular/router';
 import { VerCuestionariosService } from '../ver-cuestionarios.service';
 
 @Component({
@@ -17,7 +17,8 @@ export class CuestionariosAdminComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private verCuestionariosService: VerCuestionariosService
+    private verCuestionariosService: VerCuestionariosService,
+    private router: Router,
   ) {}
 
 
@@ -27,6 +28,9 @@ export class CuestionariosAdminComponent implements OnInit {
       if (params['collection']) { // Accede a 'collection' usando notación de corchetes
         this.selectedCollection = params['collection'];
         this.loadDocumentos(this.selectedCollection);
+        this.mostrarRespuestaCompleta = true;
+        this.mostrarEtiquetaRespuesta = true;
+        this.mostrarBotonMarcar = false;
       }
     });
   }
@@ -52,6 +56,7 @@ export class CuestionariosAdminComponent implements OnInit {
   }
 
   onCuestionarioMecanicaGeneralRespuestaClick(): void {
+    
     this.mostrarRespuestas = !this.mostrarRespuestas;
     this.mostrarRespuestaCompleta = false;
     this.mostrarEtiquetaRespuesta = false;
@@ -59,6 +64,7 @@ export class CuestionariosAdminComponent implements OnInit {
   }
 
   onCompletoMecanicaGeneralClick(): void {
+    this.router.navigate(['/cuestionarios-admin/completo'], { queryParams: { collection: this.selectedCollection } });
     this.mostrarRespuestas = false;
     this.mostrarRespuestaCompleta = true;
     this.mostrarEtiquetaRespuesta = true;
@@ -66,11 +72,10 @@ export class CuestionariosAdminComponent implements OnInit {
   }
 
   marcarOpcionCorrecta(pregunta: any): void {
-    // Aquí podrías implementar la lógica para marcar la opción correcta si lo necesitas
-    // Por ejemplo:
-    // const respuestaCorrecta = this.encontrarOpcionCorrecta(pregunta.respuesta, pregunta.opcion_a, pregunta.opcion_b, pregunta.opcion_c);
-    // pregunta.respuestaMarcada = respuestaCorrecta;
+    const respuestaCorrecta = this.encontrarOpcionCorrecta(pregunta.respuesta, pregunta.opcion_a, pregunta.opcion_b, pregunta.opcion_c);
+    pregunta.respuestaMarcada = respuestaCorrecta;
   }
+
 
   // Método para encontrar la opción correcta (si es necesario)
   encontrarOpcionCorrecta(respuesta: string, opcionA: string, opcionB: string, opcionC: string): string | null {

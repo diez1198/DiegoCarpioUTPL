@@ -12,6 +12,8 @@ import { Observable } from 'rxjs';
   styleUrls: ['./ver-cuestionarios.component.css']
 })
 export class VerCuestionariosComponent implements OnInit {
+  selectedCollection: string = '';
+  mostrarConfiguraciones: boolean = false;
   activeMenuItem: string = '';
   documentos: any[] = [];
   nombreColeccion: string | null = '';
@@ -22,6 +24,13 @@ export class VerCuestionariosComponent implements OnInit {
   selectedFile: File | null = null;
   pregunta: any; // Definición de la propiedad pregunta
   nuevoId: number = 0;  // Variable para almacenar el nuevo ID
+  isModalOpen: boolean = false; // Estado del modal
+  horas: number = 0;
+  minutos: number = 0;
+  numPreguntas: number = 0; // Inicializado con un valor predeterminado
+  showConfirmationPopup: boolean = false; // Para controlar la visibilidad de la ventana emergente
+  tiempoInicialEnSegundos: number = 0; // Inicializar como 0 o un valor por defecto
+  tiempoRestanteEnSegundos: number = this.tiempoInicialEnSegundos;
 
   constructor(
     private route: ActivatedRoute,
@@ -35,16 +44,13 @@ export class VerCuestionariosComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.nombreColeccion = params.get('nombreColeccion');
-      
+
       if (this.nombreColeccion) {
         this.obtenerDocumentos();
         this.obtenerUltimoID();
       }
     });
   }
-
-
- 
 
 
 
@@ -62,9 +68,13 @@ export class VerCuestionariosComponent implements OnInit {
     }
   }
 
+  isMecanicaCollection(): boolean {
+    const nombreColeccion = this.nombreColeccion || '';
+    return ['Mecanica General', 'Mecanica Fuselaje', 'Mecanica Motores'].includes(nombreColeccion);
+  }
+  
 
-
-
+ 
 
 
 
@@ -299,6 +309,109 @@ redireccionarASuperAdministrador(): void {
 cerrarFormulario(): void {
   this.mostrarNuevoFormulario = false;
 }
+
+
+
+seteo(): void {
+  this.isModalOpen = true; // Abre el modal
+}
+
+loadFromLocalStorage(): void {
+  // Obtener el nombre de la colección desde localStorage
+  const collectionName = localStorage.getItem('collectionName');
+  console.log('Nombre de la colección recuperado de localStorage:', collectionName);
+
+  if (collectionName) {
+    // Recuperar datos específicos para la colección seleccionada
+    const numQuestions = localStorage.getItem(`${collectionName}_numPreguntas`);
+    const horas = localStorage.getItem(`${collectionName}_horas`);
+    const minutos = localStorage.getItem(`${collectionName}_minutos`);
+
+    console.log('Recuperando datos de localStorage para la colección:', collectionName);
+    console.log('Número de preguntas:', numQuestions);
+    console.log('Horas:', horas);
+    console.log('Minutos:', minutos);
+
+    if (numQuestions !== null && horas !== null && minutos !== null) {
+      // Procesar los datos recuperados y configurar la aplicación
+      this.selectedCollection = collectionName;
+      this.numPreguntas = parseInt(numQuestions, 10);
+      this.tiempoInicialEnSegundos = parseInt(horas, 10) * 3600 + parseInt(minutos, 10) * 60;
+
+      console.log('Datos recuperados y configurados:');
+      console.log('selectedCollection:', this.selectedCollection);
+      console.log('numPreguntas:', this.numPreguntas);
+      console.log('tiempoInicialEnSegundos:', this.tiempoInicialEnSegundos);
+      console.log('horas:', Math.floor(this.tiempoInicialEnSegundos / 3600));
+      console.log('minutos:', Math.floor((this.tiempoInicialEnSegundos % 3600) / 60));
+
+      // Cargar documentos basados en la colección seleccionada
+   
+    } else {
+      console.log('No se encontraron datos específicos para la colección en localStorage');
+    }
+  } else {
+    console.log('No se encontró el nombre de la colección en localStorage');
+  }
+}
+
+
+
+
+
+
+
+closeModal(): void {
+  this.isModalOpen = false; // Cierra el modal
+  
+}
+
+
+  // Método para ocultar la ventana emergente de confirmación
+  hideConfirmationPopup(): void {
+    this.showConfirmationPopup = false;
+  }
+
+
+
+
+// Método para cancelar la finalización del cuestionario
+cancelFinish(): void {
+  this.hideConfirmationPopup(); // Oculta la ventana emergente
+  // Otras acciones necesarias al cancelar la finalización del cuestionario
+}
+
+
+applySettings(): void {
+  // Guardar configuraciones específicas para la colección actual en localStorage
+  localStorage.setItem(`${this.nombreColeccion}_numPreguntas`, this.numPreguntas.toString());
+  localStorage.setItem(`${this.nombreColeccion}_horas`, this.horas.toString());
+  localStorage.setItem(`${this.nombreColeccion}_minutos`, this.minutos.toString());
+
+  // Imprimir en consola para verificar los valores
+  console.log(`Configuración guardada para la colección "${this.nombreColeccion}":`);
+  console.log(`Número de preguntas: ${localStorage.getItem(`${this.nombreColeccion}_numPreguntas`)}`);
+  console.log(`Horas: ${localStorage.getItem(`${this.nombreColeccion}_horas`)}`);
+  console.log(`Minutos: ${localStorage.getItem(`${this.nombreColeccion}_minutos`)}`);
+
+  // Cerrar el modal
+  this.closeModal();
+}
+// Función para guardar los datos localmente (se usa en el submitForm y finishQuestionnaire)
+saveToLocalStorage(collectionName: string, numQuestions: number, timer: number): void {
+console.log('Guardando en localStorage:', { collectionName, numQuestions, timer });
+localStorage.setItem('collectionName', collectionName);
+localStorage.setItem('numQuestions', numQuestions.toString());
+localStorage.setItem('timer', timer.toString());
+
+// Verificar que los datos se guardaron correctamente
+console.log('Datos guardados en localStorage:', {
+  collectionName: localStorage.getItem('collectionName'),
+  numQuestions: localStorage.getItem('numQuestions'),
+  timer: localStorage.getItem('timer')
+});
+}
+
 
 
 }
