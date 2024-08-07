@@ -1,3 +1,4 @@
+//eliminar-cuestionario service
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
@@ -16,8 +17,6 @@ export class MostrarEliminarCuestionariosService {
     return this.http.get(this.apiUrl);
   }
 
-
-
   eliminarCuestionario(collectionName: string): Observable<any> {
     const url = `${this.apiUrl}/eliminar-coleccion/${encodeURIComponent(collectionName)}`;
     return this.http.delete(url).pipe(
@@ -28,6 +27,4 @@ export class MostrarEliminarCuestionariosService {
   private handleError(error: HttpErrorResponse) {
     return throwError('Error al eliminar el cuestionario: ' + error.message);
   }
-
-
 }

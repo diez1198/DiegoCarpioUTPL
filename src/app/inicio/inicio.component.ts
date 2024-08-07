@@ -1,3 +1,4 @@
+//inicio component
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -17,19 +18,18 @@ export class InicioComponent implements OnInit {
       this.isLoggedIn = isLoggedIn;
     });
   }
-
+// autentificacion
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isAuthenticated();
   }
-
+// redirigir rdac 65
   redirectToRDAC65() {
     window.open('https://www.aviacioncivil.gob.ec/wp-content/uploads/downloads/2020/02/12-NE-RDAC-Parte-065-28-Enero-20.pdf');
   }
-
-  doNothing() {}
-
+// salir  
   onLogout() {
     this.authService.logout();
     this.router.navigate(['/principal']); // Redirigir a inicio después del logout
   }
+  doNothing() {}
 }

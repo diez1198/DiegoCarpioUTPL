@@ -1,43 +1,25 @@
 
-
+/* eliminar-cuestionario css */
 .navbar {
   width: 100%;
   height: 87px;
   background-color: #e4b022;
   position: fixed;
   top: 0;
- 
-
- 
   color: white;
   border-bottom: 1px solid #444;
   
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* Estilo para el menú lateral */
 .sidebar {
   width: 350px;
   height: 100%;
   position: fixed;
-  top: 0;  /* Alinea con la barra de navegación superior */
+  top: 0; 
   left: 0;
   background-color: #e4b022;
-  z-index: 2;  /* Capa superior */
+  z-index: 2; 
 }
-
-
 
 .sidebar-menu {
   list-style-type: none;
@@ -49,8 +31,8 @@
 }
 
 .sidebar-menu li a {
-  color: #333;  /* color del texto del menu bar lateral */
-  font-size: 30px;/* tamaño del texto del menu bar lateral*/
+  color: #333;  
+  font-size: 30px;
   display: block;
   padding:  20px;
   text-decoration: none;
@@ -64,86 +46,49 @@
   background-color: #271212;
 }
 
-
 .salir {
-  color: #333;  /* color del texto de la opcion salir */
-  font-size: 30px; /* tamaño del texto del la opcion salir */
-  text-decoration: none; /* Quita el subrayado */
-  transition: color 0.3s ease; /* Transición suave para el color del texto */
+  color: #333;  
+  font-size: 30px; 
+  text-decoration: none; 
+  transition: color 0.3s ease; 
   margin-right:50px;
- 
 }
 
 .salir:hover {
   background-color: #8d6e19;
-  color: #c49a19; /* Cambia el color del texto al pasar el cursor */
+  color: #c49a19; 
 }
 
-
-
 .contenido-principal {
-  display: flex;                /* Utilizar Flexbox */
-  justify-content: center;      /* Centrar horizontalmente */
-  align-items: center;          /* Centrar verticalmente */
-  height: 100vh;                /* Altura completa de la ventana */
-  flex-direction: column;       /* Alinear elementos en columna */
+  display: flex;                
+  justify-content: center;      
+  align-items: center;          
+  height: 100vh;                
+  flex-direction: column;       
 }
 
 h1 {
   margin-bottom: 20px;      
 }
 
-
-
-
-
-
 .admin-type {
   font-weight: bold;
   color: #000000; 
   font-style: italic;
-  
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .botones-cuestionario {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start; /* Alinea los botones hacia el inicio del contenedor */
+  justify-content: flex-start; 
   width: 100%; /* Ancho del contenedor */
   margin-left: 400px; /* Margen lateral del menú lateral */
 }
 
 .boton {
-  flex: 0 0 calc(25% - 20px); /* Cada botón ocupa un cuarto del ancho del contenedor con un margen de 20px */
-  width: 300px; /* Ancho fijo para cada botón */
-  margin: 40px; /* Espacio entre los botones */
+  flex: 0 0 calc(25% - 20px); 
+  width: 300px; 
+  margin: 40px; 
   text-align: center;
 }
 
@@ -152,8 +97,8 @@ h1 {
   font-size: 3em;
   width: 100%;
   background-color: #eecd6a;
-  white-space: nowrap;       /* Evita que el texto se rompa */
-  overflow: hidden;           /* Oculta el contenido que desborda */
+  white-space: nowrap;      
+  overflow: hidden;          
   text-overflow: ellipsis; 
   border-radius: 20px; 
 }
@@ -161,14 +106,7 @@ h1 {
 .boton button:hover {
   background-color: #a88416;
 
-
 }
-
-
-
-
-
-
 
 /* Estilo para el menú lateral */
 .menu-lateral {
@@ -195,95 +133,50 @@ h1 {
   background-color: #555;
 }
 
-
-
-
-
-
-
 /*  Titulo*/
 .titulo {
   font-size: 60px;
-  color: black; /* Color base */
+  color: black; 
   font-family: 'Georgia', serif;
   margin-top: 100px;
   margin-left: 400px;
   margin-bottom: 50px;
-  font-style: italic; /* Hace que la letra sea cursiva */
-  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3); /* Sombra para darle profundidad */
-  letter-spacing: 2px; /* Espaciado entre letras */
-  border-bottom: 3px solid #c49a19;; /* Línea inferior */
-  padding-bottom: 10px; /* Espaciado para la línea inferior */
-  border-radius: 10px; /* Bordes redondeados */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para el contenedor */
-  display: inline-block; /* Para que el padding y borde afecten solo al contenido */
-  transition: color 0.3s ease, background-color 0.3s ease; /* Transición suave para el color y fondo */
+  font-style: italic; 
+  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3); 
+  letter-spacing: 2px; 
+  border-bottom: 3px solid #c49a19;; 
+  padding-bottom: 10px; 
+  border-radius: 10px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: inline-block; 
+  transition: color 0.3s ease, background-color 0.3s ease; 
 }
 
 .titulo:hover {
-  color: #c49a19; /* Cambio de color al pasar el ratón */
-  background-color: #e0e0e0; /* Cambio de fondo al pasar el ratón */
+  color: #c49a19; 
+  background-color: #e0e0e0; 
 }
-
-
 
 .Subtitulo {
   font-size: 40px;
-  color: black; /* Color base */
+  color: black; 
   font-family: 'Georgia', serif;
   margin-top: 100px;
   margin-left: 400px;
   margin-bottom: 50px;
-  font-style: italic; /* Hace que la letra sea cursiva */
-  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3); /* Sombra para darle profundidad */
-  letter-spacing: 2px; /* Espaciado entre letras */
-  border-bottom: 3px solid #c49a19;; /* Línea inferior */
-  padding-bottom: 10px; /* Espaciado para la línea inferior */
-  border-radius: 10px; /* Bordes redondeados */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para el contenedor */
-  display: inline-block; /* Para que el padding y borde afecten solo al contenido */
-  transition: color 0.3s ease, background-color 0.3s ease; /* Transición suave para el color y fondo */
+  font-style: italic; 
+  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3); 
+  letter-spacing: 2px; 
+  border-bottom: 3px solid #c49a19;; 
+  padding-bottom: 10px; 
+  border-radius: 10px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  display: inline-block; 
+  transition: color 0.3s ease, background-color 0.3s ease; 
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*  FORMULARIO  CUESIONARIOS*/
-
-/*  FORMULARIO  CUESIONARIOS*/
-
-
-
-
 /* MUESRTA TODO EL FORMULARIO PARA ELIMINAR CUESIONARIOS*/
-
 .modal {
   display: block; /* Mostrar el modal */
   position: fixed;
@@ -297,8 +190,6 @@ h1 {
   background-color: rgba(0,0,0,0.4);
 }
 
-
-
 /* CENTRA TODO EL FORMULARIO PARA ELIMINAR CUESIONARIOS*/
 .modal-content {
   background-color: #fefefe;
@@ -309,132 +200,108 @@ h1 {
 }
 
 
-
-
 /* Estilos para el formulario de eliminar */
 .formulario-eliminar .modal-content {
-  background-color: #fff; /* Fondo blanco */
-  padding: 20px; /* Espaciado interno */
-  border-radius: 5px; /* Bordes redondeados */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra */
+  background-color: #fff; 
+  padding: 20px; 
+  border-radius: 5px; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
   width: 900px; /* Ancho del formulario */
-  text-align: center; /* Alinear texto al centro */
+  text-align: center; 
   font-size: 40px; 
   align-items: center;
 }
 
-
-
 /* NOMBRE DE LA COLECCION*/
 .formulario-eliminar .modal-content p {
-  margin-bottom: 20px; /* Espacio inferior para el párrafo */
+  margin-bottom: 20px; 
   font-size: 40px; 
 }
-
-
 
 .formulario-eliminar .modal-content button {
   background-color: #c49a19;
   color: #fff;
   border: none;
-  padding: 5px 20px; /* Ajusta el espaciado interno según sea necesario */
+  padding: 5px 20px; 
   border-radius: 5px;
   cursor: pointer;
-  font-size: 40px; /* Tamaño de fuente más pequeño */
-  margin-top: 10px; /* Espacio superior entre los botones */
-  width: 300px; /* Ancho fijo para los botones */
+  font-size: 40px; 
+  margin-top: 10px; 
+  width: 300px; 
 }
 
-
-
-
 .boton-confirmar {
-  background-color: #ff0000; /* Cambia este valor al color que desees */
-  color: #ffffff;           /* Cambia este valor al color del texto que desees */
+  background-color: #ff0000; 
+  color: #ffffff;          
   border: none;
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
 }
 
-
-
-
-
-
-
-
-
 .formulario-eliminar .button-container {
-  display: flex; /* Usar flexbox para el contenedor de botones */
-  justify-content: center; /* Centrar los botones horizontalmente */
-  gap: 10px; /* Espacio entre los botones */
-  margin-top: 20px; /* Espacio superior para separar los botones del contenido */
+  display: flex; 
+  justify-content: center; 
+  gap: 10px; 
+  margin-top: 20px; 
 }
-
-
-
 
 
 .formulario-eliminar .modal-content button:hover {
   background-color: #8d6e19;
 }
 
-/* Estilos para la lista fuera del formulario de eliminar */
+/* formulario de eliminar */
 .formulario-eliminar ul {
-  list-style-type: none; /* Sin viñetas */
-  padding: 0; /* Sin relleno */
-  margin: 0; /* Sin margen */
+  list-style-type: none;
+  padding: 0; 
+  margin: 0; 
 }
 
 .formulario-eliminar ul li {
-  margin-bottom: 10px; /* Espacio inferior entre elementos de la lista */
+  margin-bottom: 10px; 
 }
 
 .formulario-eliminar ul li button {
-  background-color: #007bff; /* Color de fondo azul */
-  color: #fff; /* Color del texto blanco */
-  border: none; /* Sin borde */
-  padding: 5px 10px; /* Espaciado interno */
-  border-radius: 5px; /* Bordes redondeados */
-  cursor: pointer; /* Cursor apuntando */
+  background-color: #007bff; 
+  color: #fff; 
+  border: none; 
+  padding: 5px 10px; 
+  border-radius: 5px;
+  cursor: pointer; 
 }
 
 .formulario-eliminar ul li button:hover {
-  background-color: #0056b3; /* Color de fondo azul más oscuro al pasar el mouse */
+  background-color: #0056b3; 
 }
 
-
-
-
-
 .nuevo-cuestionario h1:hover {
-  color: #c49a19;               /* Cambio de color al pasar el ratón */
-  background-color: #e0e0e0;    /* Cambio de fondo al pasar el ratón */
+  color: #c49a19;               
+  background-color: #e0e0e0;    
 }
 
 .nuevo-cuestionario .botones-cuestionario {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;   /* Alinea los botones hacia el inicio del contenedor */
-  width: 100%;                   /* Ancho del contenedor */
-  margin-left: 400px;            /* Margen lateral del menú lateral */
+  justify-content: flex-start;   
+  width: 100%;                   
+  margin-left: 400px;            
 }
 
 .nuevo-cuestionario .boton {
-  flex: 0 0 calc(25% - 20px);   /* Cada botón ocupa un cuarto del ancho del contenedor con un margen de 20px */
-  width: 300px;                  /* Ancho fijo para cada botón */
-  margin: 40px;                  /* Espacio entre los botones */
+  flex: 0 0 calc(25% - 20px);   
+  width: 300px;                  
+  margin: 40px;                 
   text-align: center;
 }
 
 .nuevo-cuestionario .boton button {
-  padding: 30px;                 /* Aumenta el padding para hacer el botón más grande */
+  padding: 30px;               
   font-size: 3em;
   width: 100%;
   background-color: #e9d08c;
-  white-space: nowrap;          /* Evita que el texto se rompa */
-  overflow: hidden;              /* Oculta el contenido que desborda */
+  white-space: nowrap;          
+  overflow: hidden;             
   text-overflow: ellipsis; 
   border-radius: 20px; 
 }

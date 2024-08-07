@@ -1,11 +1,6 @@
-
-
- <!-- Titulo-->
- 
  <div class="navbar">
   <ul class="nav-menu">
   </ul>
-   <!-- boton salir-->
    <a class="salir" (click)="onLogout()" [class.active]="activeMenuItem === 'Salir'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
     Salir
   </a>
@@ -42,12 +37,10 @@
     </ul>
   </nav>
 </div>
-
-
  <h1 class="titulo" *ngIf="showInicioTitulo"> Eliminar Cuestionarios</h1>
  <h1 class="Subtitulo" *ngIf="showInicioTitulo"> Para eliminar un cuestionario de doble click sobre el botón correspondiente</h1>
- <!-- Mostrar los botones de los cuestionarios si se cumple la condición -->
 
+ <!-- Mostrar los botones de los cuestionarios si se cumple la condición -->
  <div class="botones-cuestionario" *ngIf="mostrarBotonesCuestionario">
   <div *ngFor="let collection of collections" class="boton">
     <button (dblclick)="confirmarEliminar(collection)">
@@ -55,19 +48,13 @@
     </button>
   </div>
 </div>
-
-
-
-
 <div class="nuevo-cuestionario">
   <div *ngIf="mostrarFormularioCrearCuestionario" class="formulario-crear-cuestionario">
     <app-nuevo-cuestionario></app-nuevo-cuestionario>
   </div>
 </div>
 
-
-<!-- mensaje para borrar-->
-
+<!-- borrar-->
 <div *ngIf="mostrarFormularioAEliminar" class="formulario-eliminar">
   <div class="modal">
     <div class="modal-content">

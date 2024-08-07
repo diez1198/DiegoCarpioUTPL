@@ -1,3 +1,4 @@
+// eliminar-cuestionario component
 import { Component, OnInit } from '@angular/core';
 import { MostrarEliminarCuestionariosService } from './eliminar-cuestionario.service';
 import { Router } from '@angular/router';
@@ -10,7 +11,6 @@ import { AuthService } from '../auth.service';
   providers: [MostrarEliminarCuestionariosService]
 })
 export class EliminarCuestionarioComponent implements OnInit {
-
   activeMenuItem: string = '';
   mostrarFormularioCrearCuestionario: boolean = false;
   databases: any[] = [];
@@ -50,7 +50,7 @@ export class EliminarCuestionarioComponent implements OnInit {
 
     this.authService.isLoggedIn$.subscribe(isLoggedIn => {
       this.isLoggedIn = isLoggedIn;
-      this.isAdmin = this.authService.isAdmin; // Actualiza el valor de isAdmin cuando cambia el estado de autenticación
+      this.isAdmin = this.authService.isAdmin; // estado de autenticación
     });
   }
 
@@ -61,9 +61,6 @@ export class EliminarCuestionarioComponent implements OnInit {
   verCuestionarioCollections(collection: string): void {
     const index = this.collections.indexOf(collection);
     const cuestionario = this.cuestionarios[index];
-    //////
-    console.log('Ver cuestionario:', this.cuestionarioId);
-    console.log('Ver cuestionario:', this.cuestionarioId);
   }
 
   actualizarListaCuestionarios(): void {
@@ -74,11 +71,9 @@ export class EliminarCuestionarioComponent implements OnInit {
   MostrarCuestionariosService(): void {
     this.mostrarFormularioCrearCuestionario = true;
     this.mostrarBotonesCuestionario = false;
-    this.router.navigate(['/super-administrador/nuevo']); // Actualiza la navegación con la nueva ruta
+    this.router.navigate(['/super-administrador/nuevo']); // nueva ruta
     this.showInicioTitulo = false;
   }
-
-  doNothing() {}
 
   mostrarEliminar(): void {
     this.mostrarFormularioCrearCuestionario = false;
@@ -93,7 +88,7 @@ export class EliminarCuestionarioComponent implements OnInit {
   }
 
   confirmarEliminar(collection: string): void {
-    this.cuestionarioAEliminar = { nombre: collection }; // Actualiza esto según sea necesario
+    this.cuestionarioAEliminar = { nombre: collection }; 
     this.mostrarFormularioAEliminar = true;
   }
 
@@ -103,16 +98,11 @@ export class EliminarCuestionarioComponent implements OnInit {
   }
 
   eliminarCuestionario(collection: string): void {
-    // Lógica para eliminar la colección
-
-    // Imprime el valor de collectionName en la consola
-    console.log('Nombre de la colección a eliminar:', collection);
-    console.log('Nombre de la colección a eliminar:', collection);
-    console.log('Nombre de la colección a eliminar:', collection);
+    // eliminar la colección
     this.mostrarEliminarCuestionariosService.eliminarCuestionario(collection).subscribe(
       response => {
         console.log('Cuestionario eliminado:', response);
-        // Actualizar la lista de colecciones después de la eliminación
+        // Actualiza lista de colecciones
         this.actualizarListaCuestionarios();
       },
       error => {
@@ -133,6 +123,8 @@ export class EliminarCuestionarioComponent implements OnInit {
 
   onLogout() {
     this.authService.logout();
-    this.router.navigate(['/principal']); // Redirigir a inicio después del logout
+    this.router.navigate(['/principal']); 
   }
+
+  doNothing() {}
 }

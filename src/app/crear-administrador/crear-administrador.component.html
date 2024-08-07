@@ -1,10 +1,7 @@
 
- <!-- Titulo-->
- 
  <div class="navbar">
     <ul class="nav-menu">
     </ul>
-     <!-- boton salir-->
      <a class="salir" (click)="onLogout()" [class.active]="activeMenuItem === 'Salir'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
       Salir
     </a>
@@ -39,20 +36,11 @@
               Crear administrador
             </a>
           </li>
-          
       </ul>
     </nav>
   </div>
   
-  
-  
-  
   <h1 class="titulo" *ngIf="showNuevoCuestionarioTitulo">Crear Administrador</h1>
-
-
-
-  
-  
 
   <div class="admin-container">
     <div>

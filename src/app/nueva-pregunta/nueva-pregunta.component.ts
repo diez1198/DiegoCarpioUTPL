@@ -1,3 +1,4 @@
+// nueva-pregunta component
 import { Component, Input } from '@angular/core';
 import { NuevoCuestionarioService } from '../nuevo-cuestionario/nuevo-cuestionario.service';
 import { SharedDataService } from '../shared-data.service';
@@ -11,31 +12,28 @@ import { Observable } from 'rxjs';
   styleUrls: ['./nueva-pregunta.component.css']
 })
 export class NuevaPreguntaComponent {
-  @Input() nombreColeccion: string = ''; // INPUT NOMBRE COLECCION 
-  
+  @Input() nombreColeccion: string = ''; // nombre coleecion
   pregunta: string = '';
   opcion_a: string = '';
   opcion_b: string = '';
   opcion_c: string = '';
   respuesta: string = '';
   nombreCuestionario: string = '';
-  contador: number = 1; // Contador para las preguntas creadas
+  contador: number = 1; // Contador para las preguntas
   emptyFieldsMessage : string = '';
   showEmptyFields: boolean = false;
-  isModalOpen: boolean = false; // Estado del modal
+  isModalOpen: boolean = false; 
   horas: number = 0;
   minutos: number = 0;
-  numPreguntas: number = 0; // Inicializado con un valor predeterminado
-  showConfirmationPopup: boolean = false; // Para controlar la visibilidad de la ventana emergente
-  item: number | null = null; // Número de la pregunta
-  selectedFile: File | null = null; // Para el archivo de imagen seleccionado
-
+  numPreguntas: number = 0; 
+  showConfirmationPopup: boolean = false;
+  item: number | null = null; 
+  selectedFile: File | null = null; 
   constructor(
     private nuevoCuestionarioService: NuevoCuestionarioService,
     private sharedDataService: SharedDataService,
     private router: Router,
-    private http: HttpClient // Agrega el HttpClient aquí
-    
+    private http: HttpClient 
   ) {}
 
   ngOnInit(): void {
@@ -47,8 +45,8 @@ export class NuevaPreguntaComponent {
   }
 
   submitForm(): void {
-    // Verificar si los datos están siendo capturados correctamente
-    console.log('Datos del formulario de la nueva pregunta component:', {
+    // Verificar datos
+    console.log('Datos del formulario', {
       pregunta: this.pregunta,
       opcion_a: this.opcion_a,
       opcion_b: this.opcion_b,
@@ -56,26 +54,25 @@ export class NuevaPreguntaComponent {
       respuesta: this.respuesta
     });
   
-    // Verificar si todos los campos del formulario están llenos
+    // Verificar campos  llenos
     if (!this.pregunta || !this.opcion_a || !this.opcion_b || !this.opcion_c || !this.respuesta) {
       console.error('Todos los campos del formulario deben estar llenos.');
       this.showEmptyFieldsMessage('Todos los campos del formulario deben estar llenos');
-      return; // Detener el proceso si algún campo está vacío
+      return; // Detener si campo está vacío
     }
-  
     this.nuevoCuestionarioService.getDocumentos(this.nombreColeccion).subscribe(
       (numeroDocumentos) => {
         const item = numeroDocumentos + 1;
-        // Construir el objeto datosDocumento
+        // Construir datosDocumento
         const datosDocumento = {
           id: this.contador, // contador
-          item: item, // Número de la pregunta
+          item: item, // Número  pregunta
           pregunta: this.pregunta,
           opcion_a: this.opcion_a,
           opcion_b: this.opcion_b,
           opcion_c: this.opcion_c,
           respuesta: this.respuesta,
-          imagen: '' // Inicialmente vacío, se actualizará después de la carga
+          imagen: '' //  vacío
         };
 
         if (this.selectedFile) {
@@ -85,7 +82,7 @@ export class NuevaPreguntaComponent {
               this.savePregunta(datosDocumento);
             },
             error => {
-              console.error('Error al subir la imagen:', error);
+              console.error('Error al subir imagen:', error);
               alert('Error al subir la imagen. Por favor, intenta de nuevo.');
             }
           );
@@ -100,101 +97,74 @@ export class NuevaPreguntaComponent {
     this.nuevoCuestionarioService.insertarNuevaPregunta(this.nombreColeccion, datosDocumento).subscribe(
       response => {
         console.log('Nuevo Documento Creado exitosamente:', response);
-        this.contador++; // Incrementa el contador cuando se crea una nueva pregunta exitosamente
-        console.log('Contador actualizado:', this.contador); // Imprime el valor actualizado del contador
-
-        // Limpiar los campos del formulario
+        this.contador++; // Incrementar contador
+        console.log('Contador actualizado:', this.contador); // actualizado contador
+        // Limpiar formulario
         this.pregunta = '';
         this.opcion_a = '';
         this.opcion_b = '';
         this.opcion_c = '';
         this.respuesta = '';
-        this.selectedFile = null; // Limpia el archivo seleccionado
+        this.selectedFile = null; 
       },
       error => {
         console.error('Error al crear la pregunta:', error);
-        // Maneja el error de acuerdo a tus necesidades
       }
     );
   }
-
+// subir imagen a clodinary para hacer link url
   uploadImageToCloudinary(file: File): Observable<any> {
     const url = `https://api.cloudinary.com/v1_1/djtizllrs/image/upload`;
     const formData = new FormData();
     formData.append('file', file);
     formData.append('upload_preset', 'unsigned_preset');
-
     return this.http.post(url, formData);
-  }
-
-  nextQuestion(): void {
-    // Implementa la lógica para avanzar a la siguiente pregunta aquí
-  }
-
-  prevQuestion(): void {
-    // Implementa la lógica para retroceder a la pregunta anterior aquí
   }
 
   regresaraCrearCuestionario(): void {
     this.router.navigate(['/super-administrador/inicio']);
   }
 
-  // Método para mostrar el mensaje de campos vacíos
+  // mostrar el mensaje de campos vacíos
   showEmptyFieldsMessage(message: string): void {
     this.emptyFieldsMessage = message;
     this.showEmptyFields = true;
   }
 
-  // Método para ocultar el mensaje de campos vacíos
+  // ocultar el mensaje de campos vacíos
   hideEmptyFieldsMessage(): void {
     this.showEmptyFields = false;
   }
 
-  // Método para mostrar la ventana emergente de confirmación
+  // mostrar la ventana emergente de confirmación
   showConfirmationExit(): void {
-    // Verificar si todos los campos están vacíos
+    // Verificar  todos campos vacíos
     const allFieldsEmpty = !this.pregunta && !this.opcion_a && !this.opcion_b && !this.opcion_c && !this.respuesta;
-  
-    // Verificar si todos los campos están llenos
+    // Verificar  campos llenos
     const allFieldsFilled = this.pregunta && this.opcion_a && this.opcion_b && this.opcion_c && this.respuesta;
-  
-    // Si todos los campos están vacíos o todos están llenos, permitir mostrar la ventana de confirmación
     if (allFieldsEmpty || allFieldsFilled) {
       this.showConfirmationPopup = true;
     } else {
-      // Mostrar mensaje de advertencia si algunos campos están llenos y otros vacíos
       console.error('Todos los campos del formulario deben estar llenos o todos vacíos.');
       this.showEmptyFieldsMessage('Para guardar el cuestionario, llene todos los campos de la pregunta o deje vacíos todos los campos. Recuerde que las preguntas solo se guardan si todos los campos están completos.');
     }
   }
   
-
-  // Método para ocultar la ventana emergente de confirmación
+  // ocultar la ventana emergente de confirmación
   hideConfirmationPopup(): void {
     this.showConfirmationPopup = false;
   }
 
-  // Método para finalizar el cuestionario después de confirmación
- 
-
   finishQuestionnaire(): void {
-    // Verificar si todos los campos están vacíos
+    // Verificar campos vacíos
     const allFieldsEmpty = !this.pregunta && !this.opcion_a && !this.opcion_b && !this.opcion_c && !this.respuesta;
   
-    // Verificar si todos los campos están llenos
+    // Verificar  campos llenos
     const allFieldsFilled = this.pregunta && this.opcion_a && this.opcion_b && this.opcion_c && this.respuesta;
-  
-    // Verificar si es la última pregunta (esto depende de cómo determines si es la última pregunta)
-    // Aquí asumo que hay un método para determinar esto, reemplázalo con la lógica adecuada
-   
-  
-    // Si todos los campos están vacíos y es la última pregunta, solo navegar
     if (allFieldsEmpty) {
       this.router.navigate(['/super-administrador/inicio']);
       return;
     }
-  
-    // Si todos los campos están vacíos o todos están llenos, proceder a guardar
     if (allFieldsEmpty || allFieldsFilled) {
       console.log('Datos del formulario de la nueva pregunta component:', {
         pregunta: this.pregunta,
@@ -203,7 +173,6 @@ export class NuevaPreguntaComponent {
         opcion_c: this.opcion_c,
         respuesta: this.respuesta
       });
-  
       this.nuevoCuestionarioService.getDocumentos(this.nombreColeccion).subscribe(
         (numeroDocumentos) => {
           const item = numeroDocumentos + 1;
@@ -215,9 +184,8 @@ export class NuevaPreguntaComponent {
             opcion_b: this.opcion_b,
             opcion_c: this.opcion_c,
             respuesta: this.respuesta,
-            imagen: '' // Inicialmente vacío, se actualizará después de la carga
+            imagen: '' //  vacío
           };
-  
           if (this.selectedFile) {
             this.uploadImageToCloudinary(this.selectedFile).subscribe(
               response => {
@@ -232,77 +200,50 @@ export class NuevaPreguntaComponent {
           } else {
             this.savePregunta(datosDocumento);
             this.router.navigate(['/super-administrador/inicio']);
-            console.log('Nuevo Documento Creado exitosamente:');
             this.showConfirmationPopup = false;
           }
         }
       );
     } else {
-      // Mostrar mensaje de advertencia si algunos campos están llenos y otros vacíos
       console.error('Todos los campos del formulario deben estar llenos o todos vacíos.');
       this.showEmptyFieldsMessage('Todos los campos del formulario deben estar llenos o todos vacíos.');
     }
   }
   
-
-
-
   seteo(): void {
     this.isModalOpen = true; // Abre el modal
   }
 
-
   closeModal(): void {
     this.isModalOpen = false; // Cierra el modal
-    
   }
 
-
-
-
-
-  // Método para cancelar la finalización del cuestionario
+  // cancelar la finalización del cuestionario
   cancelFinish(): void {
     this.hideConfirmationPopup(); // Oculta la ventana emergente
-    // Otras acciones necesarias al cancelar la finalización del cuestionario
   }
 
-
   applySettings(): void {
-    // Guardar configuraciones específicas para la colección actual en localStorage
+    // Guardar configuraciones 
     localStorage.setItem(`${this.nombreColeccion}_numPreguntas`, this.numPreguntas.toString());
     localStorage.setItem(`${this.nombreColeccion}_horas`, this.horas.toString());
     localStorage.setItem(`${this.nombreColeccion}_minutos`, this.minutos.toString());
   
-    // Imprimir en consola para verificar los valores
-    console.log(`Configuración guardada para la colección "${this.nombreColeccion}":`);
-    console.log(`Número de preguntas: ${localStorage.getItem(`${this.nombreColeccion}_numPreguntas`)}`);
-    console.log(`Horas: ${localStorage.getItem(`${this.nombreColeccion}_horas`)}`);
-    console.log(`Minutos: ${localStorage.getItem(`${this.nombreColeccion}_minutos`)}`);
-  
-    // Cerrar el modal
+    // Cerrar modal
     this.closeModal();
   }
-// Función para guardar los datos localmente (se usa en el submitForm y finishQuestionnaire)
+// Función para guardar los datos localmente 
 saveToLocalStorage(collectionName: string, numQuestions: number, timer: number): void {
   console.log('Guardando en localStorage:', { collectionName, numQuestions, timer });
   localStorage.setItem('collectionName', collectionName);
   localStorage.setItem('numQuestions', numQuestions.toString());
   localStorage.setItem('timer', timer.toString());
 
-  // Verificar que los datos se guardaron correctamente
+  // Verificar  datos guardados
   console.log('Datos guardados en localStorage:', {
     collectionName: localStorage.getItem('collectionName'),
     numQuestions: localStorage.getItem('numQuestions'),
     timer: localStorage.getItem('timer')
   });
 }
-
-
-
-
-
-
-
-
 }

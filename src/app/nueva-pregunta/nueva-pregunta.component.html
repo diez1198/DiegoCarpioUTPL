@@ -26,9 +26,6 @@
       <label for="opcion_c">Opción C:</label>
       <input type="text" id="opcion_c" name="opcion_c" [(ngModel)]="opcion_c" required>
     </div>
-
-
-
     <div class="form-group">
       <label for="respuesta">Respuesta:</label>
       <select id="respuesta" name="respuesta" [(ngModel)]="respuesta" class="form-control" required>
@@ -37,8 +34,6 @@
         <option [value]="opcion_c">Opción C: {{ opcion_c }}</option>
       </select>
     </div>
-
-
     <div class="form-group">
       <label for="imagen">Agregar Imagen de Referencia:</label>
       <input type="file" id="imagen" (change)="onImageSelected($event)" class="form-control">
@@ -50,11 +45,6 @@
     </div>
   </form>
 </div>
-
-
-
-
-
 
 <!-- Mensaje de campos vacíos -->
 <div class="empty-fields-message" *ngIf="showEmptyFields">
@@ -79,9 +69,7 @@
   <p>Preguntas creadas: {{ contador }}</p>
 </div>
 
-
 <!-- formuilario elegir preguntas aleotirias y tiempo -->
-
 
 <div *ngIf="isModalOpen" class="modal">
   <div class="modal-content">
@@ -96,7 +84,6 @@
       <span>:</span>
       <input type="number" [(ngModel)]="minutos" placeholder="mm" min="0" max="59">
     </div>
-
     <button (click)="applySettings()">Aplicar</button>
     <button (click)="closeModal()">Cerrar</button>
   </div>

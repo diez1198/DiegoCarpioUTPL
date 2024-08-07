@@ -1,3 +1,4 @@
+// cuestioario-general component
 import { Component, OnInit } from '@angular/core';
 import { VerCuestionariosService } from '../ver-cuestionarios.service';
 
@@ -8,26 +9,23 @@ import { VerCuestionariosService } from '../ver-cuestionarios.service';
 })
 export class CuestionarioGeneralComponent implements OnInit {
   documentos: any[] = [];
-  mostrarRespuestas: boolean = false; // Bandera para controlar si se muestran las respuestas marcadas
-  mostrarRespuestaCompleta: boolean = true; // Variable para controlar la visibilidad de respuestas
-  mostrarEtiquetaRespuesta: boolean = true; // Variable para controlar la visibilidad de la etiqueta "Respuesta:"
+  mostrarRespuestas: boolean = false; 
+  mostrarRespuestaCompleta: boolean = true; 
+  mostrarEtiquetaRespuesta: boolean = true; 
   mostrarBotonMarcar: boolean = true;
-  
-
-
   constructor(private verCuestionariosService: VerCuestionariosService) {}
 
   ngOnInit(): void {
     this.mostrarBotonMarcar = false;
     this.obtenerDocumentos('Mecanica General');
   }
-
+//obtener doccumentos de la base de datos
   obtenerDocumentos(nombreColeccion: string): void {
     this.verCuestionariosService.getDocumentos(nombreColeccion).subscribe(
       data => {
         this.documentos = data.map((doc: any) => ({
           ...doc,
-          mostrarRespuesta: false // Agregar propiedad para controlar visibilidad de la respuesta por pregunta
+          mostrarRespuesta: false 
         }));
       },
       error => {
@@ -35,25 +33,22 @@ export class CuestionarioGeneralComponent implements OnInit {
       }
     );
   }
-
+//mostrar modo Cuestionario de repaso
   onCuestionarioMecanicaGeneralRespuestaClick(): void {
-    this.mostrarRespuestas = !this.mostrarRespuestas; // Invierte el valor de mostrarRespuestas
-    this.mostrarRespuestaCompleta = false; // Oculta la respuesta completa
-    this.mostrarEtiquetaRespuesta = false; // Oculta la etiqueta "Respuesta:"
+    this.mostrarRespuestas = !this.mostrarRespuestas; 
+    this.mostrarRespuestaCompleta = false; 
+    this.mostrarEtiquetaRespuesta = false; 
     this.mostrarBotonMarcar = true;
-    console.log('Mostrando respuestas marcadas...', this.mostrarRespuestas);
   }
-
+// comparara opciones de respuesta con la respuesta correcta
   encontrarOpcionCorrecta(respuesta: string, opcionA: string, opcionB: string, opcionC: string): string | null {
     if (!respuesta || typeof respuesta !== 'string') {
       return null;
     }
-
     const trimmedRespuesta = respuesta.trim();
     const trimOpcionA = opcionA ? opcionA.toString().trim() : '';
     const trimOpcionB = opcionB ? opcionB.toString().trim() : '';
     const trimOpcionC = opcionC ? opcionC.toString().trim() : '';
-
     if (trimmedRespuesta === trimOpcionA) {
       return 'A';
     } else if (trimmedRespuesta === trimOpcionB) {
@@ -64,21 +59,17 @@ export class CuestionarioGeneralComponent implements OnInit {
       return null;
     }
   }
-
+//mostrar modo Completo
   onCompletoMecanicaGeneralClick(): void {
     this.mostrarRespuestas = false; 
     this.mostrarRespuestaCompleta = true; 
     this.mostrarEtiquetaRespuesta = true;
     this.mostrarBotonMarcar = false;
-    
-    console.log('Restableciendo a modo normal...');
   }
-
+//Marcar en amarillo la respueta correcta
   marcarOpcionCorrecta(pregunta: any): void {
     const respuestaCorrecta = this.encontrarOpcionCorrecta(pregunta.respuesta, pregunta.opcion_a, pregunta.opcion_b, pregunta.opcion_c);
     pregunta.respuestaMarcada = respuestaCorrecta;
   }
-
- 
 
 }

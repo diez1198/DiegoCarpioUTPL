@@ -1,3 +1,4 @@
+//  crear-administrador.component
 import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
@@ -27,29 +28,13 @@ export class CrearAdministradorComponent {
   showNuevoCuestionarioTitulo: boolean = true;
   isLoggedIn: boolean = false;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   constructor(
     private authService: AuthService,
       private router: Router,
   ) {
     this.admins = this.authService.getAdmins();
-    
-  }
-
+    }
+// Crear nuevo Administrador
   addAdmin() {
     if (this.authService.addAdmin(this.username, this.password)) {
       this.successMessage = 'Administrador creado exitosamente.';
@@ -62,7 +47,7 @@ export class CrearAdministradorComponent {
       this.successMessage = '';
     }
   }
-  
+  // Eliminar Administrador
   removeAdmin(username: string) {
     if (this.authService.removeAdmin(username)) {
       this.successMessage = 'Administrador eliminado exitosamente.';
@@ -74,33 +59,32 @@ export class CrearAdministradorComponent {
     }
   }
 
-
+// item de menu inicio - redireccionar pagina inicio
   redireccionarASuperAdministrador(): void {
     this.mostrarFormularioCrearCuestionario = false;
     this.mostrarBotonesCuestionario = true;
     this.router.navigate(['/super-administrador/inicio']);
   }
-
+// item de menu nuevo - redirecciona a funcion crear nuevo cuestionario
   mostrarFormulario(): void {
     this.mostrarFormularioCrearCuestionario = true;
     this.mostrarBotonesCuestionario = false;
     this.router.navigate(['/super-administrador/nuevo']);
     this.showInicioTitulo = false;
   }
-
+// item de menu  eliminar -redireccionar funcion eliminar cuetioanrios
   mostrarEliminar(): void {
     this.mostrarFormularioCrearCuestionario = false;
     this.mostrarBotonesCuestionario = true;
     this.router.navigate(['/super-administrador/eliminar-cuestionario']);
   }
-
+// para salir del modo administrador
   onLogout() {
     this.authService.logout();
     this.router.navigate(['/principal']); // Redirigir a inicio después del logout
   }
 
-
+// do nothing
   doNothing() {}
-
 
 }

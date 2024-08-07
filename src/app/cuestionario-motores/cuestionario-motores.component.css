@@ -1,9 +1,9 @@
-
+/* cuestioario-motores css */
 .menu_bar {
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1000; /* Para asegurarse de que esté por encima de otros elementos */
+    z-index: 1000; 
   }
   
   .contenido-cuestionario {
@@ -13,12 +13,12 @@
   }
   
   .mensaje-container {
-  padding-top: 100px; /* margen desde el borde inferior de la barra de navegacion  */
+  padding-top: 100px; 
   font-size: 36px;
   color: #333333;
   line-height: 1.5;
   text-align: justify;
-  margin-bottom: 20px; /* Añadir margen inferior */
+  margin-bottom: 20px;
   }
   
   .mensaje-container strong {
@@ -27,7 +27,7 @@
   
   .button-container {
   text-align: center;
-  margin-top: 20px; /* margen botones cuestionario completo mecanica general y cuestionario de repaso mecanica general */
+  margin-top: 20px; 
   }
   
   .button-container button {
@@ -106,23 +106,14 @@
     background-color: yellow;
   }
   
-  
-  
-  
-  
   .opcion-correcta {
     background-color: yellow;
-    font-weight: bold; /* Opcional: Puedes agregar negrita u otros estilos visuales */
+    font-weight: bold; 
   }
-  
-  
-  
-  
-  
-  
+
   .boton-marcar {
-    background-color: #e4b022; /* Fondo verde */
-    color: white; /* Texto blanco */
+    background-color: #e4b022;
+    color: white; 
     border: none;
     padding: 10px 20px;
     text-align: center;
@@ -135,5 +126,5 @@
   }
   
   .boton-marcar:hover {
-    background-color: #8d6e19; /* Cambio de color al pasar el mouse */
+    background-color: #8d6e19; 
   }

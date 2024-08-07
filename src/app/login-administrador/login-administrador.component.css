@@ -1,3 +1,4 @@
+/* login-administrador css */
 .login-container {
     display: flex;
     justify-content: center;
@@ -28,7 +29,7 @@
 
 .form-control {
     margin-bottom: 30px;
-    font-size: 30px !important; /* Tamaño de fuente aumentado */
+    font-size: 30px !important; /* Tamaño de fuente */
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
@@ -41,28 +42,24 @@
     border: 1px solid #ccc;
 }
 .login-form .btn-group {
-    display: flex; /* Utilizar flexbox */
-    justify-content: center; /* Centrar los elementos horizontalmente */
-    align-items: center  !important; /* Centrar los elementos verticalmente */
-   
-    margin-top: 40px; /* Espacio adicional arriba de los botones */
+    display: flex; 
+    justify-content: center; 
+    align-items: center  !important; 
+    margin-top: 40px; 
 }
 
 .btn-login, .btn-logout {
-    /* Tus estilos existentes */
     background-color: #e4b022 !important;
     color: #333 !important;
     border: none !important;
-    padding: 10px 15px !important; /* Ajusta el padding para hacer los botones más pequeños */
-    font-size: 30px !important; /* Ajusta el tamaño de la fuente para que sea proporcional al tamaño del botón */
+    padding: 10px 15px !important; 
+    font-size: 30px !important; 
     border-radius: 20px !important;
     cursor: pointer !important;
     transition: background-color 0.3s ease !important;
-    width: 10px !important; /* Ancho fijo para ambos botones */
-    margin: 0 10px; /* Margen horizontal entre los botones */
+    width: 10px !important; 
+    margin: 0 10px; 
 }
-
-
 
 .btn-login:hover, .btn-logout:hover {
     background-color: #c49a19;
@@ -81,14 +78,9 @@
     color: #555;
 }
 
-
-
-
-
-
 .error-message {
-    color: #ff0000; /* Color rojo para indicar error */
+    color: #ff0000; /* mensaje rojo*/
     font-size: 30px;
-    margin-top: 5px; /* Espacio arriba del mensaje */
+    margin-top: 5px; /* */
   }
   

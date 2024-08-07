@@ -1,3 +1,4 @@
+// cuestionarios-admin component
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params,Router } from '@angular/router';
 import { VerCuestionariosService } from '../ver-cuestionarios.service';
@@ -13,19 +14,17 @@ export class CuestionariosAdminComponent implements OnInit {
   mostrarRespuestaCompleta: boolean = true;
   mostrarEtiquetaRespuesta: boolean = true;
   mostrarBotonMarcar: boolean = true;
-  selectedCollection: string = ''; // O inicializa con el valor predeterminado que desees
-
+  selectedCollection: string = '';
+  
   constructor(
     private route: ActivatedRoute,
     private verCuestionariosService: VerCuestionariosService,
     private router: Router,
   ) {}
 
-
   ngOnInit(): void {
-    // Leer parámetros de la URL al iniciar el componente
     this.route.queryParams.subscribe((params: Params) => {
-      if (params['collection']) { // Accede a 'collection' usando notación de corchetes
+      if (params['collection']) { // Acceder a  las colecciones
         this.selectedCollection = params['collection'];
         this.loadDocumentos(this.selectedCollection);
         this.mostrarRespuestaCompleta = true;
@@ -34,13 +33,12 @@ export class CuestionariosAdminComponent implements OnInit {
       }
     });
   }
-  
-
+  // seleccionar coleccion y documentos
   onSeleccionarColeccion(nombreColeccion: string): void {
     this.selectedCollection = nombreColeccion;
     this.loadDocumentos(nombreColeccion);
   }
-
+//obtener documentos de la base de datos
   loadDocumentos(collectionName: string): void {
     this.verCuestionariosService.getDocumentos(collectionName).subscribe(
       data => {
@@ -54,15 +52,14 @@ export class CuestionariosAdminComponent implements OnInit {
       }
     );
   }
-
+//mostrar modo Cuestionario de repaso
   onCuestionarioMecanicaGeneralRespuestaClick(): void {
-    
     this.mostrarRespuestas = !this.mostrarRespuestas;
     this.mostrarRespuestaCompleta = false;
     this.mostrarEtiquetaRespuesta = false;
     this.mostrarBotonMarcar = true;
   }
-
+//mostrar modo cuestionario Completo
   onCompletoMecanicaGeneralClick(): void {
     this.router.navigate(['/cuestionarios-admin/completo'], { queryParams: { collection: this.selectedCollection } });
     this.mostrarRespuestas = false;
@@ -70,24 +67,20 @@ export class CuestionariosAdminComponent implements OnInit {
     this.mostrarEtiquetaRespuesta = true;
     this.mostrarBotonMarcar = false;
   }
-
+//Marcar en amarillo la respueta correcta
   marcarOpcionCorrecta(pregunta: any): void {
     const respuestaCorrecta = this.encontrarOpcionCorrecta(pregunta.respuesta, pregunta.opcion_a, pregunta.opcion_b, pregunta.opcion_c);
     pregunta.respuestaMarcada = respuestaCorrecta;
   }
-
-
-  // Método para encontrar la opción correcta (si es necesario)
+  // encontrar la opción correcta 
   encontrarOpcionCorrecta(respuesta: string, opcionA: string, opcionB: string, opcionC: string): string | null {
     if (!respuesta || typeof respuesta !== 'string') {
       return null;
     }
-
     const trimmedRespuesta = respuesta.trim();
     const trimOpcionA = opcionA ? opcionA.toString().trim() : '';
     const trimOpcionB = opcionB ? opcionB.toString().trim() : '';
     const trimOpcionC = opcionC ? opcionC.toString().trim() : '';
-
     if (trimmedRespuesta === trimOpcionA) {
       return 'A';
     } else if (trimmedRespuesta === trimOpcionB) {

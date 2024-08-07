@@ -1,7 +1,7 @@
+// simulador-fuselaje component
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { VerCuestionariosService } from '../ver-cuestionarios.service';
-
 @Component({
   selector: 'app-simulador-fuselaje',
   templateUrl: './simulador-fuselaje.component.html',
@@ -17,19 +17,19 @@ export class SimuladorFuselajeComponent implements OnInit, AfterViewInit  {
   respuestasCorrectas: number = 0;
   mostrarCalificacion: boolean = false;
   preguntasRespondidas: number = 0;
-  examenIniciado: boolean = false; // Bandera para controlar el inicio del examen aleatorio
-  tiempoInicialEnSegundos: number = 2 * 60 * 60; // 2 horas en segundos
+  examenIniciado: boolean = false;
+  tiempoInicialEnSegundos: number = 2 * 60 * 60; 
   tiempoRestanteEnSegundos: number = this.tiempoInicialEnSegundos;
   intervaloContador: any;
-  botonTexto: string = 'Simulador examen'; // Variable para controlar el texto del botón
+  botonTexto: string = 'Simulador examen'; 
   examenEnCurso: boolean = false;
-  feedbackCadaXPreguntas: number = 10; // Cantidad de preguntas para dar feedback
-  feedbackListo: boolean = false; // Bandera para controlar cuándo mostrar el feedback
-  porcentajeIdeal: number = 70; // Porcentaje ideal de respuestas correctas
-  feedbackMensaje: string = ''; // Mensaje de feedback a mostrar
-  mostrarFeedback: boolean = false; // Bandera para controlar la visibilidad del feedback
-  enRevision: boolean = false;  // Nueva propiedad
-  preguntasIncorrectas: any[] = []; // Preguntas respondidas incorrectamente
+  feedbackCadaXPreguntas: number = 10; 
+  feedbackListo: boolean = false; 
+  porcentajeIdeal: number = 70; 
+  feedbackMensaje: string = ''; 
+  mostrarFeedback: boolean = false; 
+  enRevision: boolean = false;  
+  preguntasIncorrectas: any[] = []; 
   preguntasRespondidasSet = new Set<number>();
 
   constructor(
@@ -39,7 +39,7 @@ export class SimuladorFuselajeComponent implements OnInit, AfterViewInit  {
   ) {}
   ngOnInit(): void {
     
-    this.mostrarBotonMarcar = false; // Asegúrate de que esta inicialización es correcta
+    this.mostrarBotonMarcar = false; 
     this.mostrarRespuestaCompleta = false;
     this.mostrarEtiquetaRespuesta = false;
     this.obtenerDocumentos('Mecanica Fuselaje');
@@ -54,7 +54,6 @@ export class SimuladorFuselajeComponent implements OnInit, AfterViewInit  {
       }
     });
   }
-  
 
   obtenerDocumentos(nombreColeccion: string): void {
     this.verCuestionariosService.getDocumentos(nombreColeccion).subscribe(
@@ -71,7 +70,7 @@ export class SimuladorFuselajeComponent implements OnInit, AfterViewInit  {
         this.documentos = this.documentosOriginales;
         if (this.router.url === '/simuladorFuselaje/iniciar') {
           this.iniciarExamenAleatorio();
-          this.botonTexto = 'Empezar examen'; // Cambiar el texto del botón al cargar la página
+          this.botonTexto = 'Empezar examen'; // Cambiar el texto del botón 
         }
       },
       error => {
@@ -80,48 +79,34 @@ export class SimuladorFuselajeComponent implements OnInit, AfterViewInit  {
     );
   }
 
-  
-
-
   onCuestionarioMecanicaGeneralRespuestaClick(): void {
     if (this.botonTexto === 'Simulador examen') {
       this.router.navigateByUrl('/simuladorFuselaje/iniciar');
       this.botonTexto = 'Empezar examen';
-      this.examenIniciado = true; // Asegúrate de restablecer el estado de examenIniciado
+      this.examenIniciado = true; 
     } else if (this.botonTexto === 'Empezar examen') {
       this.iniciarExamen(); // Iniciar el examen sin cambiar las preguntas
     }
   }
   
-
   iniciarExamenAleatorio(): void {
     this.mostrarRespuestas = true;
     this.mostrarRespuestaCompleta = false;
     this.mostrarEtiquetaRespuesta = false;
     this.mostrarBotonMarcar = true;
     this.examenIniciado = true;
-
     // Seleccionar 100 preguntas aleatorias
     this.documentos = this.getRandomSubset(this.documentosOriginales, 100);
     this.mostrarBotonMarcar = true;
-    // Ordenar las preguntas en orden ascendente por el campo 'id'
+    // Ordenar las preguntas  por 'id'
     this.documentos.sort((a, b) => a.id - b.id);
     console.log('Mostrando 100 preguntas aleatorias...');
   }
-
-
-
-
-  
-
   //aleatorio 
   getRandomSubset(array: any[], size: number): any[] {
     const shuffled = array.sort(() => 0.5 - Math.random());
     return shuffled.slice(0, size);
   }
-
-
-
 
   onCompletoMecanicaGeneralClick(): void {
     this.mostrarRespuestas = false;
@@ -129,7 +114,7 @@ export class SimuladorFuselajeComponent implements OnInit, AfterViewInit  {
     this.mostrarEtiquetaRespuesta = false;
     this.mostrarBotonMarcar = false;
     this.router.navigateByUrl('/simuladorFuselaje/completo');
-    this.documentos = this.documentosOriginales.sort((a, b) => a.id - b.id); // Ordenar todas las preguntas en forma ascendente
+    this.documentos = this.documentosOriginales.sort((a, b) => a.id - b.id); // Ordenar  en forma ascendente
     console.log('Restableciendo a modo normal...');
   }
 
@@ -137,12 +122,10 @@ export class SimuladorFuselajeComponent implements OnInit, AfterViewInit  {
     if (!respuesta || typeof respuesta !== 'string') {
       return null;
     }
-
     const trimmedRespuesta = respuesta.trim();
     const trimOpcionA = opcionA ? opcionA.toString().trim() : '';
     const trimOpcionB = opcionB ? opcionB.toString().trim() : '';
     const trimOpcionC = opcionC ? opcionC.toString().trim() : '';
-
     if (trimmedRespuesta === trimOpcionA) {
       return 'A';
     } else if (trimmedRespuesta === trimOpcionB) {
@@ -167,10 +150,8 @@ export class SimuladorFuselajeComponent implements OnInit, AfterViewInit  {
         op.seleccionada = false;
       }
     });
-
     const respuestaCorrecta = this.encontrarOpcionCorrecta(pregunta.respuesta, pregunta.opciones[0].texto, pregunta.opciones[1].texto, pregunta.opciones[2].texto);
     const esCorrecta = respuestaCorrecta === opcion.letra;
-
     if (!pregunta.respondida) {
       if (esCorrecta) {
         this.respuestasCorrectas++;
@@ -179,23 +160,12 @@ export class SimuladorFuselajeComponent implements OnInit, AfterViewInit  {
       this.preguntasRespondidasSet.add(pregunta.id);
       pregunta.respondida = true;
     }
-
-    console.log('Opción seleccionada:', opcion);
-    console.log('¿La opción seleccionada es correcta?', esCorrecta);
-
     this.mostrarFeedbackCadaXPreguntas();
   }
-
-
-
-
-  
-
 
   calificar(): void {
     this.preguntasRespondidas = 0;
     this.respuestasCorrectas = 0;
-
     this.documentos.forEach((pregunta: any) => {
       const opcionSeleccionada = pregunta.opciones.find((op: any) => op.seleccionada);
       if (opcionSeleccionada) {
@@ -214,7 +184,6 @@ export class SimuladorFuselajeComponent implements OnInit, AfterViewInit  {
   revisar(): void {
     this.preguntasRespondidas = 0;
     this.respuestasCorrectas = 0;
-
     this.documentos.forEach((pregunta: any) => {
       const opcionSeleccionada = pregunta.opciones.find((op: any) => op.seleccionada);
       if (opcionSeleccionada) {
@@ -229,42 +198,31 @@ export class SimuladorFuselajeComponent implements OnInit, AfterViewInit  {
     this.mostrarFeedbackCadaXPreguntas();
     this.mostrarCalificacion = true;
   }
-
-
-
-
-
-
+// Cerrar el formulario de calificación
   cerrarCalificacion(): void {
-    // Cerrar el formulario de calificación
+
     this.mostrarCalificacion = false;
     this.enRevision = false;
   }
-
+ // reiniciar
   Reiniciar(): void {
-    // Desmarcar todas las respuestas y restablecer otras variables
     this.documentos.forEach((pregunta: any) => {
       pregunta.opciones.forEach((opcion: any) => {
-        opcion.seleccionada = false; // Desmarcar cada opción seleccionada
-        opcion.respuestaIncorrecta = false; // Reiniciar marcado de respuesta incorrecta
+        opcion.seleccionada = false; 
+        opcion.respuestaIncorrecta = false; 
       });
-      pregunta.respuestaMarcada = null; // Desmarcar respuesta marcada
+      pregunta.respuestaMarcada = null; 
     });
-
-    // Restablecer otros estados si es necesario
     this.mostrarCalificacion = false;
     this.mostrarRespuestas = false;
     this.mostrarRespuestaCompleta = true;
     this.mostrarEtiquetaRespuesta = true;
-
-    // Volver al inicio de la página (pregunta 1)
-    window.scrollTo(0, 0); // Mueve la ventana al inicio de la página
+    window.scrollTo(0, 0); // Mueve al inicio de la página
   }
 
   verRespuestasIncorrectas(): void {
     this.enRevision = true;
-    this.preguntasIncorrectas = []; // Reseteamos la lista de preguntas incorrectas
-    
+    this.preguntasIncorrectas = []; 
     this.documentos.forEach((pregunta: any) => {
       if (pregunta.respondida) {
         const respuestaCorrecta = this.encontrarOpcionCorrecta(pregunta.respuesta, pregunta.opciones[0].texto, pregunta.opciones[1].texto, pregunta.opciones[2].texto);
@@ -276,18 +234,14 @@ export class SimuladorFuselajeComponent implements OnInit, AfterViewInit  {
               } else if (op === opcion) {
                 op.esIncorrecta = true;
               }
-            });
-            
+            });  
             this.preguntasIncorrectas.push(pregunta);
-            
           }
         });
       }
     });
-
     if (this.preguntasIncorrectas.length > 0) {
       this.scrollToPreguntaIncorrecta(0);
-      
     }
   }
 
@@ -299,20 +253,12 @@ export class SimuladorFuselajeComponent implements OnInit, AfterViewInit  {
       }
     }, 0);
   }
-
-
-
-  
+// Iniciar examen
   iniciarExamen(): void {
-    this.examenEnCurso = true; // Permitir seleccionar respuestas
-    this.iniciarContador(); // Iniciar el contador al empezar el examen
+    this.examenEnCurso = true; 
+    this.iniciarContador(); 
     console.log('Examen iniciado, puedes seleccionar respuestas.');
   }
-
-
-
-
-
 
  // iniciar el contador
  iniciarContador(): void {
@@ -321,23 +267,12 @@ export class SimuladorFuselajeComponent implements OnInit, AfterViewInit  {
     if (this.tiempoRestanteEnSegundos <= 0) {
       this.detenerContador();
     }
-  }, 1000); // Actualiza el contador cada segundo 
+  }, 1000); // Actualiza contador cada segundo 
 }
-
-
-
-
-// Método para detener el contador
+// detener el contador
 detenerContador(): void {
   clearInterval(this.intervaloContador);
 }
-
-
-
-
-
-
-
 
   formatTime(seconds: number): string {
     const hours = Math.floor(seconds / 3600);
@@ -353,9 +288,6 @@ detenerContador(): void {
   getCurrentUrl(): string {
     return this.router.url;
   }
-
-
-
 
 
   mostrarFeedbackCadaXPreguntas(): void {
@@ -384,17 +316,11 @@ detenerContador(): void {
     }
   }
 
-
-
   // para reiniciar el feedback
 reiniciarFeedback(): void {
   this.feedbackMensaje = '';
   this.mostrarFeedback = false;
 }
-
-
-
-
 
 }
 

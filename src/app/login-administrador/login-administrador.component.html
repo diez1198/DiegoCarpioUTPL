@@ -2,7 +2,6 @@
 <div class="login-container">
   <div class="login-box">
     <h1 class="login-title">Iniciar sesión como administrador de cuestionarios</h1>
-
     <form class="login-form" (ngSubmit)="onSubmit()" #loginForm="ngForm">
       <div class="form-group">
         <label for="username" class="form-label">Usuario</label>
@@ -15,7 +14,6 @@
           required 
           placeholder="Ingresa tu usuario de administrador">
       </div>
-
       <div class="form-group">
         <label for="password" class="form-label">Contraseña</label>
         <input 
@@ -27,7 +25,6 @@
           required 
           placeholder="Ingresa tu contraseña">
       </div>
-
       <div class="form-group btn-group">
         <button 
           type="submit" 
@@ -37,9 +34,7 @@
           class="btn btn-secondary btn-xl btn-logout" 
           (click)="onLogout()">Salir</button>
       </div>
-      
       <p class="error-message" *ngIf="errorMessage" role="alert">{{ errorMessage }}</p>
-
       <div class="mensaje-noadmin">
         <p>Si no eres administrador, por favor haz clic en el botón "Salir" para regresar a la pagina principal.</p>
       </div>

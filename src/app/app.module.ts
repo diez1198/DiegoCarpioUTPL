@@ -6,12 +6,10 @@ import { AppComponent } from './app.component';
 import { CuestionarioGeneralComponent } from './cuestionario-general/cuestionario-general.component';
 import { CuestionarioFuselajeComponent } from './cuestionario-fuselaje/cuestionario-fuselaje.component';
 import { CuestionarioMotoresComponent } from './cuestionario-motores/cuestionario-motores.component';
-import { Rdac65Component } from './rdac65/rdac65.component';
 import { FormsModule } from '@angular/forms'; // Importa FormsModule
 import { HttpClientModule } from '@angular/common/http';
 import { SimuladorGeneralComponent } from './simulador-general/simulador-general.component';
 import { SimuladorMecanicaGeneralComponent } from './simulador-mecanica-general/simulador-mecanica-general.component';
-import { TraerMecanicaGeneralService } from './traer-mecanica-general.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { SuperAdministradorComponent } from './super-administrador/super-administrador.component';
@@ -43,7 +41,6 @@ import { SimuladoresAdminComponent } from './simuladores-admin/simuladores-admin
     CuestionarioGeneralComponent, // Agrega CuestionarioGeneralComponent aquí
     CuestionarioFuselajeComponent,
     CuestionarioMotoresComponent,
-    Rdac65Component,
     SimuladorGeneralComponent,
     SimuladorMecanicaGeneralComponent,
     SuperAdministradorComponent,
@@ -72,7 +69,7 @@ import { SimuladoresAdminComponent } from './simuladores-admin/simuladores-admin
     
   ],
   providers: [
-    TraerMecanicaGeneralService,
+    
     CuestionariosDisponiblesService,
     MostrarEliminarCuestionariosService,
     NuevoCuestionarioService,

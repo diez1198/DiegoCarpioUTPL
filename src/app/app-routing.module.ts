@@ -4,7 +4,6 @@ import { AppComponent } from './app.component';
 import { CuestionarioGeneralComponent } from './cuestionario-general/cuestionario-general.component';
 import { CuestionarioFuselajeComponent } from './cuestionario-fuselaje/cuestionario-fuselaje.component';
 import { CuestionarioMotoresComponent } from './cuestionario-motores/cuestionario-motores.component';
-import { Rdac65Component } from './rdac65/rdac65.component';
 import { SimuladorGeneralComponent } from './simulador-general/simulador-general.component';
 import { SimuladorMecanicaGeneralComponent } from './simulador-mecanica-general/simulador-mecanica-general.component';
 import { LoginAdministradorComponent } from './login-administrador/login-administrador.component';
@@ -22,7 +21,6 @@ import { SimuladoresAdminComponent } from './simuladores-admin/simuladores-admin
 const routes: Routes = [
   { path: 'principal', component: InicioComponent },
   { path: 'inicio', component: InicioComponent }, // Ruta de inicio
-  { path: 'rdac65', component: Rdac65Component },
   { path: 'cuestionarioGeneral', component: CuestionarioGeneralComponent },
   { path: 'cuestionarioFuselaje', component: CuestionarioFuselajeComponent },
   { path: 'cuestionarioMotores', component: CuestionarioMotoresComponent },
@@ -54,8 +52,6 @@ const routes: Routes = [
   { path: 'simuladores-admin/simulador/:nombreColeccion', component: SimuladoresAdminComponent },
   { path: 'cuestionarios-admin/repaso', component: CuestionariosAdminComponent },
   { path: 'cuestionarios-admin/completo', component: CuestionariosAdminComponent },
-
-  
   { path: '', redirectTo: '/inicio', pathMatch: 'full' }, // Ruta por defecto
   { path: '**', redirectTo: '/cuestionarioGeneral', pathMatch: 'full' }, // Ruta por defecto para rutas no encontradas
 ];

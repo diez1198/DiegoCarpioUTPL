@@ -1,22 +1,21 @@
+/* nuevo-cuestionaro css */
 .form-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 60vh; /* Hace que el contenedor ocupe toda la altura de la ventana */
-    
+    height: 60vh; /* contenedor ocupa toda la altura de la ventana */
   }
   
   .form-container form {
     width: 1200px;
     padding: 60px; /* Espaciado interior del formulario */
     border: 3px solid #333;
-    border-radius: 15px; /* Borde redondeado */
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1); /* Sombra del formulario */
+    border-radius: 15px; 
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1); 
     display: flex;
     flex-direction: column;
     justify-content: left;
     align-items: left;
-    
     background-color: #fafafa;
   }
   
@@ -26,9 +25,8 @@
     color: #555;
 }
 
-
   .form-group {
-    margin-bottom: 20px; /* Espacio entre grupos de campos */
+    margin-bottom: 20px; 
     font-size: 42px;
     color: #555;
     display: flex;
@@ -37,13 +35,13 @@
   }
   
   label {
-    display: block; /* Para que cada etiqueta esté en una línea */
-    margin-bottom: 5px; /* Espacio inferior de la etiqueta */
+    display: block; 
+    margin-bottom: 5px; 
   }
 
   .form-control {
     font-size: 30px;
-    flex: 1; /* Para que ocupe todo el espacio restante */
+    flex: 1; 
     padding: 10px;
     border-radius: 20px;
     border: 1px solid #ccc;
@@ -51,121 +49,84 @@
     max-width: 200px;
 }
 
-
-  
   input[type="text"],
   textarea {
-    width: 100%; /* Ancho completo */
-    padding: 10px; /* Espaciado interior */
-    border: 1px solid #ccc; /* Borde */
-    border-radius: 5px; /* Borde redondeado */
+    width: 100%; 
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
   }
-
-
 
   .btn-nuevocuestionario {
     background-color: #e4b022;
     color: #333;
     border: none;
-    text-align: center; /* Texto centrado */
+    text-align: center;
     padding: 10px 15px;
     font-size: 30px;
     border-radius: 20px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    justify-content: center; /* Centra los elementos horizontalmente */
+    justify-content: center; 
 }
 
-
 .btn-regresar {
-  background-color: #e42222; /* Rojo */
-  border: none; /* Sin bordes */
+  background-color: #e42222; 
+  border: none; 
   color: #333;
-  padding: 10px 15px; /* Relleno */
-  text-align: center; /* Texto centrado */
-  
- 
-  font-size: 30px; /* Tamaño de fuente */
-  margin: 4px 2px; /* Margen */
-  cursor: pointer; /* Cursor de mano al pasar el ratón */
-  border-radius: 20px; /* Esquinas redondeadas */
+  padding: 10px 15px; 
+  text-align: center; 
+  font-size: 30px; 
+  margin: 4px 2px; 
+  cursor: pointer; 
+  border-radius: 20px; 
   transition: background-color 0.3s ease;
 }
 
 .btn-regresar:hover {
-  background-color: #d32f2f; /* Rojo más oscuro al pasar el ratón */
-  transform: scale(1.05); /* Aumenta el tamaño un poco al pasar el ratón */
+  background-color: #d32f2f; 
+  transform: scale(1.05);
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 .botones {
     display: flex;
-    justify-content: center; /* Centra los elementos horizontalmente */
-    margin-top: 20px; /* Espacio superior entre los botones y el formulario */
+    justify-content: center; 
+    margin-top: 20px; 
   }
 
   .botones button {
-    margin: 0 30px; /* Espacio horizontal entre los botones */
+    margin: 0 30px; 
   }
 
 .btn-guardar:hover {
     background-color: #c49a19;
 }
 
-
-  
 /*  Titulo*/
 .titulo {
   font-size: 60px;
-  color: black; /* Color base */
+  color: black; 
   font-family: 'Georgia', serif;
   margin-top: 100px;
   margin-left: 400px;
   margin-bottom: 50px;
-  font-style: italic; /* Hace que la letra sea cursiva */
-  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3); /* Sombra para darle profundidad */
-  letter-spacing: 2px; /* Espaciado entre letras */
-  border-bottom: 3px solid #c49a19;; /* Línea inferior */
-  padding-bottom: 10px; /* Espaciado para la línea inferior */
-  border-radius: 10px; /* Bordes redondeados */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para el contenedor */
-  display: inline-block; /* Para que el padding y borde afecten solo al contenido */
-  transition: color 0.3s ease, background-color 0.3s ease; /* Transición suave para el color y fondo */
+  font-style: italic; 
+  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3); 
+  letter-spacing: 2px; 
+  border-bottom: 3px solid #c49a19;; 
+  padding-bottom: 10px; 
+  border-radius: 10px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  display: inline-block; 
+  transition: color 0.3s ease, background-color 0.3s ease; 
 }
 
 .titulo:hover {
-  color: #c49a19; /* Cambio de color al pasar el ratón */
-  background-color: #e0e0e0; /* Cambio de fondo al pasar el ratón */
+  color: #c49a19; 
+  background-color: #e0e0e0; 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Estilos para la modal */
+/*  modal */
 .errornombre {
   font-size: 36px;
   display: flex;
@@ -222,12 +183,7 @@
   background-color: #c49a19;
 }
 
-
-
-
-
-
-/* Estilos para el mensaje de éxito */
+/* mensaje de éxito */
 .success-message {
   font-size: 40px;
   display: flex;
@@ -287,11 +243,7 @@
   background-color: #c49a19;
 }
 
-
-
-
-
-/* Estilo para la barra de navegación */
+/*  barra de navegación */
 .navbar {
   width: 100%;
   height: 87px;
@@ -299,14 +251,14 @@
   position: fixed;
   top: 0;
   left: 100;
-  z-index: 0;  /* Capa inferior */
+  z-index: 0;  
   text-align: center;
-  line-height: 70px;  /* para centrar verticalmente palabra salie */
+  line-height: 70px;  /* para centrar verticalmente palabra salir */
   color: white;
   border-bottom: 1px solid #444;
 }
 
-/* Estilo para el menú lateral */
+/* menú lateral */
 .sidebar {
   width: 350px;
   height: 100%;
@@ -314,7 +266,7 @@
   top: 0;  /* Alinea con la barra de navegación superior */
   left: 0;
   background-color: #e4b022;
-  z-index: 2;  /* Capa superior */
+  z-index: 2;  
 }
 
 .sidebar-menu {
@@ -327,8 +279,8 @@
 }
 
 .sidebar-menu li a {
-  color: #333;  /* color del texto del menu bar lateral */
-  font-size: 30px;/* tamaño del texto del menu bar lateral*/
+  color: #333;  
+  font-size: 30px;
   display: block;
   padding:  20px;
   text-decoration: none;
@@ -342,25 +294,19 @@
   background-color: #271212;
 }
 
-
-
-
-
 .salir {
-  color: #333;  /* color del texto de la opcion salir */
-  font-size: 30px; /* tamaño del texto del la opcion salir */
-  text-decoration: none; /* Quita el subrayado */
-  transition: color 0.3s ease; /* Transición suave para el color del texto */
+  color: #333;  
+  font-size: 30px; 
+  text-decoration: none; 
+  transition: color 0.3s ease; 
   margin-right:50px;
-  margin-top: auto; /* Ajusta el margen superior para centrar el texto verticalmente */
+  margin-top: auto; 
 }
-
 
 .salir:hover {
   background-color: #8d6e19;
   color: #c49a19; 
 }
-
 
 .admin-type {
   font-weight: bold;
