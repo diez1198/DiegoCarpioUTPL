@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { CuestionarioGeneralComponent } from './cuestionario-general/cuestionario-general.component';
 import { CuestionarioFuselajeComponent } from './cuestionario-fuselaje/cuestionario-fuselaje.component';
 import { CuestionarioMotoresComponent } from './cuestionario-motores/cuestionario-motores.component';
-import { FormsModule } from '@angular/forms'; // Importa FormsModule
+import { FormsModule } from '@angular/forms'; 
 import { HttpClientModule } from '@angular/common/http';
 import { SimuladorGeneralComponent } from './simulador-general/simulador-general.component';
 import { SimuladorMecanicaGeneralComponent } from './simulador-mecanica-general/simulador-mecanica-general.component';
@@ -38,7 +38,7 @@ import { SimuladoresAdminComponent } from './simuladores-admin/simuladores-admin
 @NgModule({
   declarations: [
     AppComponent,
-    CuestionarioGeneralComponent, // Agrega CuestionarioGeneralComponent aquí
+    CuestionarioGeneralComponent,
     CuestionarioFuselajeComponent,
     CuestionarioMotoresComponent,
     SimuladorGeneralComponent,
@@ -61,9 +61,9 @@ import { SimuladoresAdminComponent } from './simuladores-admin/simuladores-admin
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule, // Agrega FormsModule al arreglo de imports
+    FormsModule, 
     HttpClientModule, 
-    BrowserAnimationsModule, // Agrega HttpClientModule al arreglo de imports
+    BrowserAnimationsModule, 
     BsDropdownModule.forRoot(),
     RouterModule,
     

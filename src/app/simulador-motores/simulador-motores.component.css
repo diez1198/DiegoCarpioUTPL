@@ -1,9 +1,10 @@
+/* simulador-motores css */
 
 .menu_bar {
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 1000; /* Para asegurarse de que esté por encima de otros elementos */
+  z-index: 1000; /* por encima de otros formularios */
 }
 
 .contenido-cuestionario {
@@ -18,7 +19,7 @@ font-size: 36px;
 color: #333333;
 line-height: 1.5;
 text-align: justify;
-margin-bottom: 20px; /* Añadir margen inferior */
+margin-bottom: 20px; 
 }
 
 .mensaje-container strong {
@@ -106,23 +107,14 @@ color: rgb(87, 87, 90);
   background-color: yellow;
 }
 
-
-
-
-
 .opcion-correcta {
   background-color: yellow;
-  font-weight: bold; /* Opcional: Puedes agregar negrita u otros estilos visuales */
+  font-weight: bold; 
 }
 
-
-
-
-
-
 .boton-marcar {
-  background-color: #e4b022; /* Fondo verde */
-  color: white; /* Texto blanco */
+  background-color: #e4b022; 
+  color: white; 
   border: none;
   padding: 10px 20px;
   text-align: center;
@@ -135,12 +127,8 @@ color: rgb(87, 87, 90);
 }
 
 .boton-marcar:hover {
-  background-color: #8d6e19; /* Cambio de color al pasar el mouse */
+  background-color: #8d6e19; 
 }
-
-
-
-/* Cambio de color al pasar el mouse */
 
 
 .checkbox-container {
@@ -194,8 +182,6 @@ color: rgb(87, 87, 90);
   transform: rotate(45deg);
 }
 
-
-
 .boton-calificar-container {
   margin-left: 200px;
  
@@ -223,12 +209,7 @@ color: rgb(87, 87, 90);
   flex: 1;
 }
 
-
-
-
 /* Formulario mostrar calificacion*/
-
-
 .calificacion-formulario {
   font-size: 35px;
   position: fixed;
@@ -237,15 +218,10 @@ color: rgb(87, 87, 90);
   transform: translate(-50%, -50%);
   background-color: #e9d08c;
   padding: 20px;
-  z-index: 1000; /* Asegura que esté por encima del resto de contenido */
+  z-index: 1000; 
  
-  max-width: 95%; /* Ajusta el ancho máximo según sea necesario */
+  max-width: 95%; 
 }
-
-
-
-
-
 
 
 .form-group {
@@ -263,7 +239,6 @@ color: rgb(87, 87, 90);
   padding: 8px;
   font-size: 16px;
  
-
 }
 
 .form-control[readonly] {
@@ -272,9 +247,6 @@ color: rgb(87, 87, 90);
   border: none;
   font-weight: bold;
 }
-
-
-
 
 .btn-primary {
   background-color: #007bff;
@@ -291,18 +263,14 @@ color: rgb(87, 87, 90);
   background-color: #0056b3;
 }
 
-/* \ respuestas incorrectas */
-
-
-
-
+/*  respuestas incorrectas */
 .respuesta-incorrecta {
-  background-color: #ffcccc; /* Cambiar a tu color de resaltado */
+  background-color: #ffcccc; 
 }
 
 .respuesta-incorrecta {
-  border: 2px solid #ff0000; /* Cambiar a tu color de borde */
-  background-color: #ffe6e6; /* Cambiar a tu color de fondo */
+  border: 2px solid #ff0000; 
+  background-color: #ffe6e6; 
   padding: 10px;
   margin-bottom: 10px;
 }
@@ -310,21 +278,21 @@ color: rgb(87, 87, 90);
 
 .contador-tiempo {
   position: fixed;
-  top: 80px; /* Ajusta la distancia desde la parte superior según sea necesario */
-  left: 0px; /* Ajusta la distancia desde la izquierda según sea necesario */
-  background-color: #e9d08c; /* Color de fondo del contador */
-  padding: 10px; /* Espacio interno del contador */
-  border: 1px solid #ccc; /* Borde del contador */
-  border-radius: 5px; /* Bordes redondeados */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
-  z-index: 1000; /* Asegura que esté por encima de otros elementos */
+  top: 80px; 
+  left: 0px; 
+  background-color: #e9d08c; 
+  padding: 10px; 
+  border: 1px solid #ccc; 
+  border-radius: 5px; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+  z-index: 1000; 
 }
 
-/* Estilos para el texto del contador de tiempo */
+/* contador de tiempo */
 .contador-tiempo p {
   margin: 0;
   font-size: 30px;
-  color: #333; /* Color del texto */
+  color: #333; 
 }
 
 .btn-primary {
@@ -339,20 +307,16 @@ color: rgb(87, 87, 90);
   background-color: #0056b3;
 }
 
-
-
-
-
 .feedback-container {
   position: fixed;
   top: 200px; 
   left:0px; 
-  background-color: #e9d08c; /* fondo */
+  background-color: #e9d08c; 
   width: 95%;
  
   border-radius: 5px; 
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
-  z-index: 1000; /* encima  elementos */
+  z-index: 1000; 
 }
 
 /* contador de tiempo */
@@ -362,19 +326,12 @@ color: rgb(87, 87, 90);
   color: #333; 
 }
 
-
 .respuesta-correcta {
-  border: 2px solid #3cff00; /* Cambiar a tu color de borde */
-  background-color: #d6ffbb; /* Cambiar a tu color de fondo */
+  border: 2px solid #3cff00; 
+  background-color: #d6ffbb; 
   padding: 10px;
   margin-bottom: 10px;
 }
-
-
-
-
-
-
 
 
 .boton-revisar-container {
@@ -382,7 +339,7 @@ color: rgb(87, 87, 90);
   left: 0;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 1000; /* Para asegurarse de que esté sobre otros elementos */
+  z-index: 1000; 
  
 }
 

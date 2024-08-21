@@ -68,13 +68,8 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   selectCollection(collection: string) {
-    // Implementa la lógica para manejar la selección de la colección aquí
     console.log('Colección seleccionada:', collection);
-    // Puedes agregar lógica adicional, como navegar a una ruta con la colección seleccionada
-    // this.router.navigate(['ruta', collection]);
   }
-
-
 
   filterCollections() {
     const excludeCollections = ['Mecanica Fuselaje', 'Mecanica General', 'Mecanica Motores'];
@@ -91,8 +86,6 @@ export class AppComponent implements OnInit, OnDestroy {
   }
   
   
-
-
   setActiveMenuItem(menuItem: string) {
     this.activeMenuItem = menuItem;
   }

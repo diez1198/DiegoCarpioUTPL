@@ -1,24 +1,19 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
-
-
-
-
-
 /* estilo del boton Cuestionarios*/
 .navbar-nav .nav-item .nav-link {
   font-size: 33px;
-  color: #011106; /* Cambia el color del texto */
+  color: #011106; 
   background-color: #64abf8;
 }
 
 .navbar-nav .dropdown-menu .dropdown-item {
   font-size: 33px;
-  color: #3e0b80; /* Cambia el color del texto */
-  background-color: #007bff; /* Cambia el color de fondo del ítem del menú desplegable */
+  color: #3e0b80; 
+  background-color: #007bff; 
 }
 
 .navbar-nav .dropdown-menu .dropdown-item:hover {
-  background-color: #0056b3; /* Cambia el color de fondo cuando se pasa el mouse sobre el ítem del menú desplegable */
+  background-color: #0056b3; 
 }
 

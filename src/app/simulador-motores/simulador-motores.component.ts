@@ -1,3 +1,4 @@
+// simulador-motores component
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { VerCuestionariosService } from '../ver-cuestionarios.service';
@@ -17,43 +18,33 @@ export class SimuladorMotoresComponent implements OnInit {
   respuestasCorrectas: number = 0;
   mostrarCalificacion: boolean = false;
   preguntasRespondidas: number = 0;
-  examenIniciado: boolean = false; // Bandera para controlar el inicio del examen aleatorio
-  tiempoInicialEnSegundos: number = 2 * 60 * 60; // 2 horas en segundos
+  examenIniciado: boolean = false; 
+  tiempoInicialEnSegundos: number = 2 * 60 * 60; 
   tiempoRestanteEnSegundos: number = this.tiempoInicialEnSegundos;
   intervaloContador: any;
-  botonTexto: string = 'Simulador examen'; // Variable para controlar el texto del botón
+  botonTexto: string = 'Simulador examen'; 
   examenEnCurso: boolean = false;
-  feedbackCadaXPreguntas: number = 10; // Cantidad de preguntas para dar feedback
-  feedbackListo: boolean = false; // Bandera para controlar cuándo mostrar el feedback
-  porcentajeIdeal: number = 70; // Porcentaje ideal de respuestas correctas
-  feedbackMensaje: string = ''; // Mensaje de feedback a mostrar
-  mostrarFeedback: boolean = false; // Bandera para controlar la visibilidad del feedback
-  enRevision: boolean = false;  // Nueva propiedad
-  preguntasIncorrectas: any[] = []; // Preguntas respondidas incorrectamente
+  feedbackCadaXPreguntas: number = 10; 
+  feedbackListo: boolean = false; 
+  porcentajeIdeal: number = 70;
+  feedbackMensaje: string = '';
+  mostrarFeedback: boolean = false; 
+  enRevision: boolean = false;  
+  preguntasIncorrectas: any[] = []; 
   preguntasRespondidasSet = new Set<number>();
-
-  
-
- 
-  
   constructor(
     private verCuestionariosService: VerCuestionariosService,
     private router: Router, 
     private route: ActivatedRoute,
   ) {}
   
-  
   ngOnInit(): void {
-    
-    this.mostrarBotonMarcar = false; // Asegúrate de que esta inicialización es correcta
+    this.mostrarBotonMarcar = false; 
     this.mostrarRespuestaCompleta = false;
     this.mostrarEtiquetaRespuesta = false;
     this.obtenerDocumentos('Mecanica Motores');
   }
  
-  
-  
-
   ngAfterViewInit(): void {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
@@ -64,7 +55,6 @@ export class SimuladorMotoresComponent implements OnInit {
     });
   }
  
-
   obtenerDocumentos(nombreColeccion: string): void {
     this.verCuestionariosService.getDocumentos(nombreColeccion).subscribe(
       data => {
@@ -80,7 +70,7 @@ export class SimuladorMotoresComponent implements OnInit {
         this.documentos = this.documentosOriginales;
         if (this.router.url === '/simuladorMotores/iniciar') {
           this.iniciarExamenAleatorio();
-          this.botonTexto = 'Empezar examen'; // Cambiar el texto del botón al cargar la página
+          this.botonTexto = 'Empezar examen'; // texto del botón 
         }
       },
       error => {
@@ -88,73 +78,53 @@ export class SimuladorMotoresComponent implements OnInit {
       }
     );
   }
-
-
-
   onCuestionarioMecanicaGeneralRespuestaClick(): void {
     if (this.botonTexto === 'Simulador examen') {
       this.router.navigateByUrl('/simuladorMotores/iniciar');
       this.botonTexto = 'Empezar examen';
-      this.examenIniciado = false; // Asegúrate de restablecer el estado de examenIniciado
+      this.examenIniciado = false; 
     } else if (this.botonTexto === 'Empezar examen') {
-      this.iniciarExamen(); // Iniciar el examen sin cambiar las preguntas
+      this.iniciarExamen(); 
     }
   }
-
-
-
-
+  
   iniciarExamenAleatorio(): void {
     this.mostrarRespuestas = true;
     this.mostrarRespuestaCompleta = false;
     this.mostrarEtiquetaRespuesta = false;
     this.mostrarBotonMarcar = true;
     this.examenIniciado = true;
-
-    // Seleccionar 100 preguntas aleatorias
+    // 100 preguntas aleatorias
     this.documentos = this.getRandomSubset(this.documentosOriginales, 100);
     this.mostrarBotonMarcar = true;
-    // Ordenar las preguntas en orden ascendente por el campo 'id'
+    // Ordenar  ascendente por 'id'
     this.documentos.sort((a, b) => a.id - b.id);
     console.log('Mostrando 100 preguntas aleatorias...');
   }
-
-
-
 //aleatorio 
 getRandomSubset(array: any[], size: number): any[] {
   const shuffled = array.sort(() => 0.5 - Math.random());
   return shuffled.slice(0, size);
 }
 
-
-
-
-
-
-
- 
   onCompletoMecanicaGeneralClick(): void {
     this.mostrarRespuestas = false;
     this.mostrarRespuestaCompleta = false;
     this.mostrarEtiquetaRespuesta = false;
     this.mostrarBotonMarcar = false;
     this.router.navigateByUrl('/simuladorMotores/completo');
-    this.documentos = this.documentosOriginales.sort((a, b) => a.id - b.id); // Ordenar todas las preguntas en forma ascendente
+    this.documentos = this.documentosOriginales.sort((a, b) => a.id - b.id); // Ordenar preguntas  ascendente
     console.log('Restableciendo a modo normal...');
   }
 
- 
   encontrarOpcionCorrecta(respuesta: string, opcionA: string, opcionB: string, opcionC: string): string | null {
     if (!respuesta || typeof respuesta !== 'string') {
       return null;
     }
-
     const trimmedRespuesta = respuesta.trim();
     const trimOpcionA = opcionA ? opcionA.toString().trim() : '';
     const trimOpcionB = opcionB ? opcionB.toString().trim() : '';
     const trimOpcionC = opcionC ? opcionC.toString().trim() : '';
-
     if (trimmedRespuesta === trimOpcionA) {
       return 'A';
     } else if (trimmedRespuesta === trimOpcionB) {
@@ -166,29 +136,19 @@ getRandomSubset(array: any[], size: number): any[] {
     }
   }
 
-
-
-
-
   marcarOpcionCorrecta(pregunta: any): void {
     const respuestaCorrecta = this.encontrarOpcionCorrecta(pregunta.respuesta, pregunta.opcion_a, pregunta.opcion_b, pregunta.opcion_c);
     pregunta.respuestaMarcada = respuestaCorrecta;
   }
-
-
-
-
+ // Desmarcar  opcion cuando se selecciona una nueva opción
   onOpcionSeleccionada(pregunta: any, opcion: any): void {
-    // Desmarcar las otras opciones cuando se selecciona una nueva opción
     pregunta.opciones.forEach((op: any) => {
       if (op !== opcion) {
         op.seleccionada = false;
       }
     });
-
     const respuestaCorrecta = this.encontrarOpcionCorrecta(pregunta.respuesta, pregunta.opciones[0].texto, pregunta.opciones[1].texto, pregunta.opciones[2].texto);
     const esCorrecta = respuestaCorrecta === opcion.letra;
-
     if (!pregunta.respondida) {
       if (esCorrecta) {
         this.respuestasCorrectas++;
@@ -197,22 +157,8 @@ getRandomSubset(array: any[], size: number): any[] {
       this.preguntasRespondidasSet.add(pregunta.id);
       pregunta.respondida = true;
     }
-
-    console.log('Opción seleccionada:', opcion);
-    console.log('¿La opción seleccionada es correcta?', esCorrecta);
-
     this.mostrarFeedbackCadaXPreguntas();
   }
-
-
-
-
-
-
-
-
-
-
 
   calificar(): void {
     this.preguntasRespondidas = 0;
@@ -228,14 +174,10 @@ getRandomSubset(array: any[], size: number): any[] {
         }
       }
     });
-    // Mostrar el formulario de calificación
+    // formulario de calificación
     this.mostrarFeedbackCadaXPreguntas();
     this.mostrarCalificacion = true;
   }
-
-
-
-
   revisar(): void {
     this.preguntasRespondidas = 0;
     this.respuestasCorrectas = 0;
@@ -250,49 +192,35 @@ getRandomSubset(array: any[], size: number): any[] {
         }
       }
     });
-    // Mostrar el formulario de calificación
+    //formulario de calificación
     this.mostrarFeedbackCadaXPreguntas();
     this.mostrarCalificacion = true;
   }
 
-
-
-
-
-
+ // Cerrar el formulario de calificación
   cerrarCalificacion(): void {
-    // Cerrar el formulario de calificación
     this.mostrarCalificacion = false;
     this.enRevision = false;
   }
 
-
+   // reiniciar
   Reiniciar(): void {
-    // Desmarcar todas las respuestas y restablecer otras variables
     this.documentos.forEach((pregunta: any) => {
       pregunta.opciones.forEach((opcion: any) => {
-        opcion.seleccionada = false; // Desmarcar cada opción seleccionada
-        opcion.respuestaIncorrecta = false; // Reiniciar marcado de respuesta incorrecta
+        opcion.seleccionada = false; 
+        opcion.respuestaIncorrecta = false; 
       });
-      pregunta.respuestaMarcada = null; // Desmarcar respuesta marcada
+      pregunta.respuestaMarcada = null; 
     });
-
-    // Restablecer otros estados si es necesario
     this.mostrarCalificacion = false;
     this.mostrarRespuestas = false;
     this.mostrarRespuestaCompleta = true;
     this.mostrarEtiquetaRespuesta = true;
-
-    // Volver al inicio de la página (pregunta 1)
-    window.scrollTo(0, 0); // Mueve la ventana al inicio de la página
+    window.scrollTo(0, 0); // ventana al inicio de la página
   }
-
-
-
   verRespuestasIncorrectas(): void {
     this.enRevision = true;
-    this.preguntasIncorrectas = []; // Reseteamos la lista de preguntas incorrectas
-    
+    this.preguntasIncorrectas = []; 
     this.documentos.forEach((pregunta: any) => {
       if (pregunta.respondida) {
         const respuestaCorrecta = this.encontrarOpcionCorrecta(pregunta.respuesta, pregunta.opciones[0].texto, pregunta.opciones[1].texto, pregunta.opciones[2].texto);
@@ -307,7 +235,6 @@ getRandomSubset(array: any[], size: number): any[] {
             });
             
             this.preguntasIncorrectas.push(pregunta);
-            
           }
         });
       }
@@ -318,8 +245,6 @@ getRandomSubset(array: any[], size: number): any[] {
       
     }
   }
-
-
   scrollToPreguntaIncorrecta(index: number): void {
     setTimeout(() => {
       const element = document.getElementById(`pregunta-${index}`);
@@ -329,23 +254,11 @@ getRandomSubset(array: any[], size: number): any[] {
     }, 0);
   }
 
-
-
-
-
   iniciarExamen(): void {
-    this.examenEnCurso = true; // Permitir seleccionar respuestas
-    this.iniciarContador(); // Iniciar el contador al empezar el examen
+    this.examenEnCurso = true; 
+    this.iniciarContador();
     console.log('Examen iniciado, puedes seleccionar respuestas.');
   }
-
-
-
-
-
-
-
-
    // iniciar el contador
  iniciarContador(): void {
   this.intervaloContador = setInterval(() => {
@@ -353,24 +266,13 @@ getRandomSubset(array: any[], size: number): any[] {
     if (this.tiempoRestanteEnSegundos <= 0) {
       this.detenerContador();
     }
-  }, 1000); // Actualiza el contador cada segundo 
+  }, 1000); 
 }
-
-
-
-
-
-
-// Método para detener el contador
+// detener el contador
 detenerContador(): void {
   clearInterval(this.intervaloContador);
 }
 
-
-
-
-
-  
   formatTime(seconds: number): string {
     const hours = Math.floor(seconds / 3600);
     const minutes = Math.floor((seconds % 3600) / 60);
@@ -407,19 +309,14 @@ detenerContador(): void {
           this.feedbackMensaje += ' Te recomendamos reintentar el examen.';
         }
       }
-      this.mostrarFeedback = true; // Mostrar el mensaje de feedback
+      this.mostrarFeedback = true; // Mostrar  mensaje de feedback
     } else {
-      this.mostrarFeedback = false; // Ocultar el mensaje de feedback si no se debe mostrar
+      this.mostrarFeedback = false; // Ocultar mensaje de feedback 
     }
   }
-
-
-  // para reiniciar el feedback
+  // reiniciar el feedback
   reiniciarFeedback(): void {
     this.feedbackMensaje = '';
     this.mostrarFeedback = false;
   }
-  
-
-
 }

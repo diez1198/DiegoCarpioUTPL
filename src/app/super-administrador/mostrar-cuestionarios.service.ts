@@ -9,8 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class MostrarCuestionariosService {
 
-  private apiUrl = 'http://localhost:3001/api/databases'; // Aquí reemplazas la URL anterior
-
+  private apiUrl = 'http://localhost:3001/api/databases'; 
   constructor(private http: HttpClient) { }
 
   getDatabasesAndCollections(): Observable<any> {
@@ -18,11 +17,7 @@ export class MostrarCuestionariosService {
   }
 
   getDocumentos(nombreColeccion: string): Observable<any> {
-    return this.http.get<any[]>(`${this.apiUrl}/${nombreColeccion}/documentos`); // Aquí ajusta la URL
+    return this.http.get<any[]>(`${this.apiUrl}/${nombreColeccion}/documentos`); 
   }
-
-
-
-  
   }
 

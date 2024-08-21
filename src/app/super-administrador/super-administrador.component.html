@@ -16,7 +16,6 @@
           <span class="admin-type">{{ isAdmin ? 'Super Administrador' : 'Administrador' }}</span>
         </a>
       </li>
-      
       <li>
         <a (click)="redireccionarASuperAdministrador()" [class.active]="activeMenuItem === 'Inicioadm'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
           Inicio
@@ -40,10 +39,8 @@
     </ul>
   </nav>
 </div>
-
 <h1 class="titulo" *ngIf="isLoggedIn && showInicioTitulo">Inicio</h1>
 <h1 class="Subtitulo" *ngIf="isLoggedIn && showInicioTitulo"> Para visualizar y editar un cuestionario de doble click sobre el botón correspondiente</h1>
-
 <div class="botones-cuestionario" *ngIf="isLoggedIn && mostrarBotonesCuestionario">
   <div *ngFor="let collection of collections" class="boton">
     <button (dblclick)="verCuestionarios(collection)">

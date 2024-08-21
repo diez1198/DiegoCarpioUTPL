@@ -1,9 +1,4 @@
-/* app.component.css */
-
-
-/* Tu archivo de estilos */
-
-
+/* app component css */
 
 * {
   margin: 0;
@@ -11,52 +6,33 @@
   box-sizing: border-box;
 }
 
-
 .menu-list {
   display: flex;
-  align-items: center; /* Alinear elementos verticalmente al centro */
-  list-style-type: none; /* Eliminar puntos de lista */
-
+  align-items: center; 
+  list-style-type: none; 
   margin: 0;
 }
 
 .administrador {
-  margin-left: auto; /* Esto empuja el botón Administrador al extremo derecho */
-  /* Estilos específicos para el botón Administrador si los necesitas */
+  margin-left: auto; 
+  
 }
 
-
-
-/* Estilo específico para el botón Administrador */
+/*  botón Administrador */
 .menu-list li.administrador {
-  margin-left: auto; /* Empujar el botón al final del contenedor */
+  margin-left: auto; 
 }
-
-
-
-
-
-
-
-
-
-/* Tus otros estilos */
-
-
-
-
-
 
 body nav {
   width: 100%;
-  margin: 0px auto; /* margen borde superior*/
+  margin: 0px auto; 
   text-align: center;
-  background-color: #e4b022; /* Color de fondo de la barra del menú larga menos los botones especificos*/
+  background-color: #e4b022; 
 }
 
 body nav ul {
-  list-style: none; /* Quita viñetas default */
-  padding: 0; /* Eliminar cualquier padding */
+  list-style: none; 
+  padding: 0; 
 }
 
 /* esteeeee */
@@ -64,61 +40,36 @@ body nav ul {
 body nav ul li > a {
   color: #333;
   text-decoration: none;
-  white-space: nowrap; /* Evitar el salto de línea */
-  overflow: hidden; /* Ocultar el texto que desborda el contenedor */
-  text-overflow: ellipsis; /* Mostrar puntos suspensivos cuando el texto desborda */
-  padding: 10px 60px !important; /* Ajustar el padding */
-  margin: 0 !important; /* Eliminar cualquier margen */
-  border: none !important; /* Eliminar el borde */
-  border-left: none !important; /* Eliminar el borde izquierdo */
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  padding: 10px 60px !important; 
+  margin: 0 !important; 
+  border: none !important; 
+  border-left: none !important; 
   display: block;
   font-size: 30px;
-  background-color: #e4b022; /* Color de fondo amarillo de las opciones del menu desplegable*/
+  background-color: #e4b022; 
 }
 
 body nav ul li > a:hover {
-  background-color: #8d6e19 !important; /* Color de fondo azul cuando el mouse está encima */
-  color: #ffffff; /* Color del texto a blanco cuando el mouse está encima */
+  background-color: #8d6e19 !important; 
+  color: #ffffff; 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Estilos adicionales */
+/* Estilos  */
 .titulo-principal {
   margin-bottom: 40px;
   text-align: center;
   font-size: 60px;
-  margin-top: 200px; /* Espacio en la parte superior del router-outlet */
-  
-  
+  margin-top: 200px; 
 }
-
 .subtitulo {
-  
   font-size: 40px;
   margin: 20px auto;
   margin-bottom: 30px;
   text-align: center;
   max-width: 800px;
-  
 }
 
 .examen-info {
@@ -131,10 +82,6 @@ body nav ul li > a:hover {
   
 }
 
-
-/* ... */
-
-
 /* Margenes items de la lista desplegable*/
 .menu-list li {
   margin-left: none; 
@@ -142,49 +89,26 @@ body nav ul li > a:hover {
 }
 
 
-
-
-
 .dropdown-menu {
-  background-color: #e4b022;  /* Cambia el color de fondo a amarillo */
-  border: none; /* Elimina los bordes */
-  width: auto !important; /* Ajusta el ancho al contenido */
-  padding: 0 !important; /* Elimina el padding */
+  background-color: #e4b022;  
+  border: none; 
+  width: auto !important; 
+  padding: 0 !important;
 }
 
 .dropdown-menu .dropdown-item {
-  padding: 10px 25px !important; /* Ajustar el padding */
-  margin: 0 !important; /* Eliminar cualquier margen */
-  border: none !important; /* Eliminar el borde */
-  width: 100% !important; /* Ajusta el ancho al 100% */
+  padding: 10px 25px !important; 
+  margin: 0 !important; 
+  border: none !important; 
+  width: 100% !important; 
 }
 
 .dropdown-menu .dropdown-item:hover {
-  background-color: #8d6e19 !important; /* Color de fondo azul cuando el mouse está encima */
-  color: #40c6dd; /* Color del texto a blanco cuando el mouse está encima */
-  border: none !important; /* Eliminar los bordes del elemento */
+  background-color: #8d6e19 !important; 
+  color: #40c6dd; 
+  border: none !important; 
 }
 
-/* ... */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
 
 @media screen and (max-width:800px) {
 
@@ -197,18 +121,18 @@ body nav ul li > a:hover {
 
     
     .titulo-principal {
-        margin-bottom: 20px; /* Agrega 20px de margen inferior */
+        margin-bottom: 20px; 
         text-align: center;
-        font-size: 30px; /* tamaño del texto  */
-        margin-top: 200px; /* Ajusta este valor según el espacio que quieras */
+        font-size: 30px; 
+        margin-top: 200px; 
       
         
       }
       
       .subtitulo {
-        font-size: 20px; /* tamaño del texto  */
+        font-size: 20px; 
         margin: 10px auto;
-        margin-bottom: 30px; /* Agrega 10px de margen inferior */
+        margin-bottom: 30px; 
         text-align: center;
         max-width: 800px;
         
@@ -220,22 +144,13 @@ body nav ul li > a:hover {
         text-align: center;
         text-align: justify;
         line-height: 2;
-        margin: 20px auto; /* Agrega margen superior e inferior de 20px y centrado horizontal */
-        max-width: 350px; /* Establece el ancho máximo en 600px */
+        margin: 20px auto; 
+        max-width: 350px; 
         
       }
 
-
-    /*
-    header nav ul li  {
-        display: block;
-        float:none;
-        border-bottom:1px solid rgba(255, 255, 255, .3) ;
-        font-size: 1px;
-    }*/
-
     header nav ul li a {
-        font-size: 20px; /* Cambia el tamaño del texto  */
+        font-size: 20px; 
        padding: 2px 7px 2px 7px;
     }
     

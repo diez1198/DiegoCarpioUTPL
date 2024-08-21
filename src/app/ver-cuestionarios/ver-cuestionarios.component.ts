@@ -17,19 +17,19 @@ export class VerCuestionariosComponent implements OnInit {
   activeMenuItem: string = '';
   documentos: any[] = [];
   nombreColeccion: string | null = '';
-  preguntaEditada: any = null; // Cambiado a 'any' para que coincida con el tipo de 'pregunta'
+  preguntaEditada: any = null; 
   modoEdicion: boolean = false;
   mostrarNuevoFormulario: boolean = false;
-  nuevaPregunta: any = {}; // Declara la propiedad nuevaPregunta aquí
+  nuevaPregunta: any = {}; 
   selectedFile: File | null = null;
-  pregunta: any; // Definición de la propiedad pregunta
-  nuevoId: number = 0;  // Variable para almacenar el nuevo ID
-  isModalOpen: boolean = false; // Estado del modal
+  pregunta: any; 
+  nuevoId: number = 0;  
+  isModalOpen: boolean = false;
   horas: number = 0;
   minutos: number = 0;
-  numPreguntas: number = 0; // Inicializado con un valor predeterminado
-  showConfirmationPopup: boolean = false; // Para controlar la visibilidad de la ventana emergente
-  tiempoInicialEnSegundos: number = 0; // Inicializar como 0 o un valor por defecto
+  numPreguntas: number = 0; 
+  showConfirmationPopup: boolean = false; 
+  tiempoInicialEnSegundos: number = 0; 
   tiempoRestanteEnSegundos: number = this.tiempoInicialEnSegundos;
 
   constructor(
@@ -52,14 +52,12 @@ export class VerCuestionariosComponent implements OnInit {
     });
   }
 
-
-
   obtenerUltimoID(): void {
     if (this.nombreColeccion) {
       this.verCuestionariosService.obtenerUltimoID(this.nombreColeccion).subscribe(
         id => {
           console.log('El ID más alto es:', id);
-          this.nuevoId = id ? id + 1 : 1; // Si no hay preguntas, empieza con ID 1
+          this.nuevoId = id ? id + 1 : 1; 
         },
         error => {
           console.error('Error al obtener el último ID:', error);
@@ -73,31 +71,19 @@ export class VerCuestionariosComponent implements OnInit {
     return ['Mecanica General', 'Mecanica Fuselaje', 'Mecanica Motores'].includes(nombreColeccion);
   }
   
-
- 
-
-
-
-
-
-
-
   onImageSelected(event: any): void {
     this.selectedFile = event.target.files[0];
   }
   
   editarPregunta(pregunta: any) {
-    this.preguntaEditada = { ...pregunta }; // Crear una copia de la pregunta para editar
+    this.preguntaEditada = { ...pregunta }; 
   }
-
-  
-
 
   quitarImagen(pregunta: any) {
     if (pregunta.imagen) {
-      pregunta.imagen = ''; // o pregunta.imagen = null;
-      pregunta.mostrarImagen = false; // Ocultar la imagen si estaba visible
-      this.guardarPreguntaEditada(pregunta); // Guardar cambios en la base de datos
+      pregunta.imagen = ''; 
+      pregunta.mostrarImagen = false; 
+      this.guardarPreguntaEditada(pregunta); 
     }
   }
 
@@ -112,17 +98,11 @@ export class VerCuestionariosComponent implements OnInit {
         alert('Por favor completa todos los campos antes de guardar y asegúrate de seleccionar una respuesta válida.');
         return;
       }
-  
-      // Crear una copia de la pregunta editada
       const preguntaEditadaCopia = { ...this.preguntaEditada };
-  
-      // Verificar si se ha seleccionado un nuevo archivo de imagen
       if (this.selectedFile) {
         this.uploadImageToCloudinary(this.selectedFile).subscribe(
           response => {
-            // Actualizar la URL de la imagen en la pregunta editada
             preguntaEditadaCopia.imagen = response.secure_url;
-            // Guardar la pregunta editada con la nueva imagen
             this.guardarPreguntaEditada(preguntaEditadaCopia);
           },
           error => {
@@ -131,25 +111,19 @@ export class VerCuestionariosComponent implements OnInit {
           }
         );
       } else {
-        // Si no hay nueva imagen seleccionada, simplemente guardar la pregunta editada
         this.guardarPreguntaEditada(preguntaEditadaCopia);
       }
     }
   }
-  
 
-
-  
-
-  
   guardarPreguntaEditada(preguntaEditada: any) {
     if (this.nombreColeccion) {
       this.verCuestionariosService.editarPregunta(this.nombreColeccion, preguntaEditada.id, preguntaEditada)
         .subscribe(
           response => {
             console.log('Pregunta editada exitosamente:', response);
-            this.obtenerDocumentos(); // Volver a obtener los documentos del servicio
-            this.preguntaEditada = null; // Finalizar la edición
+            this.obtenerDocumentos(); 
+            this.preguntaEditada = null; 
           },
           error => {
             console.error('Error al editar la pregunta:', error);
@@ -160,7 +134,6 @@ export class VerCuestionariosComponent implements OnInit {
     }
   }
   
-
   obtenerDocumentos() {
     if (this.nombreColeccion) {
       this.verCuestionariosService.getDocumentos(this.nombreColeccion).subscribe(
@@ -232,10 +205,8 @@ export class VerCuestionariosComponent implements OnInit {
         .subscribe(
           response => {
             console.log('Pregunta agregada exitosamente:', response);
-            this.obtenerDocumentos(); // Actualiza la lista de preguntas
-            this.obtenerUltimoID(); // Actualiza el ID para la próxima pregunta
-  
-            // Reinicia el formulario
+            this.obtenerDocumentos(); 
+            this.obtenerUltimoID(); 
             this.nuevaPregunta = {
               id: null,
               pregunta: '',
@@ -245,7 +216,7 @@ export class VerCuestionariosComponent implements OnInit {
               respuesta: '',
               imagen: ''
             };
-            this.selectedFile = null; // Limpiar el archivo seleccionado
+            this.selectedFile = null; 
           },
           error => {
             console.error('Error al agregar la pregunta:', error);
@@ -254,7 +225,6 @@ export class VerCuestionariosComponent implements OnInit {
     }
   }
   
-
   doNothing() {}
   mostrarFormulario(): void {
     this.mostrarNuevoFormulario = true;
@@ -265,14 +235,10 @@ export class VerCuestionariosComponent implements OnInit {
       const confirmacion = window.confirm('¿Estás seguro de que deseas eliminar la pregunta número ' + id + '?');
       if (confirmacion) {
         this.verCuestionariosService.eliminarDocumento(nombreColeccion, id).subscribe(() => {
-          // Filtra el documento eliminado de la lista actual
           this.documentos = this.documentos.filter(doc => doc.id !== id);
-          
           // Actualiza el ID para la próxima pregunta
-          this.obtenerUltimoID();  // Asegúrate de que esta función actualice `nuevoId`
-  
-          // Refresca la lista de documentos si es necesario
-          this.obtenerDocumentos();  // Si necesitas volver a obtener la lista de documentos actualizada
+          this.obtenerUltimoID(); 
+          this.obtenerDocumentos();  
         }, error => {
           console.error('Error al eliminar el documento:', error);
         });
@@ -282,136 +248,81 @@ export class VerCuestionariosComponent implements OnInit {
     }
   }
   
-
   cancelarPregunta() {}
 
-
-
-
 convertirIdANumero() {
-  // Verifica que nuevaPregunta.id no sea null o undefined
   if (this.nuevaPregunta.id !== null && this.nuevaPregunta.id !== undefined) {
-    // Convierte id a un número entero usando parseInt()
     this.nuevaPregunta.id = parseInt(this.nuevaPregunta.id);
   }
 }
 
-
 redireccionarASuperAdministrador(): void {
- 
- 
   this.router.navigate(['/super-administrador/inicio']);
-  
 }
-
-
 
 cerrarFormulario(): void {
   this.mostrarNuevoFormulario = false;
 }
 
-
-
 seteo(): void {
-  this.isModalOpen = true; // Abre el modal
+  this.isModalOpen = true; 
 }
 
 loadFromLocalStorage(): void {
-  // Obtener el nombre de la colección desde localStorage
   const collectionName = localStorage.getItem('collectionName');
   console.log('Nombre de la colección recuperado de localStorage:', collectionName);
-
   if (collectionName) {
-    // Recuperar datos específicos para la colección seleccionada
     const numQuestions = localStorage.getItem(`${collectionName}_numPreguntas`);
     const horas = localStorage.getItem(`${collectionName}_horas`);
     const minutos = localStorage.getItem(`${collectionName}_minutos`);
-
-    console.log('Recuperando datos de localStorage para la colección:', collectionName);
-    console.log('Número de preguntas:', numQuestions);
-    console.log('Horas:', horas);
-    console.log('Minutos:', minutos);
-
     if (numQuestions !== null && horas !== null && minutos !== null) {
-      // Procesar los datos recuperados y configurar la aplicación
       this.selectedCollection = collectionName;
       this.numPreguntas = parseInt(numQuestions, 10);
       this.tiempoInicialEnSegundos = parseInt(horas, 10) * 3600 + parseInt(minutos, 10) * 60;
 
-      console.log('Datos recuperados y configurados:');
-      console.log('selectedCollection:', this.selectedCollection);
-      console.log('numPreguntas:', this.numPreguntas);
-      console.log('tiempoInicialEnSegundos:', this.tiempoInicialEnSegundos);
-      console.log('horas:', Math.floor(this.tiempoInicialEnSegundos / 3600));
-      console.log('minutos:', Math.floor((this.tiempoInicialEnSegundos % 3600) / 60));
-
-      // Cargar documentos basados en la colección seleccionada
-   
     } else {
-      console.log('No se encontraron datos específicos para la colección en localStorage');
+      console.log('No se encontro');
     }
   } else {
-    console.log('No se encontró el nombre de la colección en localStorage');
+    console.log('No se encontro');
   }
 }
 
-
-
-
-
-
-
 closeModal(): void {
-  this.isModalOpen = false; // Cierra el modal
+  this.isModalOpen = false;
   
 }
-
-
-  // Método para ocultar la ventana emergente de confirmación
+  // ocultar ventana emergente de confirmación
   hideConfirmationPopup(): void {
     this.showConfirmationPopup = false;
   }
-
-
-
-
-// Método para cancelar la finalización del cuestionario
+//  cancelar finalización del cuestionario
 cancelFinish(): void {
-  this.hideConfirmationPopup(); // Oculta la ventana emergente
-  // Otras acciones necesarias al cancelar la finalización del cuestionario
+  this.hideConfirmationPopup(); 
+ 
 }
 
-
 applySettings(): void {
-  // Guardar configuraciones específicas para la colección actual en localStorage
+  // parametors localStorage
   localStorage.setItem(`${this.nombreColeccion}_numPreguntas`, this.numPreguntas.toString());
   localStorage.setItem(`${this.nombreColeccion}_horas`, this.horas.toString());
   localStorage.setItem(`${this.nombreColeccion}_minutos`, this.minutos.toString());
 
-  // Imprimir en consola para verificar los valores
-  console.log(`Configuración guardada para la colección "${this.nombreColeccion}":`);
-  console.log(`Número de preguntas: ${localStorage.getItem(`${this.nombreColeccion}_numPreguntas`)}`);
-  console.log(`Horas: ${localStorage.getItem(`${this.nombreColeccion}_horas`)}`);
-  console.log(`Minutos: ${localStorage.getItem(`${this.nombreColeccion}_minutos`)}`);
-
   // Cerrar el modal
   this.closeModal();
 }
-// Función para guardar los datos localmente (se usa en el submitForm y finishQuestionnaire)
+//  guardar datos localmente
 saveToLocalStorage(collectionName: string, numQuestions: number, timer: number): void {
 console.log('Guardando en localStorage:', { collectionName, numQuestions, timer });
 localStorage.setItem('collectionName', collectionName);
 localStorage.setItem('numQuestions', numQuestions.toString());
 localStorage.setItem('timer', timer.toString());
 
-// Verificar que los datos se guardaron correctamente
+// Verificar que los datos se guardaron 
 console.log('Datos guardados en localStorage:', {
   collectionName: localStorage.getItem('collectionName'),
   numQuestions: localStorage.getItem('numQuestions'),
   timer: localStorage.getItem('timer')
 });
 }
-
-
-
 }

@@ -1,3 +1,4 @@
+// simulador-general component
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { VerCuestionariosService } from '../ver-cuestionarios.service';
@@ -17,19 +18,19 @@ export class SimuladorGeneralComponent implements OnInit {
   respuestasCorrectas: number = 0;
   mostrarCalificacion: boolean = false;
   preguntasRespondidas: number = 0;
-  examenIniciado: boolean = false; // Bandera para controlar el inicio del examen aleatorio
-  tiempoInicialEnSegundos: number = 2 * 60 * 60; // 2 horas en segundos
+  examenIniciado: boolean = false; 
+  tiempoInicialEnSegundos: number = 2 * 60 * 60; 
   tiempoRestanteEnSegundos: number = this.tiempoInicialEnSegundos;
   intervaloContador: any;
-  botonTexto: string = 'Simulador examen'; // Variable para controlar el texto del botón
+  botonTexto: string = 'Simulador examen'; 
   examenEnCurso: boolean = false;
-  feedbackCadaXPreguntas: number = 10; // Cantidad de preguntas para dar feedback
-  feedbackListo: boolean = false; // Bandera para controlar cuándo mostrar el feedback
-  porcentajeIdeal: number = 70; // Porcentaje ideal de respuestas correctas
-  feedbackMensaje: string = ''; // Mensaje de feedback a mostrar
-  mostrarFeedback: boolean = false; // Bandera para controlar la visibilidad del feedback
-  enRevision: boolean = false;  // Nueva propiedad
-  preguntasIncorrectas: any[] = []; // Preguntas respondidas incorrectamente
+  feedbackCadaXPreguntas: number = 10; 
+  feedbackListo: boolean = false; 
+  porcentajeIdeal: number = 70; 
+  feedbackMensaje: string = ''; 
+  mostrarFeedback: boolean = false; 
+  enRevision: boolean = false;  
+  preguntasIncorrectas: any[] = []; 
   preguntasRespondidasSet = new Set<number>();
   constructor(
     private verCuestionariosService: VerCuestionariosService,
@@ -37,25 +38,12 @@ export class SimuladorGeneralComponent implements OnInit {
     private route: ActivatedRoute,
   ) {}
 
-  
-  
-  
   ngOnInit(): void {
-    
-    this.mostrarBotonMarcar = false; // Asegúrate de que esta inicialización es correcta
+    this.mostrarBotonMarcar = false; 
     this.mostrarRespuestaCompleta = false;
     this.mostrarEtiquetaRespuesta = false;
     this.obtenerDocumentos('Mecanica General');
   }
-
-
-
-
-
-
-
-
-
 
   ngAfterViewInit(): void {
     this.router.events.subscribe(event => {
@@ -67,13 +55,6 @@ export class SimuladorGeneralComponent implements OnInit {
     });
   }
   
-
-
-
-
-
-
-
   obtenerDocumentos(nombreColeccion: string): void {
     this.verCuestionariosService.getDocumentos(nombreColeccion).subscribe(
       data => {
@@ -89,7 +70,7 @@ export class SimuladorGeneralComponent implements OnInit {
         this.documentos = this.documentosOriginales;
         if (this.router.url === '/simuladorGeneral/iniciar') {
           this.iniciarExamenAleatorio();
-          this.botonTexto = 'Empezar examen'; // Cambiar el texto del botón al cargar la página
+          this.botonTexto = 'Empezar examen'; // texto del botón 
         }
       },
       error => {
@@ -98,34 +79,16 @@ export class SimuladorGeneralComponent implements OnInit {
     );
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
   onCuestionarioMecanicaGeneralRespuestaClick(): void {
     if (this.botonTexto === 'Simulador examen') {
       this.router.navigateByUrl('/simuladorGeneral/iniciar');
       this.botonTexto = 'Empezar examen';
-      this.examenIniciado = false; // Asegúrate de restablecer el estado de examenIniciado
+      this.examenIniciado = false; 
     } else if (this.botonTexto === 'Empezar examen') {
-      this.iniciarExamen(); // Iniciar el examen sin cambiar las preguntas
+      this.iniciarExamen(); 
     }
   }
 
- 
-
-
-
-  
   iniciarExamenAleatorio(): void {
     this.mostrarRespuestas = true;
     this.mostrarRespuestaCompleta = false;
@@ -133,39 +96,18 @@ export class SimuladorGeneralComponent implements OnInit {
     this.mostrarBotonMarcar = true;
     this.examenIniciado = true;
 
-    // Seleccionar 100 preguntas aleatorias
+    //  100 preguntas aleatorias
     this.documentos = this.getRandomSubset(this.documentosOriginales, 100);
     this.mostrarBotonMarcar = true;
-    // Ordenar las preguntas en orden ascendente por el campo 'id'
+    // Ordenar preguntas por 'id'
     this.documentos.sort((a, b) => a.id - b.id);
     console.log('Mostrando 100 preguntas aleatorias...');
   }
-
-
-
-
-
-
-
-
-
-
-  
-
   //aleatorio 
   getRandomSubset(array: any[], size: number): any[] {
     const shuffled = array.sort(() => 0.5 - Math.random());
     return shuffled.slice(0, size);
   }
-
-
-
-
-
-
-
-
-
 
   onCompletoMecanicaGeneralClick(): void {
     this.mostrarRespuestas = false;
@@ -173,28 +115,18 @@ export class SimuladorGeneralComponent implements OnInit {
     this.mostrarEtiquetaRespuesta = false;
     this.mostrarBotonMarcar = false;
     this.router.navigateByUrl('/simuladorGeneral/completo');
-    this.documentos = this.documentosOriginales.sort((a, b) => a.id - b.id); // Ordenar todas las preguntas en forma ascendente
+    this.documentos = this.documentosOriginales.sort((a, b) => a.id - b.id); // Ordenar ascendente
     console.log('Restableciendo a modo normal...');
   }
 
-
-
-
-
-
-
-  
- 
   encontrarOpcionCorrecta(respuesta: string, opcionA: string, opcionB: string, opcionC: string): string | null {
     if (!respuesta || typeof respuesta !== 'string') {
       return null;
     }
-
     const trimmedRespuesta = respuesta.trim();
     const trimOpcionA = opcionA ? opcionA.toString().trim() : '';
     const trimOpcionB = opcionB ? opcionB.toString().trim() : '';
     const trimOpcionC = opcionC ? opcionC.toString().trim() : '';
-
     if (trimmedRespuesta === trimOpcionA) {
       return 'A';
     } else if (trimmedRespuesta === trimOpcionB) {
@@ -206,38 +138,19 @@ export class SimuladorGeneralComponent implements OnInit {
     }
   }
 
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
   marcarOpcionCorrecta(pregunta: any): void {
     const respuestaCorrecta = this.encontrarOpcionCorrecta(pregunta.respuesta, pregunta.opcion_a, pregunta.opcion_b, pregunta.opcion_c);
     pregunta.respuestaMarcada = respuestaCorrecta;
   }
-
-
-
   onOpcionSeleccionada(pregunta: any, opcion: any): void {
-    // Desmarcar las otras opciones cuando se selecciona una nueva opción
+    // Desmarcar opciones 
     pregunta.opciones.forEach((op: any) => {
       if (op !== opcion) {
         op.seleccionada = false;
       }
     });
-
     const respuestaCorrecta = this.encontrarOpcionCorrecta(pregunta.respuesta, pregunta.opciones[0].texto, pregunta.opciones[1].texto, pregunta.opciones[2].texto);
     const esCorrecta = respuestaCorrecta === opcion.letra;
-
     if (!pregunta.respondida) {
       if (esCorrecta) {
         this.respuestasCorrectas++;
@@ -246,34 +159,12 @@ export class SimuladorGeneralComponent implements OnInit {
       this.preguntasRespondidasSet.add(pregunta.id);
       pregunta.respondida = true;
     }
-
-    console.log('Opción seleccionada:', opcion);
-    console.log('¿La opción seleccionada es correcta?', esCorrecta);
-
     this.mostrarFeedbackCadaXPreguntas();
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
- 
   calificar(): void {
     this.preguntasRespondidas = 0;
     this.respuestasCorrectas = 0;
-
     this.documentos.forEach((pregunta: any) => {
       const opcionSeleccionada = pregunta.opciones.find((op: any) => op.seleccionada);
       if (opcionSeleccionada) {
@@ -284,28 +175,14 @@ export class SimuladorGeneralComponent implements OnInit {
         }
       }
     });
-    // Mostrar el formulario de calificación
+    // Mostrar el formulario  calificación
     this.mostrarFeedbackCadaXPreguntas();
     this.mostrarCalificacion = true;
   }
   
-
-
-
-
-
-
-
-
-  
-
-
-  
-
   revisar(): void {
     this.preguntasRespondidas = 0;
     this.respuestasCorrectas = 0;
-
     this.documentos.forEach((pregunta: any) => {
       const opcionSeleccionada = pregunta.opciones.find((op: any) => op.seleccionada);
       if (opcionSeleccionada) {
@@ -316,74 +193,35 @@ export class SimuladorGeneralComponent implements OnInit {
         }
       }
     });
-    // Mostrar el formulario de calificación
+    // Mostrar el formulario calificación
     this.mostrarFeedbackCadaXPreguntas();
     this.mostrarCalificacion = true;
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
+ // Cerrar el formulario de calificación
   cerrarCalificacion(): void {
-    // Cerrar el formulario de calificación
     this.mostrarCalificacion = false;
     this.enRevision = false;
   }
 
-
-
-
-
-
-
-
-
-
   Reiniciar(): void {
-    // Desmarcar todas las respuestas y restablecer otras variables
     this.documentos.forEach((pregunta: any) => {
       pregunta.opciones.forEach((opcion: any) => {
-        opcion.seleccionada = false; // Desmarcar cada opción seleccionada
-        opcion.respuestaIncorrecta = false; // Reiniciar marcado de respuesta incorrecta
+        opcion.seleccionada = false; // Desmarcar  opción seleccionada
+        opcion.respuestaIncorrecta = false; // Reiniciar 
       });
-      pregunta.respuestaMarcada = null; // Desmarcar respuesta marcada
+      pregunta.respuestaMarcada = null; // Desmarcar respuesta 
     });
-
-    // Restablecer otros estados si es necesario
     this.mostrarCalificacion = false;
     this.mostrarRespuestas = false;
     this.mostrarRespuestaCompleta = true;
     this.mostrarEtiquetaRespuesta = true;
-
-    // Volver al inicio de la página (pregunta 1)
-    window.scrollTo(0, 0); // Mueve la ventana al inicio de la página
+    window.scrollTo(0, 0); // Mover a inicio de la página
   }
-
-
-
-
-
-
-
-
-
-
-
-
 
   verRespuestasIncorrectas(): void {
     this.enRevision = true;
-    this.preguntasIncorrectas = []; // Reseteamos la lista de preguntas incorrectas
-    
+    this.preguntasIncorrectas = []; 
     this.documentos.forEach((pregunta: any) => {
       if (pregunta.respondida) {
         const respuestaCorrecta = this.encontrarOpcionCorrecta(pregunta.respuesta, pregunta.opciones[0].texto, pregunta.opciones[1].texto, pregunta.opciones[2].texto);
@@ -396,9 +234,7 @@ export class SimuladorGeneralComponent implements OnInit {
                 op.esIncorrecta = true;
               }
             });
-            
             this.preguntasIncorrectas.push(pregunta);
-            
           }
         });
       }
@@ -410,20 +246,6 @@ export class SimuladorGeneralComponent implements OnInit {
     }
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   scrollToPreguntaIncorrecta(index: number): void {
     setTimeout(() => {
       const element = document.getElementById(`pregunta-${index}`);
@@ -433,51 +255,26 @@ export class SimuladorGeneralComponent implements OnInit {
     }, 0);
   }
 
-
-
-
-
   iniciarExamen(): void {
-    this.examenEnCurso = true; // Permitir seleccionar respuestas
-    this.iniciarContador(); // Iniciar el contador al empezar el examen
+    this.examenEnCurso = true; 
+    this.iniciarContador(); 
     console.log('Examen iniciado, puedes seleccionar respuestas.');
   }
 
-
-
-
-
-
-
-
-
-
- // Método para iniciar el contador
+ // iniciar el contador
  iniciarContador(): void {
   this.intervaloContador = setInterval(() => {
     this.tiempoRestanteEnSegundos--;
     if (this.tiempoRestanteEnSegundos <= 0) {
       this.detenerContador();
     }
-  }, 1000); // Actualiza el contador cada segundo (1000 ms)
+  }, 1000); 
 }
 
-
-
-
-
-
-
-// detener el contador
+// detener contador
 detenerContador(): void {
   clearInterval(this.intervaloContador);
 }
-
-
-
-
-
-
   formatTime(seconds: number): string {
     const hours = Math.floor(seconds / 3600);
     const minutes = Math.floor((seconds % 3600) / 60);
@@ -493,22 +290,15 @@ detenerContador(): void {
     return this.router.url;
   }
 
-
-
-
-
   mostrarFeedbackCadaXPreguntas(): void {
     const preguntasRespondidasReales = this.preguntasRespondidasSet.size;
-  
     if (preguntasRespondidasReales % this.feedbackCadaXPreguntas === 0 && preguntasRespondidasReales > 0) {
       const porcentaje = (this.respuestasCorrectas / preguntasRespondidasReales) * 100;
       this.feedbackMensaje = `Llevas ${preguntasRespondidasReales} preguntas respondidas. Tu porcentaje actual es ${porcentaje.toFixed(2)}%.`;
-  
       if (porcentaje >= this.porcentajeIdeal) {
         this.feedbackMensaje += ' ¡Vas bien!';
       } else {
         this.feedbackMensaje += ' Deberías mejorar para alcanzar el 70% de respuestas correctas.';
-  
         // Verificar si ya no es posible alcanzar el 70%
         const preguntasRestantes = this.documentos.length - preguntasRespondidasReales;
         const respuestasNecesarias = Math.ceil(this.documentos.length * (this.porcentajeIdeal / 100)) - this.respuestasCorrectas;
@@ -517,20 +307,14 @@ detenerContador(): void {
           this.feedbackMensaje += ' Te recomendamos reintentar el examen.';
         }
       }
-      this.mostrarFeedback = true; // Mostrar el mensaje de feedback
+      this.mostrarFeedback = true; // Mostrar  mensaje  feedback
     } else {
-      this.mostrarFeedback = false; // Ocultar el mensaje de feedback si no se debe mostrar
+      this.mostrarFeedback = false; // Ocultar mensaje  feedback 
     }
   }
-
-
-
-  // para reiniciar el feedback
+  // reiniciar feedback
   reiniciarFeedback(): void {
     this.feedbackMensaje = '';
     this.mostrarFeedback = false;
   }
-  
-
-
 }

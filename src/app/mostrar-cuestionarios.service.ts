@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class MostrarCuestionariosService {
-  private apiUrl = 'http://localhost:3001/api/databases'; // Asegúrate de que la URL sea correcta
+  private apiUrl = 'http://localhost:3001/api/databases'; 
 
   constructor(private http: HttpClient) {}
 

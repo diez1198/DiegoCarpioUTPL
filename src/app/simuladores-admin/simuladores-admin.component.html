@@ -10,15 +10,9 @@
       <p>Para empezar el examen e iniciar el contador en el modo simulador examen, haga clic en el botón <u>"Empezar examen"</u></p>
     </div>
     <div class="button-container">
-
-
-
       <button (click)="onCompletoMecanicaGeneralClick()">Examen completo</button>
-
       <button *ngIf="!mostrarBotonEmpezar" (click)="onCuestionarioMecanicaGeneralRespuestaClick()">Simulador Examen</button>
-      
       <button *ngIf="mostrarBotonEmpezar" (click)="empezar()">Empezar examen</button>
-      
     <div class="cuestionario-y-boton">
       <div class="preguntas-container">
         <ul>

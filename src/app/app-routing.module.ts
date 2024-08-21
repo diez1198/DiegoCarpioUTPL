@@ -52,8 +52,8 @@ const routes: Routes = [
   { path: 'simuladores-admin/simulador/:nombreColeccion', component: SimuladoresAdminComponent },
   { path: 'cuestionarios-admin/repaso', component: CuestionariosAdminComponent },
   { path: 'cuestionarios-admin/completo', component: CuestionariosAdminComponent },
-  { path: '', redirectTo: '/inicio', pathMatch: 'full' }, // Ruta por defecto
-  { path: '**', redirectTo: '/cuestionarioGeneral', pathMatch: 'full' }, // Ruta por defecto para rutas no encontradas
+  { path: '', redirectTo: '/inicio', pathMatch: 'full' }, 
+  { path: '**', redirectTo: '/cuestionarioGeneral', pathMatch: 'full' }, 
 ];
 
 @NgModule({

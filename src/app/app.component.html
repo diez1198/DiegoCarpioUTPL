@@ -1,9 +1,6 @@
 <div class="contenedor-principal">
-
-  <!-- Header -->
   <header>
-
-    <head>
+  <head>
       <title>Guía de Examen</title>
     </head>
     <body>
@@ -11,8 +8,7 @@
         <!-- Barra de menú -->
         <div class="menu_bar">
           <nav>
-            <ul class="menu-list"> <!-- Agrega la clase menu-list aquí -->
-              <!-- Elementos del menú principal con enlaces a diferentes páginas de contenido -->
+            <ul class="menu-list">
               <li>
                 <a routerLink="/principal" [class.active]="activeMenuItem === 'inicio'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
                   Inicio
@@ -25,16 +21,6 @@
                 </a>
               </li>
 
-              
-
-              
-
-             
-
-
-
-
-<!-- Componente AppComponent -->
 <li class="nav-item dropdown">
   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Cuestionarios
@@ -83,42 +69,25 @@
         Simulador Motores
       </a>
     </li>
-    <!-- Filtrar y mostrar otras simulaciones -->
-   
-
    <li *ngFor="let collection of filteredCollections"><a class="dropdown-item" (click)="verSimuladores(collection)">{{ collection }}
    </a>
 </li>
-
-
-
-
-
-    
   </ul>
 </li>
-
-
-
-
-              <li class="administrador">
-                <a routerLink="/administrador" [class.active]="activeMenuItem === 'Administrador'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
-                  Ingresar
-                </a>
-              </li>
-            </ul>
-          </nav>
+    <li class="administrador">
+        <a routerLink="/administrador" [class.active]="activeMenuItem === 'Administrador'" (mouseenter)="doNothing()" (mouseleave)="doNothing()">
+        Ingresar
+        </a>
+   </li>
+  </ul>
+      </nav>
         </div>
       </div>
-
     </body>
-
   </header>
-
 </div>
-<!-- Contenedor del contenido principal -->
+<!-- contenido principal -->
 <div class="contenedor-contenido">
-  <!-- Contenido principal -->
   <main>
       <div class="mensaje-container">
         
@@ -130,46 +99,6 @@
 
 
 
-
-  
-  <!-- Agrega tus scripts y otras inclusiones al final del cuerpo -->
-
-
-
-
-
-<!-- TEEEESTT
-
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Cuestionarios
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li>
-              <a routerLink="/cuestionarioGeneral" class="dropdown-item" [class.active]="activeMenuItem === 'Cuestionario General'">
-                Cuestionario General
-              </a>
-            </li>
-            <li>  
-              <a routerLink="/cuestionarioFuselaje" class="dropdown-item" [class.active]="activeMenuItem === 'Cuestionario Fuselaje'">
-                Cuestionario Fuselaje
-              </a>
-            </li>
-            <li>
-              <a routerLink="/cuestionarioMotores" class="dropdown-item" [class.active]="activeMenuItem === 'Cuestionario Motores'">
-                Cuestionario Motores
-              </a>
-            </li>
-            </ul>
-          </li>
-      </ul>
-      </div>
-    </nav>
-
--->
 
 
 

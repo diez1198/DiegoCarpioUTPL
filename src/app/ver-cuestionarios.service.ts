@@ -11,7 +11,7 @@ import { catchError, switchMap } from 'rxjs/operators';
 })
 export class VerCuestionariosService {
 
-  private apiUrl = 'http://localhost:3001/api/databases'; // Asegúrate de que la URL sea correcta
+  private apiUrl = 'http://localhost:3001/api/databases'; 
 
   constructor(private http: HttpClient) { }
 
@@ -33,7 +33,7 @@ export class VerCuestionariosService {
       map((documentos: any[]) => 
         documentos
           .filter((pregunta: any) => this.preguntaCompleta(pregunta))
-          .sort((a, b) => a.id - b.id) // Ordenar por el campo 'id'
+          .sort((a, b) => a.id - b.id)
       )
     );
   }
@@ -43,7 +43,7 @@ export class VerCuestionariosService {
  
   getDocumentosGen(nombreColeccion: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/${nombreColeccion}`).pipe(
-      map(documentos => documentos.sort((a, b) => a.id - b.id)) // Ordenar por el campo 'id'
+      map(documentos => documentos.sort((a, b) => a.id - b.id)) 
     );
   }
 
